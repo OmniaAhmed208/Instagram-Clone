@@ -14,4 +14,9 @@ class Mentiontag extends Model
     protected $fillable = [
         'mention_or_tag_content',
     ];
+
+    public function mentiontagable()
+    {
+        return $this->morphTo();
+    }
 }

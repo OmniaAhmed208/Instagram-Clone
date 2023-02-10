@@ -18,12 +18,14 @@ class Post extends Model
 
     public function media()
     {
-        return $this->hasMany(Media::class);
+        // return $this->hasMany(Media::class);
+        return $this->morphMany(Comment::class, 'mediaable');
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        // return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function postInteractions()
@@ -33,6 +35,7 @@ class Post extends Model
 
     public function mentionTag()
     {
-        return $this->hasMany(Mentiontag::class);
+        // return $this->hasMany(Mentiontag::class);
+        return $this->morphMany(Comment::class, 'mentiontagable');
     }
 }

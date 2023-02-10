@@ -54,16 +54,20 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        // return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
+
 
     public function media()
     {
-        return $this->hasMany(Media::class);
+        // return $this->hasMany(Media::class);
+        return $this->morphMany(Comment::class, 'mediaable');
     }
 
     public function mentionTag()
     {
-        return $this->hasMany(Mentiontag::class);
+        // return $this->hasMany(Mentiontag::class);
+        return $this->morphMany(Comment::class, 'mentiontagable');
     }
 }

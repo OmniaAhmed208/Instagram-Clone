@@ -16,4 +16,9 @@ class Media extends Model
         'content_path',  // we can change it, according to the fetching method
         'alt_text',
     ];
+
+    public function mediaable()
+    {
+        return $this->morphTo();
+    }
 }
