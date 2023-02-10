@@ -23,6 +23,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->text('comment_content');
             $table->timestamps();
+            $table->unique(['post_id', 'comment_writer_id', 'comment_content']);
         });
     }
 

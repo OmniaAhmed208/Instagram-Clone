@@ -25,6 +25,7 @@ return new class extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->enum('mention_or_tag', ['mention', 'tag']);
+            $table->string('mention_or_tag_content)');
             $table->timestamps();
         });
     }

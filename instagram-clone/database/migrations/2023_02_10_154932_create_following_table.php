@@ -23,7 +23,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->enum('following_action', ['accepted', 'declined']);
             $table->timestamps();
-            $table->primary(['user_id', 'follower_id']);
+            $table->unique(['user_id', 'follower_id']);
         });
     }
 

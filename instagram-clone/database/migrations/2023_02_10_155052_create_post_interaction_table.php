@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('like')->default(0);
             $table->boolean('saving')->default(0);
             $table->timestamps();
+            $table->unique(['post_id', 'watcher_id']);
         });
     }
 
