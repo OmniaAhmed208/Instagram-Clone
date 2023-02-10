@@ -38,4 +38,9 @@ class Post extends Model
         // return $this->hasMany(Mentiontag::class);
         return $this->morphMany(Comment::class, 'mentiontagable');
     }
+
+    public function hashtag()
+    {
+        return $this->morphMany(Comment::class, 'hashtaggable');
+    }
 }
