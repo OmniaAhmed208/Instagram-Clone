@@ -1,27 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Dancing+Script:wght@700&display=swap');
-/* i::before {content: "\f015";} */
-.side-bar{margin: 0 31px 0 30px;}
-
-.side-bar a{
-    text-decoration: none;
-    color: #000;
-}
-.side-bar .left-side{
-    border-right: 1px solid #ddd;
-    top: 0;
-    left: 0;
-    position: fixed;
-    width: 245px;
-    height: 100%;
-    padding: 30px 0 0 33px;
-}
-.side-bar h1{
-    font-size: 30px;
-    font-family: 'Bangers', cursive;
-    font-family: 'Dancing Script', cursive;
-}
-.side-bar .left-side ul{margin-top: 40px;}
-.side-bar .left-side ul li{margin-bottom: 30px;}
 
 /* ============ home =============== */
 .home{
@@ -30,27 +6,58 @@
 }
 /* ============ story =============== */
 .home .stories{display: flex;align-items: center;margin-top: 20px;margin-bottom: 60px;}
-.home .stories .story{
+.home .stories .box{
     position: relative;
     width: 65px;
     height: 65px;
+    background:#000;
     border-radius: 50%;
     margin-right: 25px;
-    border: 2px solid;
+    overflow: hidden;
 }
-.home .stories .story img{
+.home .stories .box::before{
+    content: '';
+    position: absolute;
+    background: linear-gradient(315deg,#ffeb3b,#e2336b,#9c27b0);
+    inset: -10px 0px;
+}
+.home .stories .box:hover::before{
+    inset: -20px 0px;
+    transition: 0.5s;
+    animation: animate 4s linear infinite;
+}
+@keyframes animate{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
+.home .stories .box::after{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 1;
+}
+.home .stories .box .imgBx{
+    position: absolute;
+    inset: 5px;
+    z-index: 3;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.home .stories .box img{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-    padding: 2px;
+    transition: 0.5s;
 }
+
 .home .stories .story .title{
     position: absolute;
-    top: 60px;
+    top: 114px;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 61px;
@@ -60,14 +67,36 @@
 /* =============== posts ==================== */
 /* .home .posts{display: flex;align-items: center;margin-top: 20px} */
 .home .posts{width: 95%;}
-.home .posts .post{display: flex;width: 100%;margin-bottom: 20px;}
+.home .posts .post{display: flex;width: 100%;margin-bottom: 7px;}
 .home .posts .story{
     position: relative;
     width: 100px;
     height: 50px;
+    background:#000;
     border-radius: 50%;
     margin-right: 25px;
-    border: 2px solid;
+    overflow: hidden;
+}
+.home .posts .story::before{
+    content: '';
+    position: absolute;
+    background: linear-gradient(315deg,#ffeb3b,#e2336b,#9c27b0);
+    inset: -10px 0px;
+}
+.home .posts .story::after{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: #fff;
+    z-index: 1;
+}
+.home .posts .story .imgBx{
+    position: absolute;
+    inset: 5px;
+    z-index: 3;
+    border-radius: 50%;
+    overflow: hidden;
 }
 .home .posts .story img{
     position: absolute;
@@ -76,8 +105,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-    padding: 2px;
+    transition: 0.5s;
 }
 .home .posts .post .title{
     margin: 14px -14px;
@@ -93,83 +121,21 @@
     font-weight: 700;
     letter-spacing: 1px;
 }
-.home .posts .imgPost{
-    width: 100%;
-    height: 450px;
+.home .posts .imgPost{width: 100%;height: 450px;}
+.home .posts .imgPost img{width: 100%;height: 100%;border-radius: 8px;}
+.home .posts .actions{position: relative;;margin: 12px 0 40px;display: flex;}
+.home .posts .actions li::before{
+    position: absolute;
+    font-size: 30px;
+    font-family: FontAwesome;
 }
-.home .posts .imgPost img{
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-}
-.home .posts .actions{margin: 20px 0;display: flex;}
-.home .posts .actions i{font-size: 30px; padding: 0 6px;}
-.home .posts .actions .save{display: flex;flex: auto;}
+.home .posts .actions .like::before{content: "\f08a";padding: 0 10px 0  0;}
+.home .posts .actions .comment::before{content: "\f0e5";padding: 0 0 0 50px;}
+.home .posts .actions .share::before{content: "\f1e0";padding: 0 0 0 100px;}
+.home .posts .actions .save::before{content: "\f097";width: 100%;text-align: end;}
+
 .home .num-likes{font-weight: 500;}
 .home .post-content{display: flex;}
 .home .post-content .title{font-weight: 600;cursor: pointer;margin-right: 10px;}
-.home .add-comment input{
-    width: 100%;
-    border: none;
-    outline: none;
-}
-
-/* =============== right side ========= */
-.side-bar .right-side{padding: 50px 66px 0 10px;font-size:14px;}
-
-.right-side .owner,
-.right-side .persons{display: flex;width: 100%;margin-bottom: 20px;}
-.right-side .persons{margin-bottom: -10px;}
-
-.right-side .owner .story,
-.right-side .persons .story{
-    position: relative;
-    width: 90px;
-    height: 60px;
-    border-radius: 50%;
-    margin-right: 25px;
-}
-.right-side .persons .story{width: 60px;height: 45px;}
-
-.right-side .owner .story img,
-.right-side .persons .story img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    padding: 2px;
-}
-
-.right-side .owner .title,
-.right-side .persons .title{width: 100%;margin: 8px -14px;}
-
-.right-side .owner .title a,
-.right-side .persons .title a{font-weight: 600;cursor: pointer;width: 100%;
-}
-.right-side .owner .title p,
-.right-side .persons .title p{color: #686767;}
-
-.right-side .owner .info,
-.right-side .persons .info{
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: rgb(77, 151, 248);
-    margin-top: 7px;
-    font-size: 12px;
-}
-
-.right-side .suggested-persons .content{
-    display: flex;
-    font-weight: 600;
-    font-size: 16px;
-    margin: -12px 0px 14px 10px;
-}
-
-.right-side .suggested-persons .title{width: 100%;color: #686767;}
-.right-side .suggested-persons .see-all{width: 100%;cursor: pointer;text-align: end;}
-.right-side .suggested-persons .see-all:hover{color: #686767;}
-
+.home .add-comment input{width: 100%;border: none;outline: none;}
 
