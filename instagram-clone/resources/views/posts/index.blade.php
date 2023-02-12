@@ -13,13 +13,13 @@
     <div class="side-bar">
         <div class="row">
             <div class="col-lg-4">
-                {{-- left side strat --}}
+                {{-- left side start --}}
                 <div class="left-side">
                     <div class="bar">
                         <h1><a href="">Instagram</a></h1>
                         <ul class="list-unstyled">
                             <li class="active"><i class="fa"></i><a href="">Home</a></li>
-                            <li><i class="fa"></i><a href="">Search</a></li>
+                            <li><i class="fa"></i><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">Search</a></li>
                             <li><a href="">Explore</a></li>
                             <li><a href="">Reels</a></li>
                             <li><a href="">Messages</a></li>
@@ -128,6 +128,101 @@
             </div>
         </div>
     </div>
+
+    {{-- search left side offcanvas start --}}
+    <div  class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+        <div class="search-bar">
+            {{-- offcanvas title start --}}
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title" id="offcanvasSearchLabel">Search</h3>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            {{-- offcanvas title end --}}
+            {{-- search start --}}
+            <div class="offcanvas-body">
+                <div class="row mt-5">
+                    <div class="col mx-auto">
+                        <div class="search">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="form-control" aria-label="reset"></button>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <ul class="search-auto-results">
+                    {{--  search-auto-results row start --}}
+                    <a href="" class="row">
+                        <div class="search-auto-result">
+                            <div class="row">
+                                <div class="col-lg-3 align-self-start">
+                                    <div class=" story">
+                                        <div class="imgBx">
+                                            <img src="{{asset('lap.png')}}" alt="img">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 align-self-start">
+                                    <div class="title-info">
+                                        <div class="title">
+                                            <p>Nikename-of-person</p>
+                                            <i class="verificationSign"></i>
+                                        </div>
+                                        <div class="info">
+                                            <p>Nikename &sdot; 0 followers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 align-self-center">
+                                    <button type="button" class="btn-close text-reset " data-bs-dismiss="searchResult" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {{-- search-auto-result row end --}}
+                </ul>
+                <div class="recent-search-list">
+                    <div class="row recent-title">
+                        <h5 class="col align-self-start">Recent</h5>
+                        <a class="col align-self-end info" href="">Clear all</a>
+                    </div>
+                    <ul class="recent-search-results">
+                        {{-- recent-search-results row start --}}
+                        <a href="">
+                            <div class="search-result">
+                                <div class="row">
+                                    <div class="col-lg-3 align-self-start">
+                                        <div class="story">
+                                            <div class="imgBx">
+                                                <img src="{{asset('lap.png')}}" alt="img">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 align-self-start">
+                                        <div class="title-info">
+                                            <div class="title">
+                                                <p>Nikename-of-person</p>
+                                                <i class="verificationSign"></i>
+                                            </div>
+                                            <div class="info">
+                                                <p>Nikename &sdot; 0 followers</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 align-self-center">
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="searchResult" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {{-- recent-search-results row end --}}
+                    </ul>
+                </div>
+            </div>
+            {{-- search end --}}
+        </div>
+    </div>
+    {{-- search left side offcanvas end --}}
 
     <script src="{{asset('/js/propper.min.js')}}"></script>
     <script src="{{asset('/js/jquery-3.6.0.js')}}"></script>
