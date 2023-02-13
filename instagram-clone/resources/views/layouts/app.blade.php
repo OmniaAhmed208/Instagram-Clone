@@ -20,11 +20,11 @@
                         <h1><a href="">Instagram</a></h1>
                         <ul class="list-unstyled">
                             <li class="home-icon"><a href="">Home</a></li>
-                            <li class="search" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><a>Search</a></li>
+                            <li class="search" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><a href="/search">Search</a></li>
                             <li class="explore"><a href="">Explore</a></li>
                             <li class="reels"><a href="">Reels</a></li>
                             <li class="messages"><a href="">Messages</a></li>
-                            <li class="notifications"><a href="">Notifications</a></li>
+                            <li class="notifications" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><a>Notifications</a></li>
                             <li class="create"><a href="">Create</a></li>
                             <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href="">Profile</a></li>
                             <li class="more">More</li>
@@ -145,7 +145,7 @@
 
 
     {{-- search left side offcanvas start --}}
-    <div  class="offcanvas offcanvas-start rounded-start rounded-5" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+    <div  class="offcanvas offcanvas-start rounded-start rounded-5" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
         <div class="search-bar">
             {{-- offcanvas title start --}}
             <div class="offcanvas-header">
@@ -153,97 +153,82 @@
                 {{-- <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> --}}
             </div>
             {{-- offcanvas title end --}}
-                  {{-- search start --}}
             <div class="offcanvas-body">
-                <div class="row mt-5">
-                    <div class="col mx-auto">
-                        <div class="search">
-                            <i class="fa fa-search"></i>
-                            <input type="text" class="form-control" placeholder="Search">
-                            <div class="col-lg-1 align-self-center">
-                                <button type="button" class="btn-close text-reset" data-bs-dismiss="form-control" aria-label="reset"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <ul class="search-auto-results">
-                    {{--  search-auto-results row start --}}
-                    <a href="" class="row">
-                        <div class="search-auto-result">
-                            <div class="row">
-                                <div class="col-lg-3 align-self-start">
-                                    <div class=" story">
-                                        <div class="imgBx">
-                                            <img src="{{asset('lap.png')}}" alt="img">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8 align-self-start">
-                                    <div class="title-info">
-                                        <div class="title">
-                                            <p>Nikename-of-person</p>
-                                            <img src="{{asset('verified.png')}}" />
-                                            {{-- <i class="fa-solid fa-badge-check"></i> --}}
-                                        </div>
-                                        <div class="info">
-                                            <p>Nikename &sdot; 0 followers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-1 align-self-center">
-                                    <button type="button" class="btn-close text-reset " data-bs-dismiss="searchResult" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    {{-- search-auto-result row end --}}
-                </ul>
-                <div class="recent-search-list">
-                    <div class="row recent-title">
-                        <h5 class="col align-self-start">Recent</h5>
-                        <a class="col align-self-end info" href="">Clear all</a>
-                    </div>
-                    <ul class="recent-search-results">
-                        {{-- recent-search-results row start --}}
-                        <a href="" class="row">
-                            <div class="search-result">
-                                <div class="row">
-                                    <div class="col-lg-2 align-self-start">
-                                        <div class="story">
-                                            <div class="imgBx">
-                                                <img src="{{asset('lap.png')}}" alt="img">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-9 align-self-start">
-                                        <div class="title-info">
-                                            <div class="title">
-                                                <p>Nikename-of-person</p>
-                                                <img src="{{asset('verified.png')}}" />
-                                                {{-- <i class="fa-solid fa-badge-check"></i> --}}
-                                            </div>
-                                            <div class="info">
-                                                <p>Nikename &sdot; 0 followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-1 align-self-center">
-                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="searchResult" aria-label="Close"></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        {{-- recent-search-results row end --}}
-                    </ul>
-                </div>
+                {{-- search start --}}
+                @yield('contentSearchOffCanvas')
+                {{-- search end --}}
             </div>
-            {{-- search end --}}
         </div>
     </div>
-{{-- search left side offcanvas end --}}
+    {{-- search left side offcanvas end --}}
 
-    {{-- @yield('contentSearchOffCanvas') --}}
+
+
+    {{-- notifications left side offcanvas start --}}
+    <div  class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasNotif" aria-labelledby="offcanvasNotifLabel">
+        <div class="notif-bar">
+            {{-- offcanvas title start --}}
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title" id="offcanvasNotifLabel">Notifications</h3>
+            </div>
+            {{-- offcanvas title end --}}
+            {{-- notifications lists start --}}
+            <div class="offcanvas-body">
+                <div class="notif-week-list">
+                    <div class="row week-title">
+                        <h5 class="col align-self-start">This Week</h5>
+                    </div>
+                    <ul class="row week-list">
+                        {{--week-list row start --}}
+                        @yield('content-notif-week-user-container')
+                        {{-- week-list row end --}}
+                    </ul>
+                </div>
+                {{-- week notifications end --}}
+                <hr />
+                {{-- month notifications start --}}
+                <div class="notif-month-list">
+                    <div class="row month-title">
+                        <h5 class="col align-self-start">This Month</h5>
+                    </div>
+                    <ul class="month-list">
+                        {{--month-list row start --}}
+                        @yield('content-notif-month-user-container')
+                        {{-- month-list row end --}}
+                    </ul>
+                </div>
+                {{-- month notifications end --}}
+                <hr />
+                {{-- earlier notifications start --}}
+                <div class="notif-earlier-list">
+                    <div class="row earlier-title">
+                        <h5 class="col align-self-start">Earlier</h5>
+                    </div>
+                    <ul class="earlier-list">
+                        {{--earlier-list row start --}}
+                        @yield('content-notif-earlier-user-container')
+                        {{-- earlier-list row end --}}
+                    </ul>
+                </div>
+                {{-- suggestions for you notifications end --}}
+                <hr />
+                {{-- suggest notifications start --}}
+                <div class="notif-suggest-list">
+                    <div class="row suggest-title">
+                        <h5 class="col align-self-start">Suggestions for you</h5>
+                    </div>
+                    <ul class="suggest-list">
+                        {{--suggest-list row start --}}
+                        @yield('content-notif-suggest-user-container')
+                        {{-- suggest-list row end --}}
+                    </ul>
+                </div>
+                {{-- suggest notifications end --}}
+            </div>
+            {{-- notifications lists end --}}
+        </div>
+    </div>
+    {{-- notifications left side offcanvas end --}}
 
     <script src="{{asset('/js/propper.min.js')}}"></script>
     <script src="{{asset('/js/jquery-3.6.0.js')}}"></script>

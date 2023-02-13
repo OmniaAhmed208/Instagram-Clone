@@ -23,3 +23,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home' , [PostController::class, 'index'])->name('home.index');
+// Route::get('/home', function () {
+//     return view("posts.search");
+// });
+Route::get('/home', function () {
+    return view("posts.usersContainers");
+});
