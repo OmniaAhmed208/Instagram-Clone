@@ -17,38 +17,3 @@ yarn-error.log
 /.idea
 /.vscode
 
-
-===========================
-
-Files we are working or modifying in this repo:
-
-  App\Http\Resources;
-    PostResource.php
-    UserResource.php
-
-  App\Http\Controllers\Api;
-    PostController.php
-
-  App\Models;
-    Post.php
-    User.php
-
-  resources;
-    >css
-    >js
-    >views
-
-  routes;
-    api.php
-    web.php
-
-  tests;
-    AnynameTest.php
-
-  .env;
-
-  .gitignore;
-
-  phpunit.xml;
-
-  README.md;
