@@ -23,3 +23,6 @@ Route::get('/', function () {
 });
 
 Route::get('/home' , [PostController::class, 'index'])->name('home.index');
+
+Route::get('/stories' , [PostController::class, 'show'])->name('home.show');
+

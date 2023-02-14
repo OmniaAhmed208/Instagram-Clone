@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{asset('/css/bootstrap.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
     <link rel="stylesheet" href="{{asset('/css/side-bar.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/side-bar-media.css')}}">
     <link rel="stylesheet" href= @yield('css')>
 </head>
 <body>
@@ -16,20 +18,39 @@
             <div class="col-lg-4">
                 {{-- left side strat --}}
                 <div class="left-side">
-                    <div class="bar">
-                        <h1><a href="">Instagram</a></h1>
+
+                    <header>
+                        <a href="" class="logo"><img src="{{asset('/img/logo.png')}}" alt="" ></a>
+                        <a href="" class="logo2"><img src="{{asset('/img/logo2.jpg')}}" alt="" ></a>
+
                         <ul class="list-unstyled">
-                            <li class="home-icon"><a href="">Home</a></li>
-                            <li class="search"><a href="">Search</a></li>
-                            <li class="explore"><a href="">Explore</a></li>
-                            <li class="reels"><a href="">Reels</a></li>
-                            <li class="messages"><a href="">Messages</a></li>
-                            <li class="notifications"><a href="">Notifications</a></li>
-                            <li class="create"><a href="">Create</a></li>
-                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href="">Profile</a></li>
-                            <li class="more">More</li>
+                            <li><a href=""><i class="fas fa-home"></i> <span>Home</span></a></li>
+                            <li><a href=""><i class="fas fa-search"></i> <span>Search</span></a></li>
+                            <li><a href=""><i class="fas fa-compass"></i> <span>Explore</span></a></li>
+                            <li><a href=""><i class="fas fa-compass"></i> <span>Reels</span></a></li>
+                            <li><a href=""><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
+                            <li><a href=""><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
+                            <li><a href=""><i class="fas fa-plus-square"></i> <span>Create</span></a></li>
+                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href=""><span>Profile</span></a></li>
+
+                            <li class="more">
+                                <div class="dropdown">
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Setting</a></li><hr>
+                                        <li><a class="dropdown-item" href="#">Saved</a></li><hr>
+                                        <li><a class="dropdown-item" href="#">Switch appearance</a></li><hr>
+                                        <li><a class="dropdown-item" href="#">Your Activity</a></li><hr>
+                                        <li><a class="dropdown-item" href="#">Report a problem</a></li><hr>
+                                        <li><a class="dropdown-item" href="#">Switch accounts</a></li><hr>
+                                        <li><a class="dropdown-item" href="#">Log out</a></li>
+                                    </ul>
+                                    <i class="fa fa-bars fa-x2" aria-hidden="true"></i>
+                                    <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                                </div>
+                            </li>
+
                         </ul>
-                    </div>
+                    </header>
                 </div>
                 {{-- left side end --}}
             </div>
@@ -41,7 +62,7 @@
 
             <div class="col-lg-4">
                 {{-- right side strat --}}
-                <div class="right-side">
+                <div class="right-side d-lg-block d-sm-none">
 
                     <div class="owner">{{--start owner--}}
                         <div class="story">
@@ -142,9 +163,10 @@
         </div>
     </div>
 
-    <script src="{{asset('/js/propper.min.js')}}"></script>
-    <script src="{{asset('/js/jquery-3.6.0.js')}}"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+    {{-- @yield("cancel") --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 </html>
 
