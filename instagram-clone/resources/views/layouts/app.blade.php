@@ -49,6 +49,15 @@
                                 </div>
                             </li>
 
+                            <li class="home-icon"><a href="">Home</a></li>
+                            <li class="search" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><a href="/search">Search</a></li>
+                            <li class="explore"><a href="">Explore</a></li>
+                            <li class="reels"><a href="">Reels</a></li>
+                            <li class="messages"><a href="">Messages</a></li>
+                            <li class="notifications" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><a>Notifications</a></li>
+                            <li class="create"><a href="">Create</a></li>
+                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href="">Profile</a></li>
+                            <li class="more">More</li>
                         </ul>
                     </header>
                 </div>
@@ -163,10 +172,98 @@
         </div>
     </div>
 
-    {{-- @yield("cancel") --}}
+    {{-- search left side offcanvas start --}}
+    <div  class="offcanvas offcanvas-start rounded-start rounded-5" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+        <div class="search-bar">
+            {{-- offcanvas title start --}}
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title" id="offcanvasSearchLabel">Search</h3>
+                {{-- <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> --}}
+            </div>
+            {{-- offcanvas title end --}}
+            <div class="offcanvas-body">
+                {{-- search start --}}
+                @yield('contentSearchOffCanvas')
+                {{-- search end --}}
+            </div>
+        </div>
+    </div>
+    {{-- search left side offcanvas end --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+
+    {{-- notifications left side offcanvas start --}}
+    <div  class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasNotif" aria-labelledby="offcanvasNotifLabel">
+        <div class="notif-bar">
+            {{-- offcanvas title start --}}
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title" id="offcanvasNotifLabel">Notifications</h3>
+            </div>
+            {{-- offcanvas title end --}}
+            {{-- notifications lists start --}}
+            <div class="offcanvas-body">
+                <div class="notif-week-list">
+                    <div class="row week-title">
+                        <h5 class="col align-self-start">This Week</h5>
+                    </div>
+                    <ul class="row week-list">
+                        {{--week-list row start --}}
+                        @yield('content-notif-week-user-container')
+                        {{-- week-list row end --}}
+                    </ul>
+                </div>
+                {{-- week notifications end --}}
+                <hr />
+                {{-- month notifications start --}}
+                <div class="notif-month-list">
+                    <div class="row month-title">
+                        <h5 class="col align-self-start">This Month</h5>
+                    </div>
+                    <ul class="month-list">
+                        {{--month-list row start --}}
+                        @yield('content-notif-month-user-container')
+                        {{-- month-list row end --}}
+                    </ul>
+                </div>
+                {{-- month notifications end --}}
+                <hr />
+                {{-- earlier notifications start --}}
+                <div class="notif-earlier-list">
+                    <div class="row earlier-title">
+                        <h5 class="col align-self-start">Earlier</h5>
+                    </div>
+                    <ul class="earlier-list">
+                        {{--earlier-list row start --}}
+                        @yield('content-notif-earlier-user-container')
+                        {{-- earlier-list row end --}}
+                    </ul>
+                </div>
+                {{-- suggestions for you notifications end --}}
+                <hr />
+                {{-- suggest notifications start --}}
+                <div class="notif-suggest-list">
+                    <div class="row suggest-title">
+                        <h5 class="col align-self-start">Suggestions for you</h5>
+                    </div>
+                    <ul class="suggest-list">
+                        {{--suggest-list row start --}}
+                        @yield('content-notif-suggest-user-container')
+                        {{-- suggest-list row end --}}
+                    </ul>
+                </div>
+                {{-- suggest notifications end --}}
+            </div>
+            {{-- notifications lists end --}}
+        </div>
+    </div>
+    {{-- notifications left side offcanvas end --}}
+
+    <script src="{{asset('/js/propper.min.js')}}"></script>
+    <script src="{{asset('/js/jquery-3.6.0.js')}}"></script>
+    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script> --}}
+
 </body>
 </html>
 

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Dancing+Script:wght@700&display=swap');
 
-.side-bar{margin: 0 31px 0 30px;}
+.side-bar{margin: 0 31px 0 30px; z-index: 2;}
 
 .side-bar a{
     text-decoration: none;
@@ -127,3 +127,140 @@
 .right-side .infoPerson .info2 .imgBx{margin-top: 20px;}
 .right-side .infoPerson .info2 .imgBx img{width: 100%;height: 120px;}
 .right-side .infoPerson .info2 .follow-btn input{width: 100%;padding: 3px 0;margin: 10px 0;}
+
+/* =============== left side offcanvas ========= */
+.offcanvas{
+    font-size:14px;
+    /* width: 1000px; */
+    margin-left: 60px;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+}
+
+.offcanvas hr{margin: 0; margin-top: 20px;}
+
+.offcanvas ul{padding: 0; list-style-type: none;}
+
+.search-bar .offcanvas-body .user-container:hover,
+.notif-bar .offcanvas-body .notif-week-list:hover,
+.notif-bar .offcanvas-body .notif-month-list:hover,
+.notif-bar .offcanvas-body .notif-earlier-list:hover,
+.notif-bar .offcanvas-body .notif-suggest-list:hover{background-color: rgb(250, 250, 250);}
+
+.search-bar .offcanvas-body .user-container,
+.notif-bar .offcanvas-body .notif-week-list,
+.notif-bar .offcanvas-body .notif-month-list,
+.notif-bar .offcanvas-body .notif-earlier-list,
+.notif-bar .offcanvas-body .notif-suggest-list{
+    width: 100%;
+    padding: 12px; 
+    margin-bottom: 20px;}
+.search-bar .offcanvas-body .user-container,
+.search-bar .offcanvas-body .user-container{display: flex; }
+
+.offcanvas .offcanvas-body{
+    margin-bottom: -10px;
+    scroll-behavior: smooth;
+}
+
+.search-bar .offcanvas-body .search-auto-results a,
+.search-bar .offcanvas-body .recent-search-list .recent-search-results a,
+.notif-bar .offcanvas-body .notif-week-list a,
+.notif-bar .offcanvas-body .notif-month-list a,
+.notif-bar .offcanvas-body .notif-earlier-list a,
+.notif-bar .offcanvas-body .notif-suggest-list a{text-decoration: none; width: 100%;}
+
+.notif-bar .offcanvas-body .notif-week-list strong,
+.notif-bar .offcanvas-body .notif-month-list strong,
+.notif-bar .offcanvas-body .notif-earlier-list strong,
+.notif-bar .offcanvas-body .notif-suggest-list strong{font-size: 18px;}
+
+/* =============== search left side offcanvas ========= */
+.search-bar .offcanvas-body .recent-search-list .recent-title a{
+    text-decoration: none;
+    font-weight: 700;
+    font-size:large;
+    letter-spacing: 1px;
+    color: rgb(77, 151, 248);
+    margin-top: 7px;
+    font-size: 12px;
+    text-align: end;
+}
+
+.search-bar .offcanvas-body .recent-search-list .recent-title a:hover{
+    color: rgb(31, 62, 104);
+    cursor: pointer;
+}
+
+.search-bar .search{position: relative;}
+
+.search-bar .search input{
+    height: 50px;
+    font-size: large;
+    text-indent: 25px;
+    background-color: whitesmoke;
+    border: none;
+}
+
+/* .search-bar .search input:focus{
+    box-shadow: none;
+    border: 2px solid blue;
+} */
+
+.search-bar .search .fa-search{
+    position: absolute;
+    color: #686767;
+    top: 20px;
+    left: 16px;
+    justify-content: center;
+}
+
+.search-bar .search .col-lg-1{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin-top: 11px;
+}
+
+/* =============== user-container =============== */
+
+.user-container:hover{background-color: rgb(250, 250, 250);}
+
+.user-container{
+    display: flex; 
+    width: 100%;
+    padding: 12px; 
+    margin-bottom: 20px;}
+
+.user-container a{text-decoration: none;}
+
+.user-container .row{text-decoration: none; width: 100%;}
+
+.user-container .story{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /* margin-right: 0px; */
+}
+
+.user-container .story img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.user-container .title-info .title p{
+    display: inline;
+    font-weight: 600;
+    font-size:large;
+    color: #000;
+    cursor: pointer;
+    width: 100%;
+}
+.user-container .title-info .info p{color: #686767;}
+
