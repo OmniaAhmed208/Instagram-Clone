@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('notif_offcanvas')
 
 @section('css') "{{asset('/css/index.css')}}" @endsection
 
@@ -152,4 +152,4 @@
 	</a>
 	{{-- user-container row end --}}
 
-@endsection
+@endsection 

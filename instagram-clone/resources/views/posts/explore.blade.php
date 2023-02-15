@@ -28,7 +28,7 @@
 
 @section('content')
 
-<div class="col-lg-10">
+<div class="col-lg-8">
 	<section class="explore-body min-vh-100 px-5">
 		<div class="container p-5">
 			<div class="row row-cols-4 d-flex">

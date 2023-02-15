@@ -15,7 +15,7 @@
 <body @yield('body')>
     <div class="side-bar">
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 {{-- left side strat --}}
                 <div class="left-side">
 
@@ -24,12 +24,12 @@
                         <a href="" class="logo2"><img src="{{asset('/img/logo2.jpg')}}" alt="" ></a>
 
                         <ul class="list-unstyled">
-                            <li><a href=""><i class="fas fa-home"></i> <span>Home</span></a></li>
-                            <li><a href=""><i class="fas fa-search"></i> <span>Search</span></a></li>
-                            <li><a href=""><i class="fas fa-compass"></i> <span>Explore</span></a></li>
-                            <li><a href=""><i class="fas fa-compass"></i> <span>Reels</span></a></li>
+                            <li><a href="/home"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><i class="fas fa-search"></i> <span>Search</span></a></li>
+                            <li><a href="/explore"><i class="fas fa-compass"></i> <span>Explore</span></a></li>
+                            <li><a href="/reels"><i class="fas fa-compass"></i> <span>Reels</span></a></li>
                             <li><a href=""><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
-                            <li><a href=""><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
+                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
                             <li><a href=""><i class="fas fa-plus-square"></i> <span>Create</span></a></li>
                             <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href=""><span>Profile</span></a></li>
 
@@ -48,16 +48,6 @@
                                     <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More</a>
                                 </div>
                             </li>
-
-                            <li class="home-icon"><a href="/home">Home</a></li>
-                            <li class="search" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><a>Search</a></li>
-                            <li class="explore"><a href="/explore">Explore</a></li>
-                            <li class="reels"><a href="/reels">Reels</a></li>
-                            <li class="messages"><a href="">Messages</a></li>
-                            <li class="notifications" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><a>Notifications</a></li>
-                            <li class="create"><a href="">Create</a></li>
-                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href="">Profile</a></li>
-                            <li class="more">More</li>
                         </ul>
                     </header>
                 </div>
@@ -172,91 +162,13 @@
         </div>
     </div>
 
-    {{-- search left side offcanvas start --}}
-    <div  class="offcanvas offcanvas-start rounded-start rounded-5" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
-        <div class="search-bar">
-            {{-- offcanvas title start --}}
-            <div class="offcanvas-header">
-                <h3 class="offcanvas-title" id="offcanvasSearchLabel">Search</h3>
-                {{-- <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> --}}
-            </div>
-            {{-- offcanvas title end --}}
-            <div class="offcanvas-body">
-                {{-- search start --}}
-                @yield('contentSearchOffCanvas')
-                {{-- search end --}}
-            </div>
-        </div>
-    </div>
-    {{-- search left side offcanvas end --}}
 
 
+    @include('posts.search_offcanvas')
 
-    {{-- notifications left side offcanvas start --}}
-    <div  class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasNotif" aria-labelledby="offcanvasNotifLabel">
-        <div class="notif-bar">
-            {{-- offcanvas title start --}}
-            <div class="offcanvas-header">
-                <h3 class="offcanvas-title" id="offcanvasNotifLabel">Notifications</h3>
-            </div>
-            {{-- offcanvas title end --}}
-            {{-- notifications lists start --}}
-            <div class="offcanvas-body">
-                <div class="notif-week-list">
-                    <div class="row week-title">
-                        <h5 class="col align-self-start">This Week</h5>
-                    </div>
-                    <ul class="row week-list">
-                        {{--week-list row start --}}
-                        @yield('content-notif-week-user-container')
-                        {{-- week-list row end --}}
-                    </ul>
-                </div>
-                {{-- week notifications end --}}
-                <hr />
-                {{-- month notifications start --}}
-                <div class="notif-month-list">
-                    <div class="row month-title">
-                        <h5 class="col align-self-start">This Month</h5>
-                    </div>
-                    <ul class="month-list">
-                        {{--month-list row start --}}
-                        @yield('content-notif-month-user-container')
-                        {{-- month-list row end --}}
-                    </ul>
-                </div>
-                {{-- month notifications end --}}
-                <hr />
-                {{-- earlier notifications start --}}
-                <div class="notif-earlier-list">
-                    <div class="row earlier-title">
-                        <h5 class="col align-self-start">Earlier</h5>
-                    </div>
-                    <ul class="earlier-list">
-                        {{--earlier-list row start --}}
-                        @yield('content-notif-earlier-user-container')
-                        {{-- earlier-list row end --}}
-                    </ul>
-                </div>
-                {{-- suggestions for you notifications end --}}
-                <hr />
-                {{-- suggest notifications start --}}
-                <div class="notif-suggest-list">
-                    <div class="row suggest-title">
-                        <h5 class="col align-self-start">Suggestions for you</h5>
-                    </div>
-                    <ul class="suggest-list">
-                        {{--suggest-list row start --}}
-                        @yield('content-notif-suggest-user-container')
-                        {{-- suggest-list row end --}}
-                    </ul>
-                </div>
-                {{-- suggest notifications end --}}
-            </div>
-            {{-- notifications lists end --}}
-        </div>
-    </div>
-    {{-- notifications left side offcanvas end --}}
+    @include('posts.notif_offcanvas')
+
+
 
     <script src="{{asset('/js/propper.min.js')}}"></script>
     <script src="{{asset('/js/jquery-3.6.0.js')}}"></script>

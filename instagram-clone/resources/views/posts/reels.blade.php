@@ -5,13 +5,13 @@
 
 @section('content')
 
-<div class="col-lg-5">
+<div class="col-lg-4">
 	<section class="reels-body min-vh-100 px-5">
-		<div class="container p-5">
+		<div class="container p-3">
 			<div class="row d-flex">
-				<div class="col mx-lg-5 flex-fill">
+				<div class="col m-lg-3 flex-fill">
 					<a href="">
-						<div class="row" style="height:690px;">
+						<div class="row rounded-2" style="height:690px;">
 							
 						</div>
 					</a>

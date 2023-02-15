@@ -1,11 +1,15 @@
-@extends('layouts.app')
-
-@section('css') "{{asset('/css/index.css')}}" @endsection
-
-@section('contentSearchOffCanvas')
-
-    {{-- container for search off-canvas start --}}
-    <div class="row mt-5">
+{{-- search left side offcanvas start --}}
+<div  class="offcanvas offcanvas-start rounded-start rounded-5" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+    <div class="search-bar">
+        {{-- offcanvas title start --}}
+        <div class="offcanvas-header">
+            <h3 class="offcanvas-title" id="offcanvasSearchLabel">Search</h3>
+            {{-- <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button> --}}
+        </div>
+        {{-- offcanvas title end --}}
+        <div class="offcanvas-body">
+            {{-- container for search off-canvas start --}}
+      <div class="row mt-2">
         <div class="col mx-auto">
             <div class="search">
                 <i class="fa fa-search"></i>
@@ -85,5 +89,7 @@
         </ul>
     </div>
     {{-- container for search off-canvas end --}}
-
-@endsection
+        </div>
+    </div>
+  </div>
+  {{-- search left side offcanvas end --}}
