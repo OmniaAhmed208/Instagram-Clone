@@ -10,4 +10,12 @@ class PostController extends Controller
         return view('posts.index');
     }
 
+    public function explore(){
+        return view('posts.explore');
+    }
+
+    public function reels(){
+        return view('posts.reels');
+    }
+
 }

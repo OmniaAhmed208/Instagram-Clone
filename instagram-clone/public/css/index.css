@@ -2,7 +2,7 @@
 /* ============ home =============== */
 .home{
     padding-top: 30px;
-    margin-left: -96px;
+    /* margin-left: -96px; */
 }
 /* ============ story =============== */
 .home .stories{display: flex;align-items: center;margin-top: 20px;margin-bottom: 60px;}
@@ -138,4 +138,48 @@
 .home .post-content{display: flex;}
 .home .post-content .title{font-weight: 600;cursor: pointer;margin-right: 10px;}
 .home .add-comment input{width: 100%;border: none;outline: none;}
+
+/* ============ explore & reels=============== */
+.explore-body,
+.reels-body{background-color: rgb(250, 250, 250);}
+
+.explore-body .container .row .col .row,
+.reels-body .container .row .col .row{
+    height: 330px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    transition: 0.1s;
+    position: relative;
+    align-items: center;
+}
+
+.explore-body .container .row .col .row:hover{
+    background-color: hsla(0, 0%, 0%, 0.05);
+}
+
+.explore-body .icon-album,
+.explore-body .icon-video{
+    position: absolute;
+    top:18px;
+    right:-136px;
+}
+.explore-body .icon-video{left:160px;}
+
+.visible {
+  visibility: visible !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+.explore-body .container .row .col .row .following-comments-numbers{
+    position: absolute;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    width: 100%;
+    margin-left: -12px;
+    text-align: center;
+}
+
 

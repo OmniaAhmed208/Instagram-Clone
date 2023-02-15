@@ -23,9 +23,12 @@ Route::get('/', function () {
 });
 
 Route::get('/home' , [PostController::class, 'index'])->name('home.index');
-// Route::get('/home', function () {
+// Route::get('/home', function () {  // href="/search" this should be at search a tag class
 //     return view("posts.search");
 // });
-Route::get('/home', function () {
-    return view("posts.usersContainers");
-});
+// Route::get('/home', function () {
+//     return view("posts.usersContainers");
+// });
+
+Route::get('/explore' , [PostController::class, 'explore'])->name('home.explore');
+Route::get('/reels' , [PostController::class, 'reels'])->name('home.reels');

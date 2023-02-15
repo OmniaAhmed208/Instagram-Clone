@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="{{asset('/css/side-bar.css')}}">
     <link rel="stylesheet" href= @yield('css')>
 </head>
-<body>
+<body @yield('body')>
     <div class="side-bar">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 {{-- left side strat --}}
                 <div class="left-side">
                     <div class="bar">
                         <h1><a href="">Instagram</a></h1>
                         <ul class="list-unstyled">
-                            <li class="home-icon"><a href="">Home</a></li>
-                            <li class="search" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><a href="/search">Search</a></li>
-                            <li class="explore"><a href="">Explore</a></li>
-                            <li class="reels"><a href="">Reels</a></li>
+                            <li class="home-icon"><a href="/home">Home</a></li>
+                            <li class="search" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><a>Search</a></li>
+                            <li class="explore"><a href="/explore">Explore</a></li>
+                            <li class="reels"><a href="/reels">Reels</a></li>
                             <li class="messages"><a href="">Messages</a></li>
                             <li class="notifications" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><a>Notifications</a></li>
                             <li class="create"><a href="">Create</a></li>
@@ -38,114 +38,13 @@
             @yield('content')
 
 
-
-            <div class="col-lg-4">
-                {{-- right side strat --}}
-                <div class="right-side">
-
-                    <div class="owner">{{--start owner--}}
-                        <div class="story">
-                            <div class="imgBx">
-                                <img src="{{asset('lap.png')}}" alt="">
-                            </div>
-                        </div>
-
-                        <div class="title">
-                            <a href="">Nikename-of-owner-page</a>
-                            <p>Name</p>
-                        </div>
-                        <div class="info">Switch</div>
-                    </div>{{--end owner--}}
-
-                    <div class="suggested-persons">
-                        <div class="content">
-                            <div class="title">Suggestions for you</div>
-                            <div class="see-all">See All</div>
-                        </div>
-
-                        <div class="persons">{{--start persons--}}
-                            <div class="story">
-                                <div class="imgBx">
-                                    <img src="{{asset('lap.png')}}" alt="">
-                                </div>
-                            </div>
-                            <div class="title">
-                                <a href="">Nikename-of-person</a>
-                                <p>suggested for you</p>
-                            </div>
-                            <div class="info">Follow</div>
-
-
-                            <div class="infoPerson"> {{--when hover on person--}}
-
-                                <div class="person">{{--start owner--}}
-                                    <div class="story">
-                                        <div class="imgBx">
-                                            <img src="{{asset('lap.png')}}" alt="">
-                                        </div>
-                                    </div>
-
-                                    <div class="title">
-                                        <a href="">Nikename-of-owner-page</a>
-                                        <p>Name</p>
-                                    </div>
-                                </div>{{--end owner--}}
-
-                                <hr>
-                                <div class="info2">
-                                    <div class="data text-center">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="stats">
-                                                        <p>25.500</p>
-                                                        <span>Posts</span>
-                                                      </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="stats">
-                                                        <p>25.500</p>
-                                                        <span>Followers</span>
-                                                      </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="stats">
-                                                        <p>25.500</p>
-                                                        <span>Following</span>
-                                                      </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="imgBx">
-                                        <div class="row"> {{--3 imgs from page of user--}}
-                                            <div class="col-sm"><img src="{{asset('lap.png')}}" alt=""></div>
-                                            <div class="col-sm"><img src="{{asset('lap.png')}}" alt=""></div>
-                                            <div class="col-sm"><img src="{{asset('lap.png')}}" alt=""></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="follow-btn text-center">
-                                        <div class="container">
-                                            <input type="button" class="btn btn-primary" value="Follow">
-                                        </div>
-                                    </div>
-                                </div> {{--info2 end--}}
-                            </div>
-                        </div>{{--end persons--}}
-
-                    </div>
-                </div>
-                {{-- right side end --}}
-            </div>
         </div>
     </div>
 
 
 
     {{-- search left side offcanvas start --}}
-    <div  class="offcanvas offcanvas-start rounded-start rounded-5" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+    <div  class="offcanvas offcanvas-start rounded-start rounded-5" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
         <div class="search-bar">
             {{-- offcanvas title start --}}
             <div class="offcanvas-header">
@@ -165,7 +64,7 @@
 
 
     {{-- notifications left side offcanvas start --}}
-    <div  class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasNotif" aria-labelledby="offcanvasNotifLabel">
+    <div  class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasNotif" aria-labelledby="offcanvasNotifLabel">
         <div class="notif-bar">
             {{-- offcanvas title start --}}
             <div class="offcanvas-header">
