@@ -23,7 +23,12 @@ Route::get('/', function () {
 });
 
 Route::get('/home' , [PostController::class, 'index'])->name('home.index');
+<<<<<<< HEAD
 // Route::get('/home', function () {  // href="/search" this should be at search a tag class
+=======
+
+// Route::get('/home', function () {
+>>>>>>> 8d7e84582a8366b91117dbd6595c615b554beddf
 //     return view("posts.search");
 // });
 // Route::get('/home', function () {
