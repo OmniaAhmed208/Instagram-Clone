@@ -9,7 +9,6 @@ class PostController extends Controller
     public function index(){
         return view('posts.index');
     }
-<<<<<<< HEAD
 
     public function explore(){
         return view('posts.explore');
@@ -19,6 +18,4 @@ class PostController extends Controller
         return view('posts.reels');
     }
 
-=======
->>>>>>> 8d7e84582a8366b91117dbd6595c615b554beddf
 }
