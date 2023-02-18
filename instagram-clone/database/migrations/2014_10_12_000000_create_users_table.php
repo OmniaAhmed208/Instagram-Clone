@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('nick_name')->unique();
-            $table->enum('gender', ['male', 'female']);	
+            $table->enum('gender', ['male', 'female']);
             $table->year('birth_year');  //indteed of age
             $table->string('user_photo_path', 500)->default();
             $table->integer('mobile');

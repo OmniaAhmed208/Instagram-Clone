@@ -15,15 +15,17 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreign('post_id')
-                ->references('id')->on('posts')
-                ->onDelete('cascade');
-            $table->foreign('comment_writer_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+            // $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->unsignedBigInteger('post_id')->nullable();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
+            // $table->foreign('comment_writer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('comment_writer_id')->nullable();
+            $table->foreign('comment_writer_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->text('comment_content');
             $table->timestamps();
-            $table->unique(['post_id', 'comment_writer_id', 'comment_content']);
+            // $table->unique(['post_id', 'comment_writer_id', 'comment_content']);
         });
     }
 

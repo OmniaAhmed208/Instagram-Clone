@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('post_interaction', function (Blueprint $table) {
             $table->id();
-            $table->foreign('post_id')
-                ->references('id')->on('posts')
-                ->onDelete('cascade');
-            $table->foreign('watcher_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+            // $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->unsignedBigInteger('post_id')->nullable();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
+            // $table->foreign('watcher_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('watcher_id')->nullable();
+            $table->foreign('watcher_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->boolean('like')->default(0);
             $table->boolean('saving')->default(0);
             $table->timestamps();

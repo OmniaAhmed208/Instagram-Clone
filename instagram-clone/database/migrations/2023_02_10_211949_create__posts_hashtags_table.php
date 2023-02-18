@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('_posts_hashtags', function (Blueprint $table) {
             $table->id();
-            $table->foreign('post_id')
-                ->references('id')->on('posts')
-                ->onDelete('cascade');
-            $table->foreign('hashtag_id')
-                ->references('id')->on('hashtags')
-                ->onDelete('cascade');
+            // $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->unsignedBigInteger('post_id')->nullable();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
+            // $table->foreign('hashtag_id')->references('id')->on('hashtags')->onDelete('cascade');
+            $table->unsignedBigInteger('hashtag_id')->nullable();
+            $table->foreign('hashtag_id')->references('id')->on('hashtags')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

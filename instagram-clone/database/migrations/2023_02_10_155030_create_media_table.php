@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->foreign('post_id')
-                ->references('id')->on('posts')
-                ->onDelete('cascade');
+            // $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->unsignedBigInteger('post_id')->nullable();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
             $table->enum('content_type', ['photo', 'video']);
             $table->string('content_path', 500);
             $table->text('alt_text')->nullable();
