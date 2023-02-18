@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <hr />
+    <hr class="mt-4"/>
     <ul class="search-auto-results">
         {{--  search-auto-results row start --}}
         <a href="" class="row">

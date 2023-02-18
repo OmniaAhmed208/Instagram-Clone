@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Laravel"
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Instagram-Clone"
+	}
+}
