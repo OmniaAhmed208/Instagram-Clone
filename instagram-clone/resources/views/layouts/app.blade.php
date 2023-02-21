@@ -81,7 +81,7 @@
                                 <form action="/home" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="file">
-                                        <input name="image" type="file" id="img_post" onchange="fileUpload(event)" accept="image/*">
+                                        <input name="image[]" type="file" id="img_post" onchange="fileUpload(event)" multiple accept="image/*">
                                         <label for="file" class="btn btn-primary" id="labelFile">Select from computer</label>
                                     </div>
                             </li>

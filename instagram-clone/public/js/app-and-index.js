@@ -45,7 +45,7 @@ var createBtn = document.querySelector('.create');
 
             document.getElementById('cropBtn').onclick = function(){
                 let cropped = cropper.getCroppedCanvas().toDataURL('/instagram-Images/cropped');
-                cropImg.src = cropped;
+                // cropImg.src = cropped;
                 document.querySelector('.cropped').value = cropped;
                 // console.log(cropped);
                 // document.getElementById('output').src = cropped;

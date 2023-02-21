@@ -128,7 +128,7 @@
     letter-spacing: 1px;
     font-size: 16px;
 }
-.home .posts .imgPost{width: 100%;/*height: 450px;*/height: 650px;}
+.home .posts .imgPost{width: 100%;height: 450px;/*height: 650px;*/}
 .home .posts .imgPost img{width: 100%;height: 100%;border-radius: 8px;}
 .home .posts .actions{position: relative;;margin: 12px 0 40px;display: flex;}
 .home .posts .actions li::before{
