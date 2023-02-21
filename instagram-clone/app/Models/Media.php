@@ -12,6 +12,7 @@ class Media extends Model
     protected $table = 'media';
 
     protected $fillable = [
+        'post_id',
         'content_type',
         'content_path',  // we can change it, according to the fetching method
         'alt_text',

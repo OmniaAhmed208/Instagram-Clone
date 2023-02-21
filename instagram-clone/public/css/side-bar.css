@@ -22,6 +22,7 @@
 .side-bar .left-side ul li{cursor: pointer;margin-bottom: 10px;padding: 5px 15px;border-radius: 20px;}
 .left-side li:hover{background: #ddd}
 .side-bar .left-side ul li i{font-size: 26px;margin-right: 20px;}
+.side-bar .left-side ul li span{font-size: 16px;}
 .left-side .profile img{margin-right: 18px;height: 35px;width: 30px;border-radius: 50%;object-fit: cover;}
 .left-side .more{bottom: 0;position: absolute;padding: 7px 15px;width:83%}
 .left-side .more .dropdown-toggle::after{content: none;}
@@ -37,6 +38,7 @@
     margin: -9px 0 -8px 0;
 }
 .left-side .more i{font-size: 23px;margin-right: 21px;}
+.left-side .more a{font-size: 16px}
 .left-side .more .dropdown-menu li a:hover{background: #f3f3f3;}
 /* =============== right side ========= */
 .side-bar .right-side{padding: 50px 66px 0 10px;font-size:14px;position: relative;}
@@ -265,7 +267,8 @@
     background: #0000006b;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 3;
+    font-size:16px
 }
 .creation .create-box{
     position: absolute;
@@ -277,6 +280,7 @@
     width: 30%;
     height: 500px;
     transform: translate(100%, 40px);
+    overflow: hidden;
     /* padding-bottom: 100px; */
 }
 .creation .create-box ul{height: 100%;width: 100%;display: flex;flex-direction: column;padding-top: 13px;}
@@ -296,6 +300,7 @@
     align-items: center;
     margin-top: 24px;
 }
+.creation .create-box ul li .file label{font-size: 16px;}
 .creation .create-box ul li input[type="file"]{opacity: 0;position: absolute;cursor: pointer;}
 .creation .cancel{
     color: #fff;
@@ -305,3 +310,31 @@
     position: fixed;
     cursor: pointer;
 }
+
+.create-box .data{margin: 11px 0 -12px 37px;}
+#imgCrop{display: block;max-width: 100%;}
+#output{display: block;max-width: 100%;}
+
+.creation .crop{height: 450px;}
+.crop .imgBx{height: 300px;position: relative;}
+.crop .imgBx img{width: 100%;height: 100%;}
+.creation .chooseImage{display:none;}
+.creation .crop{display:none;}
+.creation .edit{display:none;}
+.creation .share{display:none;}
+.creation .crop .preview{
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    border: 1px solid red;
+}
+
+.creation .edit{width: 60%;height: 400px;transform: translate(30%, 40px);}
+.creation .edit .imgBx{width: 100%;height: 100%;}
+.creation .edit .imgBx img{width: 100%;height: 100%;}
+.creation .edit .filters img{width:100px;height: 100px;}
+
+.creation .share{width: 60%;height: 400px;transform: translate(30%, 40px);}
+.creation .share .imgBx{width: 100%;height: 100%;}
+.creation .share .imgBx img{width: 100%;height: 100%;}
+

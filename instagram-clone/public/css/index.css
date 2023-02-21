@@ -63,6 +63,7 @@
     text-overflow: ellipsis;
     width: 61px;
     color: #555;
+    font-size: 16px;
 }
 
 /* =============== posts ==================== */
@@ -114,16 +115,18 @@
     font-weight: 600;
     cursor: pointer;
     width: 100%;
+    font-size: 16px;
 }
 .home .posts .title:hover{color:#969696;}
 .home .posts .post .right{display: flex;width: 100%;position: relative;}
-.home .posts .post .title span{color: #686767;}
+.home .posts .post .title span{color: #686767;font-size: 16xp;}
 .home .posts .post .info{
     cursor: pointer;
     width: 100%;
     text-align: end;
     font-weight: 700;
     letter-spacing: 1px;
+    font-size: 16px;
 }
 .home .posts .imgPost{width: 100%;/*height: 450px;*/height: 650px;}
 .home .posts .imgPost img{width: 100%;height: 100%;border-radius: 8px;}
@@ -138,10 +141,10 @@
 .home .posts .actions .share::before{content: "\f1e0";padding: 0 0 0 100px;}
 .home .posts .actions .save::before{content: "\f097";width: 100%;text-align: end;}
 
-.home .num-likes{font-weight: 500;}
-.home .post-content{display: flex;}
+.home .num-likes{font-weight: 500;font-size: 16px;}
+.home .post-content{display: flex;font-size: 16px;}
 .home .post-content .title{font-weight: 600;cursor: pointer;margin-right: 10px;}
-.home .add-comment input{width: 100%;border: none;outline: none;}
+.home .add-comment input{width: 100%;border: none;outline: none;font-size: 16px;}
 
 /* =============== when hover title =============== */
 .home .posts .post .infoPerson{
@@ -204,6 +207,7 @@
     z-index: 2;
     width: 30%;
     transform: translate(100%, 40px);
+    font-size: 16px;
 }
 .fixedActions .actionPoints ul{width: 100%;display: flex;flex-direction: column;padding-top: 13px;}
 .fixedActions .actionPoints ul li{margin: -6px auto;cursor: pointer;}
