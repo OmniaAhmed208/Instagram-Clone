@@ -1,0 +1,68 @@
+/* ============ explore & reels =============== */
+.explore-body,
+.reels-body{background-color: rgb(250, 250, 250);}
+
+.explore-body .container .row .col .row,
+.reels-body .container .row .col .row{
+    height: 330px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    transition: 0.1s;
+    position: relative;
+    align-items: center;
+}
+
+.explore-body .container .row .col .row:hover{
+    background-color: hsla(0, 0%, 0%, 0.05);
+}
+
+.explore-body .icon-album,
+.explore-body .icon-video{
+    position: absolute;
+    top:18px;
+    right:-136px;
+}
+.explore-body .icon-video{left:160px;}
+
+.visible {
+  visibility: visible !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+.explore-body .container .row .col .row .following-comments-numbers{
+    position: absolute;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    width: 100%;
+    margin-left: -12px;
+    text-align: center;
+}
+
+.explore-body .grid-container {
+    display: grid;
+    grid-template-areas:
+        'long short short'
+        'long short short'
+        'short short long'
+        'short short long';
+    gap: 20px;
+}
+
+.grid-container div {
+    background-color: white;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 0;
+    font-size: 30px;
+}
+
+.explore-body .grid-item-long{
+    grid-area: long;
+}
+
+.explore-body .grid-item-short{
+    grid-area: short;
+}

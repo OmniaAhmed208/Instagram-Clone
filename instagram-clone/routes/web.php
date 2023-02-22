@@ -26,4 +26,6 @@ Route::get('/home' , [PostController::class, 'index'])->name('home.index');
 Route::post('/home', [PostController::class, 'store']);
 
 Route::get('/explore' , [PostController::class, 'explore'])->name('home.explore');
+Route::get('/getPosts', [PostsController::class, 'getPosts'])->name('getPosts');
+
 Route::get('/reels' , [PostController::class, 'reels'])->name('home.reels');

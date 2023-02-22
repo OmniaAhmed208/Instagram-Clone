@@ -11,12 +11,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="{{asset('/css/side-bar.css')}}">
     <link rel="stylesheet" href="{{asset('/css/side-bar-media.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/explore_reels.css')}}">
     <link rel="stylesheet" href= @yield('css')>
 </head>
 <body @yield('body')>
     <div class="side-bar">
-        <div class="row">
-            <div class="col-lg-4">
+        <div class="row justify-content-between">
+            <div class="col-lg-2">
                 {{-- left side strat --}}
                 <div class="left-side">
 
@@ -93,7 +94,7 @@
 
 
 
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 {{-- right side strat --}}
                 <div class="right-side d-lg-block d-sm-none">
 

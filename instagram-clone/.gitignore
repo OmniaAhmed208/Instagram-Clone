@@ -19,7 +19,7 @@ yarn-error.log
 
 =============================================
 
-Exploring page section, old layout:
+Exploring page section, old layout - 1:
 {{-- <div class="col-lg-10">
 	<section class="explore-body min-vh-100 px-5">
 		<div class="container p-5 ">
@@ -53,9 +53,173 @@ Exploring page section, old layout:
 	</section>
 </div> --}}
 
+Exploring page section, old layout - 2:
+@for ($i = 0; $i < 10; $i++)
+		<div class="container px-5 pt-2">
+			<div class="row row-cols-4 d-flex">
+				<div class="col mx-lg-3 flex-fill">
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row" style="height:690px;">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 0;
+							@endphp --}}
+							{{-- <span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-video-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+				</div>
+				<div class="col mx-lg-3 flex-fill">
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post1=$post;
+								$post1->post_creator_id = $post->post_creator_id + 1;
+								// dd($post1->caption);
+							@endphp --}}
+							{{-- <span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @foreach ($posts as $post)
+							@if ($i == 2)
+								
+								<span>{{ $post->caption }}</span>
+							@endif
+							@endforeach --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+				</div>
+				<div class="col mx-lg-3 flex-fill">
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 3;
+							@endphp
+							<span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 4;
+							@endphp
+							<span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="row row-cols-4 d-flex">
+				<div class="col mx-lg-3 flex-fill">
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 5;
+							@endphp
+							<span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 6;
+							@endphp
+							<span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+				</div>
+				<div class="col mx-lg-3 flex-fill">
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 7;
+							@endphp
+							<span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 8;
+							@endphp
+							<span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-album-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+				</div>
+				<div class="col mx-lg-3 flex-fill">
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						<div class="row" style="height:690px;">
+							{{-- one explore content start --}}
+							{{-- @php
+								$post->id = $post->id + 9;
+							@endphp
+							<span>{{ $post->caption }}</span> --}}
+							@yield('oneExplore-video-Content')
+							{{-- one explore content end --}}
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		@endfor
+
+
+
+
+<div class="grid-container">
+				@foreach($posts as $key => $post)
+					<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						@if ($key == 0 || $key == 9)
+							<div class="grid-item-long">
+						@else
+							<div class="grid-item-short">
+						@endif
+							{{-- one explore content start --}}
+							<span>{{ $post->caption }}</span>
+							{{-- @if ($post->user->content_type == 'video')
+								@yield('oneExplore-video-Content')
+							@else
+								@yield('oneExplore-photo-Content')
+							@endif --}}
+							{{-- one explore content end --}}
+						</div>
+					</a>
+				@endforeach
+			</div>
 =============================================
 
 
 Installations:
 
  >> for bootstrap icons: npm i bootstrap-icons
+
+ >> for thumbnails automatically:  php artisan vendor:publish --tag=video-thumbnail
+									composer require pawlox/video-thumbnail
+
+ >> for fake data: npm install @faker-js/faker --save-dev

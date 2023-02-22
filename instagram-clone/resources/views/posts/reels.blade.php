@@ -10,11 +10,15 @@
 		<div class="container p-3">
 			<div class="row d-flex">
 				<div class="col m-lg-3 flex-fill">
-					<a href="">
+					@foreach ($reels as $reel)
+					<a href="{{ asset($reel->content_path) }}">
 						<div class="row rounded-2" style="height:690px;">
+							<img src="{{ asset($reel->thumbnail_path) }}" alt="{{ $reel->alt_text }}" />
 							
 						</div>
 					</a>
+					@endforeach
+
 				</div>
 			</div>
 		</div>
