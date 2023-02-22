@@ -70,4 +70,11 @@ class User extends Authenticatable
         // return $this->hasMany(Mentiontag::class);
         return $this->morphMany(Comment::class, 'mentiontagable');
     }
+
+    // public function run(){
+    //     User::factory()
+    //     ->count(3)
+    //     ->hasPosts(1)
+    //     ->create();
+    // }
 }

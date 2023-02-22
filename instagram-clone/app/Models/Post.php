@@ -11,6 +11,8 @@ class Post extends Model
 
     protected $fillable = [
         'caption',
+        'post_url',
+        'post_creator_id',
         'address_address',
         'likes_counts_settings',
         'comments_settings',
