@@ -41,30 +41,26 @@
 
 <div class="col-lg-10">
 	<section class="explore-body min-vh-100 p-5">
+		
 		<div class="container px-5 pt-2">
-			
 			<div class="row row-cols-4 d-flex">
 				@foreach($posts as $key => $post)
-				
-				{{-- @php
-				dd($loop->index = 2);	
-			@endphp --}}
 					<div class="col mx-lg-3 flex-fill">
-						<a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
-							@if ($key == 0 || $key == 9)
-							{{-- <div class="row" style="height:690px;"> --}}
+						<a href="{{ $post->path() }}" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+							{{-- @if ($posts->first() || $posts->last())
 								<div class="row" style="height:690px;">
-							@else
-								{{-- <div class="row"> --}}
+							@else --}}
 								<div class="row">
-							@endif
+							{{-- @endif --}}
 								{{-- one explore content start --}}
 								<span>{{ $post->caption }}</span>
-								{{-- @if ($post->user->content_type == 'video')
-									@yield('oneExplore-video-Content')
-								@else
-									@yield('oneExplore-photo-Content')
-								@endif --}}
+								@foreach ($post->media() as $media)
+									@if ($media->content_type == 'video')
+										@yield('oneExplore-video-Content')
+									@else
+										@yield('oneExplore-photo-Content')
+									@endif
+								@endforeach
 								{{-- one explore content end --}}
 							</div>
 						</a>
@@ -130,6 +126,8 @@
 <!-- Script -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+// <script>
 
 checkWindowSize();
 

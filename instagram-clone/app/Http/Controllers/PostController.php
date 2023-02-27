@@ -12,7 +12,7 @@ use Image;
 
 class PostController extends Controller
 {
-    public $rowperpage = 10;  //Every explore block has 10 posts.
+    public $rowperpage = 6;  //Every explore block has 10 posts.
 
     public function index()
     
@@ -57,7 +57,7 @@ class PostController extends Controller
                ->skip(0)
                ->take($this->rowperpage)
                ->get();
-
+               
         // Load index view
         return view('posts.explore', [
             $data,
@@ -71,33 +71,42 @@ class PostController extends Controller
     public function getPosts(Request $request){
 
         $start = $request->get("start");
-
+        
         // Fetch records
         $records = Post::select('*') 
             ->skip($start)
             ->take($this->rowperpage)
             ->get();
-
+            
         $html = "";
         foreach($records as $record){
-            $html .= '<div class="col mx-lg-3 flex-fill">
-                <a href="" data-bs-toggle="modal" data-bs-target="#explorePostModal">
-                    @if ($record[2] || $record[9])
-                    <div class="row" style="height:690px;">
-                    @else
-                        <div class="row">
-                    @endif
-                        {{-- one explore content start --}}
-                        <span>{{ $record->caption }}</span>
-                        
-                        {{-- one explore content end --}}
-                    </div>
-                </a>
-            </div>';
+            $html .= "<div class='col mx-lg-3 flex-fill'>
+                        <a href='{{" .$record->path(). "}}' data-bs-toggle='modal' data-bs-target='#explorePostModal'>
+                            {{-- @if (" .$records->first(). "||" .$records->last(). ")
+                                <div class='row' style='height:690px;'>
+                            @else --}}
+                                <div class='row'>
+                            {{-- @endif --}}
+                                {{-- one explore content start --}}
+                                <span>{{" .$record->caption. "}}</span>
+                                @foreach (".$record->media()." as ".$media.")
+                                    @if (".$media->content_type." == 'video')
+                                        @yield('oneExplore-video-Content')
+                                    @else
+                                        @yield('oneExplore-photo-Content')
+                                    @endif
+                                @endforeach
+                                {{-- one explore content end --}}
+                            </div>
+                        </a>
+                    </div>";
         }
         $data['html'] = $html;
 
-        return response()->json($data);
+        return response()->json([
+            $data,
+            'html' => $data['html'],
+        ]);
     }
 
     public function reels()
@@ -110,9 +119,6 @@ class PostController extends Controller
             'reels' => $reels,
         ]);
     }
-
-
-
 
     public function create(){
 

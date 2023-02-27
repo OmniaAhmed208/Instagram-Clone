@@ -22,4 +22,14 @@ class Media extends Model
     {
         return $this->morphTo();
     }
+
+    public function post()
+    {
+        return $this->belongsTo(User::class, 'foreign_key');
+    }
+
+    public function path()
+    {
+        return '/posts/' . $this->id;
+    }
 }

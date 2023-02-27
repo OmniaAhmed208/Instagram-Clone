@@ -45,4 +45,14 @@ class Post extends Model
     {
         return $this->morphMany(Comment::class, 'hashtaggable');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'foreign_key');
+    }
+
+    public function path()
+    {
+        return '/posts/' . $this->id;
+    }
 }

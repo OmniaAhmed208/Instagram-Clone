@@ -37,7 +37,7 @@
                         <div class="title-info">
                             <div class="title">
                                 <p>Nikename-of-person</p>
-                                <img src="{{asset('verified.png')}}" />
+                                <img src="{{asset('Icons/verified.png')}}" />
                                 {{-- <i class="fa-solid fa-badge-check"></i> --}}
                             </div>
                             <div class="info">
@@ -71,7 +71,7 @@
                             <div class="title-info">
                                 <div class="title">
                                     <p>Nikename-of-person</p>
-                                    <img src="{{asset('verified.png')}}" />
+                                    <img src="{{asset('Icons/verified.png')}}" />
                                     {{-- <i class="fa-solid fa-badge-check"></i> --}}
                                 </div>
                                 <div class="info">

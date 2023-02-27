@@ -3,13 +3,15 @@
 .reels-body{background-color: rgb(250, 250, 250);}
 
 .explore-body .container .row .col .row,
-.reels-body .container .row .col .row{
+.reels-body .container .row .col .row.rounded-2{
     height: 330px;
     margin-bottom: 30px;
     background-color: #ffffff;
     transition: 0.1s;
     position: relative;
+    /* display: flex; */
     align-items: center;
+    justify-content: center;
 }
 
 .explore-body .container .row .col .row:hover{
@@ -66,3 +68,208 @@
 .explore-body .grid-item-short{
     grid-area: short;
 }
+
+/* ============ reels =============== */
+.reels-body .row .rounded-2 .video_clickable{
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+.reels-body .media_video,
+.reels-body .video_audio_info{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+}
+
+.reels-body .media_video .video_clickable,
+.reels-body .video_audio_info .icon-audio{
+    position: absolute;
+    display: flex;
+}
+
+.reels-body .video_audio_info .icon-audio{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #cccccc86;
+    top: 20px;
+    right: 20px;
+}
+
+.reels-body .video_audio_info .icon-audio .audio_mute{
+    width: 25px;
+    height: 25px;
+    align-items: center;
+    justify-items: center;
+    margin: auto;
+    display: flex;
+}
+
+.reels-body .video_audio_info .icon-play{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 30px;
+    background-color: #0808085b;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -30px 0 0 -30px;
+}
+
+.reels-body .video_audio_info .icon-play img{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 50%;
+    margin: 15px 0 0 15px;
+}
+
+/* ============ reels =============== */
+
+/* #ig_app{
+    padding-top: 0px;
+} */
+
+/* ============ reels side bar =============== */
+
+#ig_reels i.fa-camera{
+    /* position: fixed; */
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    font-size: 25px;
+    color: #fff;
+    z-index: 9999;
+}
+
+#ig_reels{
+    /* background-color: rgba(0,0,0,0.85);
+    height: 100vh; */
+}
+
+#reels_right_action_nav img{
+    width: 45px;
+    border: 3.5px solid #fff;
+    border-radius: 7px;
+}
+
+#reels_right_action_nav{
+    color: #fff;
+    position: fixed;
+    right: 0;
+    bottom: 70px;
+    text-align: center;
+    min-width: 75px;
+    border: 1px solid #fff;
+    z-index: 9999;
+}
+
+#reels_right_action_nav ul li{
+    position: relative;
+    list-style: none;
+    display: block;
+    margin-bottom: 26px;
+    border: 1px solid1 red;
+}
+
+#reels_right_action_nav ul li i{
+    font-size: 30px;
+}
+
+#reels_right_action_nav ul li span{
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+#reels_right_action_nav ul li i.fa-comment-o{
+    transform: rotateY(180deg);
+}
+
+/* ============ reels info =============== */
+
+#reels_info img{
+    width: 40px;
+    border-radius: 100%;
+}
+
+#reels_info{
+    position: absolute;
+    color: #fff;
+    text-align: left;
+    bottom: 60px;
+    margin-left: 15px;
+    z-index: 2;
+}
+
+#reels_info .col-8{
+    padding-left: 30px;
+}
+
+#reels_info #reels_user{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#reels_info #reels_user button{
+    background-color: transparent;
+    color: #fff;
+    border: 1.6px solid #fff;
+    padding: 6px 18px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    margin-left: 15px;
+}
+
+#reels_info .reels_music{
+    margin-top: 2px;
+    font-size: 14.5px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+#reels_info .reels_music span{
+    font-weight: 600;
+}
+
+#reels_video{
+    height: 100%;
+}
+
+#ig_reels:before{
+    content: '';
+    /* position: fixed; */
+    /* position: absolute; */
+    width: 100%;
+    height: 100vh;
+    box-shadow: inset 0 100px 45px -40px rgba(0,0,0,0.25),
+    inset 0 -300px 45px -40px rgba(0,0,0,0.25),
+    inset -100px 0 45px -45px rgba(0,0,0,0.15);
+}
+
+/* ============ reels auto display as a playlist =============== */
+
+/* #ig_reels{
+    animation: next_reel_change_effect 2s ease-in-out infinite;
+}
+
+@keyframes next_reel_change_effect{
+    0%, 100%{
+        transform: translateY(0);
+    }
+    50%{
+            transform: translateY(-100px);
+    }
+} */
