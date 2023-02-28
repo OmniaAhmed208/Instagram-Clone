@@ -18,7 +18,8 @@
 								{{-- reels video start --}}
 								<div class="row video_clickable" onclick="playPauseVid()">
 									<video src="{{ asset($reel->content_path) }}"
-										class="w-100 h-100 video" poster="{{ asset($reel->thumbnail_path) }}" autoplay loop >
+										class="w-100 h-100 video" poster="{{ asset($reel->thumbnail_path) }}"
+										autoplay loop >
 										Your browser does not support the video tag.
 									</video>
 								</div>
@@ -41,7 +42,7 @@
 											</div>
 											<div class="col-8">
 												<div id="reels_user">
-													amit7soni
+													{{ $reel->post->user->nick_name }}
 													<button type="button" id="btnToggleFollow">
 														Follow
 													</button>

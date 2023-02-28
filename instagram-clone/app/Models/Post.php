@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $table = 'posts';
+
     protected $fillable = [
         'caption',
         'post_url',
@@ -48,7 +50,8 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'foreign_key');
+        // return $this->belongsTo(User::class, 'foreign_key');
+        return $this->belongsTo(User::class, 'post_creator_id');
     }
 
     public function path()

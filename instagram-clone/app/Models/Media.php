@@ -25,7 +25,8 @@ class Media extends Model
 
     public function post()
     {
-        return $this->belongsTo(User::class, 'foreign_key');
+        // return $this->belongsTo(User::class, 'foreign_key');
+        return $this->belongsTo(Post::class, 'post_id');
     }
 
     public function path()

@@ -115,7 +115,10 @@ class PostController extends Controller
         ->where('content_type', 'video')
         ->sortByDesc('id');  //I should have use 'created_at' but it's NULL for these records 
         
-        return view('posts.reels',[
+        // return view('posts.reels',[
+        //     'reels' => $reels,
+        // ]);
+        return response()->json([
             'reels' => $reels,
         ]);
     }
