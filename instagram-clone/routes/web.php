@@ -25,8 +25,11 @@ Route::get('/', function () {
 
 Route::get('/home' , [PostController::class, 'index'])->name('home.index');
 Route::post('/home', [PostController::class, 'store']);
+Route::post('/crop', [PostController::class, 'crop'])->name('post.crop');
 
 Route::get('/explore' , [PostController::class, 'explore'])->name('home.explore');
+Route::get('/getPosts', [PostsController::class, 'getPosts'])->name('getPosts');
+
 Route::get('/reels' , [PostController::class, 'reels'])->name('home.reels');
 
 Route::post('/home/{post}/comment', [CommentController::class, 'store'])->name('comments.store');

@@ -14,6 +14,7 @@ class Media extends Model
     protected $table = 'media';
 
     protected $fillable = [
+        'post_id',
         'content_type',
         'content_path',  // we can change it, according to the fetching method
         'alt_text',
@@ -27,5 +28,15 @@ class Media extends Model
     public function post() : BelongsTo
     {
         return $this->belongsTo(Post::class, "post_id");
+    }
+    // public function post()
+    // {
+    //     // return $this->belongsTo(User::class, 'foreign_key');
+    //     return $this->belongsTo(Post::class, 'post_id');
+    // }
+
+    public function path()
+    {
+        return '/posts/' . $this->id;
     }
 }

@@ -10,8 +10,12 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $table = 'posts';
+
     protected $fillable = [
         'caption',
+        'post_url',
+        'post_creator_id',
         'address_address',
         'likes_counts_settings',
         'comments_settings',
@@ -48,5 +52,16 @@ class Post extends Model
     public function hashtag()
     {
         return $this->morphMany(Comment::class, 'hashtaggable');
+    }
+
+    // public function user()
+    // {
+    //     // return $this->belongsTo(User::class, 'foreign_key');
+    //     return $this->belongsTo(User::class, 'post_creator_id');
+    // }
+
+    public function path()
+    {
+        return '/posts/' . $this->id;
     }
 }
