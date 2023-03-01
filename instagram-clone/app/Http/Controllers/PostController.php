@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
@@ -9,8 +10,15 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index(){
-        return view('posts.index');
+        $allPosts = Post ::all();
+        $allComments = Comment :: all();
+        return view('posts.index',[
+            'posts'=> $allPosts,
+            'comments' => $allComments
+        ]);
+    
     }
+    
 
     public function search(){
         return view('posts.search_offcanvas');

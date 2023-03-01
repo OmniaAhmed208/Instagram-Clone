@@ -141,7 +141,9 @@
 .home .num-likes{font-weight: 500;}
 .home .post-content{display: flex;}
 .home .post-content .title{font-weight: 600;cursor: pointer;margin-right: 10px;}
-.home .add-comment input{width: 100%;border: none;outline: none;}
+.home .add-comment input{border: none;outline: none;}
+.home .add-comment .btn  {color: blue; }
+.home .add-comment input:hover {color: black; }
 
 /* =============== when hover title =============== */
 .home .posts .post .infoPerson{

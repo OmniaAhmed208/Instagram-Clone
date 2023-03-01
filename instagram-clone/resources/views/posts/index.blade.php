@@ -22,6 +22,7 @@
                             </div>
                         </div> {{--end story--}}
     
+                        @foreach ($posts as $post)
                         <div class="posts"> {{--start posts--}}
     
                             <div class="post"> {{--start title of posts--}}
@@ -30,7 +31,7 @@
                                         <img src="{{asset('lap.png')}}" alt="">
                                     </div>
                                 </div>
-                                <div class="title">name-of-page <span>.1h</span></div>
+                                <div class="title">username <span>.1h</span></div>
                                 <div class="info" id="points">...</div>
     
                                 <div class="infoPerson" id="hover"> {{--when hover on person--}}
@@ -116,13 +117,23 @@
                                 <div class="title">name-of-page</div>
                                 <p>content of post will write here</p>
                             </div>
+
+                            <div class="post-content">
+                                <div class="title">user</div>
+                                <p>content of post will write here</p>
+                            </div>
     
                             <div class="add-comment">
-                                <input type="text" placeholder="Add a comment...">
+                                <form method="POST" action="{{ route('comments.store', 1) }}">
+                                    @csrf
+                                    <input class="col-10 " type="text" name="comment" placeholder="Add a comment...">
+                                    <input type="submit" value="post" class="btn">
+                                </form>
                             </div>
                             <hr>
     
                         </div> {{--end posts--}}
+                        @endforeach
     
                         {{-- when click on 3 points ... --}}
                         <div class="fixedActions">
