@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/reels' , [PostController::class, 'reels']);
 // Route::get('/reels' , [PostController::class, 'reels']);
+Route::resource('/explore' , [PostController::class, 'explore']);

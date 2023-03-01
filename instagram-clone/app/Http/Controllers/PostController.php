@@ -111,7 +111,7 @@ class PostController extends Controller
 
     public function reels()
     {
-        $reels = Media::all()
+        Media::all()
         ->where('content_type', 'video')
         ->sortByDesc('id');  //I should have use 'created_at' but it's NULL for these records 
         
