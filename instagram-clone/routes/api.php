@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/reels' , [PostController::class, 'reels']);
+Route::resource('/reels' , PostController::class);
 // Route::get('/reels' , [PostController::class, 'reels']);
-Route::resource('/explore' , [PostController::class, 'explore']);
+// Route::resource('/explore' , PostController::class);
