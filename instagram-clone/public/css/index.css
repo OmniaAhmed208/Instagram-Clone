@@ -143,11 +143,17 @@
   .home .posts .actions .comment::before{content: "\f0e5";padding: 0 0 0 50px;}
   .home .posts .actions .share::before{content: "\f1e0";padding: 0 0 0 100px;}
   .home .posts .actions .save::before{content: "\f097";width: 95%;text-align: end;}
-
   .home .num-likes{font-weight: 500;font-size: 16px;}
   .home .post-content{display: flex;font-size: 16px;}
   .home .post-content .title{font-weight: 600;cursor: pointer;margin-right: 10px;}
   .home .add-comment input{width: 100%;border: none;outline: none;font-size: 16px;}
+.home .num-likes{font-weight: 500;font-size: 16px;}
+.home .post-content{display: flex;font-size: 16px;}
+.home .post-content .title{font-weight: 600;cursor: pointer;margin-right: 10px;}
+.home .add-comment input{border: none;outline: none;}
+.home .add-comment .btn  {color: blue; }
+.home .add-comment input:hover {color: black; }
+.home .add-comment input{width: 100%;border: none;outline: none;font-size: 16px;}
 
   /* =============== when hover title =============== */
   .home .posts .post .infoPerson{
@@ -217,9 +223,6 @@
 .fixedActions .actionPoints ul li{margin: -6px auto;cursor: pointer;}
 .fixedActions .actionPoints ul .red{color: red;font-weight: 600;}
 
-/* ============ explore & reels =============== */
-.explore-body,
-.reels-body{background-color: rgb(250, 250, 250);}
 
 .explore-body .container .row .col .row,
 .reels-body .container .row .col .row{

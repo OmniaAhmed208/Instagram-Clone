@@ -21,8 +21,8 @@
                                 </div>
                             </div>
                         </div> {{--end story--}}
-
-                        @foreach($posts as $post)
+    
+                        @foreach ($posts as $post)
                         <div class="posts"> {{--start posts--}}
 
                             <div class="post container"> {{--start title of posts--}}
@@ -166,6 +166,17 @@
 
                             <div class="add-comment container">
                                 <input type="text" placeholder="Add a comment...">
+                            <div class="post-content">
+                                <div class="title">user</div>
+                                <p>content of post will write here</p>
+                            </div>
+    
+                            <div class="add-comment">
+                                <form method="POST" action="{{ route('comments.store', 1) }}">
+                                    @csrf
+                                    <input class="col-10 " type="text" name="comment" placeholder="Add a comment...">
+                                    <input type="submit" value="post" class="btn">
+                                </form>
                             </div>
                             <hr>
 

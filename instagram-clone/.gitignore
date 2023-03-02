@@ -19,43 +19,14 @@ yarn-error.log
 
 =============================================
 
-Exploring page section, old layout:
-{{-- <div class="col-lg-10">
-	<section class="explore-body min-vh-100 px-5">
-		<div class="container p-5 ">
-			<div class="row row-cols-2 d-flex">
-				<div class="col col-3 flex-fill m-lg-3 bg-white"></div>
-				<div class="col col-6 flex-fill m-lg-3">
-					<div class="row d-flex">
-						<div class="col mb-lg-3 mr-lg-3 me-lg-3 bg-white">dfgdf</div>
-						<div class="col mb-lg-3 ms-lg-3 bg-white">dfgd</div>
-					</div>
-					<div class="row d-flex">
-						<div class="col mt-lg-3 me-lg-3 bg-white">fgdf</div>
-						<div class="col mt-lg-3 ms-lg-3 bg-white">dfgd</div>
-					</div>
-				</div>
-			</div>
-			<div class="row row-cols-2 d-flex">
-				<div class="col col-6 flex-fill m-lg-3">
-					<div class="row d-flex">
-						<div class="col mb-lg-3 me-lg-3 bg-white">hfghgf</div>
-						<div class="col mb-lg-3 ms-lg-3 bg-white">hfgh</div>
-					</div>
-					<div class="row d-flex">
-						<div class="col mt-lg-3 me-lg-3 bg-white">ghfgh</div>
-						<div class="col mt-lg-3 ms-lg-3 bg-white">gfhfgh</div>
-					</div>
-				</div>
-				<div class="col col-3 flex-fill m-lg-3 bg-white">ghfgh</div>
-			</div>
-		</div>
-	</section>
-</div> --}}
-
-=============================================
-
-
 Installations:
 
  >> for bootstrap icons: npm i bootstrap-icons
+
+ >> for thumbnails automatically:  php artisan vendor:publish --tag=video-thumbnail
+									composer require pawlox/video-thumbnail
+
+ >> for fake data: npm install @faker-js/faker --save-dev
+
+ >> for JQuery to infinite load more scroll: npm i jquery
+		https://larainfo.com/blogs/how-to-install-jquery-in-laravel-9

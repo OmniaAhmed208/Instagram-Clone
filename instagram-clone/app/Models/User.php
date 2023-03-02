@@ -17,10 +17,20 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     protected $table = 'users';
+
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'nick_name',
         'email',
         'password',
+        'gender',
+        'birth_year',
+        'user_photo_path',
+        'mobile',
+        'bio',
     ];
 
     /**
@@ -47,10 +57,10 @@ class User extends Authenticatable
         return $this->hasMany(User::class);
     }
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
+    // public function posts()
+    // {
+    //     return $this->hasMany(Post::class, "post_creator_id");
+    // }
 
     public function comments()
     {

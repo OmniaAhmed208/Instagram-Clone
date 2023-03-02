@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="https://fengyuanchen.github.io/cropperjs/css/cropper.css">
     <script src="https://fengyuanchen.github.io/cropperjs/js/cropper.js"></script>
     {{-- bootstrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     {{-- Fonts and icons --}}
     <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
@@ -20,7 +23,14 @@
     {{-- css --}}
     <link rel="stylesheet" href="{{asset('/css/side-bar.css')}}">
     <link rel="stylesheet" href="{{asset('/css/side-bar-media.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/explore_reels.css')}}">
     <link rel="stylesheet" href= @yield('css')>
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <script
+    type="text/javascript"
+    async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"
+  ></script>
 </head>
 <body @yield('body')>
     <!-- ===========================topheader========================= -->
@@ -213,7 +223,7 @@
             @yield('content')
 
 
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 {{-- right side strat --}}
                 <div class="right-side d-lg-block d-sm-none">
 

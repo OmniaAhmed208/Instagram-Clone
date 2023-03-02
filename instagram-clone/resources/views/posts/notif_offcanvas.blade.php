@@ -30,7 +30,7 @@
 											<div class="info">
 												<p>
 													<strong class="h5 text-black">nickname</strong>
-													<img src="{{asset('verified.png')}}" />
+													<img src="{{asset('Icons/verified.png')}}" />
 													generated text about this user.
 													<strong class="h5 text-black">munual friend</strong>
 													other generated text with numbers variable.
@@ -72,7 +72,7 @@
 											<div class="info">
 												<p>
 													<strong class="h5 text-black">nickname</strong>
-													<img src="{{asset('verified.png')}}" />
+													<img src="{{asset('Icons/verified.png')}}" />
 													generated text about this user.
 													<strong class="h5 text-black">munual friend</strong>
 													other generated text with numbers variable.
@@ -114,7 +114,7 @@
 											<div class="info">
 												<p>
 													<strong class="h5 text-black">nickname</strong>
-													<img src="{{asset('verified.png')}}" />
+													<img src="{{asset('Icons/verified.png')}}" />
 													generated text about this user.
 													<strong class="h5 text-black">munual friend</strong>
 													other generated text with numbers variable.
@@ -155,7 +155,7 @@
 										<div class="title-info">
 											<div class="title">
 												<p>Nikename-of-person</p>
-												<img src="{{asset('verified.png')}}" />
+												<img src="{{asset('Icons/verified.png')}}" />
 											</div>
 											<div class="info">
 												<p class="text-black-50">User Name</p>
