@@ -23,9 +23,34 @@
     <link rel="stylesheet" href= @yield('css')>
 </head>
 <body @yield('body')>
+    <!-- ===========================topheader========================= -->
+
+    <div class="top-header">
+        <a class="logo" href="#"><img src="{{asset('/img/logo.png')}}" alt="" ></a>
+        <div class="right-header container">
+            <input type="search"  placeholder="Search" aria-label="Search">
+            <!--<a href="" data-bs-toggle="offcanvas" data-bs-target=""fa fa-heart-o"></i></a>-->
+            <i class="fa fa-heart-o"></i>
+        </div>
+    </div>
+
+    <!-- ===========================bottom-header========================= -->
+
+    {{-- <div class="bottom-header">
+        <ul class="list-unstyled">
+            <li><a href="/home"><i class="fa fa-home"></i></a></li>
+            <li><a href="/explore"><i class="fa fa-compass"></i></a></li>
+            <li><a href="/reels"><i class="fa fa-compass"></i></a></li>
+            <li class="create"><i class="fa fa-plus-square"></i></li>
+            <li><a href=""><i class="fa fa-commenting-o"></i></a></li>
+            <li class="profile"><a href=""><img src="{{asset('lap.png')}}" alt=""/></a></li>
+        </ul>
+    </div> --}}
+
+    <!-- ============================================================= -->
     <div class="side-bar">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3 left-col">
                 {{-- left side strat --}}
                 <div class="left-side">
 
@@ -35,11 +60,11 @@
 
                         <ul class="list-unstyled">
                             <li><a href="/home"><i class="fas fa-home"></i> <span>Home</span></a></li>
-                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><i class="fas fa-search"></i> <span>Search</span></a></li>
-                            <li><a href="/explore"><i class="fas fa-compass"></i> <span>Explore</span></a></li>
-                            <li><a href="/reels"><i class="fas fa-compass"></i> <span>Reels</span></a></li>
+                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><i class="fa fa-search"></i><span>Search</span></a></li>
+                            <li><a href="/explore"> <i class="fa fa-compass"></i><span>Explore</span></a></li>
+                            <li><a href="/reels"><i class="fa-solid fa-clapperboard-play"></i><span>Reels</span></a></li>
                             <li><a href=""><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
-                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
+                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fa fa-heart-o"></i><span>Notifications</span></a></li>
                             <li class="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
                             <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href=""><span>Profile</span></a></li>
 
@@ -82,6 +107,8 @@
                                     @csrf
                                     <div class="file">
                                         <input name="image[]" type="file" id="img_post" onchange="fileUpload(event)" multiple accept="image/*">
+
+                                        {{-- <input name="image" type="file" id="img_post" onchange="fileUpload(event)" multiple accept="image/*"> --}}
                                         <label for="file" class="btn btn-primary" id="labelFile">Select from computer</label>
                                     </div>
                             </li>
@@ -289,6 +316,29 @@
         </div>
     </div>
 
+    <!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button> --}}
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
     @include('posts.search_offcanvas')
@@ -298,6 +348,7 @@
     <script src="{{asset('/js/app-and-index.js')}}"></script>
     <script src="{{asset('/js/jquery-3.6.0.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>
