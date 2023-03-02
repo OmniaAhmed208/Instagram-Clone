@@ -120,7 +120,7 @@
                                             @foreach ($files as $index => $media)
                                                 @if (substr(strrchr($media,'.'),1) == 'mp4')
                                                     <div class="slide" data-index={{$index}} data-post-id="{{$post->id}}">
-                                                        <video controls style="width:100%;height:100%">
+                                                        <video controls autoplay muted playsinline loop style="width:100%;height:100%">
                                                             <source src="{{URL::to($media)}}" type="video/mp4">
                                                         </video>
                                                     </div>    
