@@ -24,7 +24,7 @@ class PostController extends Controller
         $current = new Carbon(); //time format Carbon
         $date = $current->toDateString();
 
-        return view('posts.index',[ // index => show tables
+        return view('posts.index', [ // index => show tables
             'posts' => $allPosts,
             'date' => $date,
             'users'=> $allUsers,
@@ -34,35 +34,39 @@ class PostController extends Controller
     }
 
 
-    public function search(){
+    public function search()
+    {
         return view('posts.search_offcanvas');
     }
 
-    public function notifications(){
+    public function notifications()
+    {
         return view('posts.notif_offcanvas');
     }
 
-    public function explore(){
+    public function explore()
+    {
         return view('posts.explore');
     }
 
-    public function reels(){
+    public function reels()
+    {
         return view('posts.reels');
     }
 
 
 
 
-    public function create(){
-
+    public function create()
+    {
         $user = User::get();
-        return view('posts.app',[
+        return view('posts.app', [
             'Users'=> $user,
         ]);
     }
 
-    public function store(Request $request){
-
+    public function store(Request $request)
+    {
         // dd($_POST);
         $data = request()->all();
         // dd($data);
@@ -74,9 +78,9 @@ class PostController extends Controller
         $image = array();
         $extension = array();
 
-        if($files = $request->file('image')){
-            foreach($files as $file){
-                $imgName = md5(rand(1000,10000));
+        if ($files = $request->file('image')) {
+            foreach ($files as $file) {
+                $imgName = md5(rand(1000, 10000));
                 $ext = strtolower($file->getClientOriginalExtension());
                 $file_full_name = $imgName.'.'.$ext;
                 $uploadPath = 'instagram-Images/posts/';
@@ -86,7 +90,7 @@ class PostController extends Controller
                 $extension[]= $ext;
             }
         }
-
+        
         Post::create([
             // 'column-name-in-db'=>'value',
             'post_url' => "kjjkjkj",
@@ -96,7 +100,7 @@ class PostController extends Controller
             'content_path' => implode('|', $image),
             'alt_text' => "photo",
         ]);
+
         return back();
     }
-
 }
