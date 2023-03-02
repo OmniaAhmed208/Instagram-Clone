@@ -59,7 +59,7 @@
 
     <!-- ============================================================= -->
     <div class="side-bar">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-3 left-col">
                 {{-- left side strat --}}
                 <div class="left-side">
@@ -72,7 +72,7 @@
                             <li><a href="/home"><i class="fas fa-home"></i> <span>Home</span></a></li>
                             <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><i class="fa fa-search"></i><span>Search</span></a></li>
                             <li><a href="/explore"> <i class="fa fa-compass"></i><span>Explore</span></a></li>
-                            <li><a href="/reels"><i class="fa-solid fa-clapperboard-play"></i><span>Reels</span></a></li>
+                            <li><a href="/reels"><i class="fa-light fa-clapperboard-play"></i><span>Reels</span></a></li>
                             <li><a href=""><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
                             <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fa fa-heart-o"></i><span>Notifications</span></a></li>
                             <li class="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
@@ -223,7 +223,7 @@
             @yield('content')
 
 
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 {{-- right side strat --}}
                 <div class="right-side d-lg-block d-sm-none">
 

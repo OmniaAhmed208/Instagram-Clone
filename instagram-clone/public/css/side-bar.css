@@ -18,10 +18,10 @@
 }
  .left-side .logo img{width: 130px;}
  .left-side .logo2 img{display:none}
- .left-side ul{margin: 55px 30px 0 -9px;}
+ .left-side ul{margin: 57px 30px 0 -9px;}
  .left-side ul li{cursor: pointer;margin-bottom: 16px;padding:0px 15px 11px;;border-radius: 20px;cursor:pointer}
 /* .left-side li:hover{background: #ddd} */
- .left-side ul li i{font-size: 26px;margin-right: 20px;}
+ .left-side ul li i{font-size: 23px;margin-right: 20px;}
  .left-side ul li span{font-size: 16px;}
  .left-side .profile{padding: 0px 10px 11px;}
 .left-side .profile img{margin-right: 18px;height: 35px;width: 35px;border-radius: 50%;object-fit: cover;}

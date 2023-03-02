@@ -11,6 +11,7 @@
 
     .right-side{padding: 50px 0 0 30px;margin: 0 -66px 0 34px;}
     .left-side{width: 70px;}
+    .suggested-persons .content {font-size:14px}
 }
 
 @media (min-width:991px) and (max-width:1260px) {
@@ -41,7 +42,7 @@
 /* @media (max-width: 576px){} */
 
   @media (max-width: 1000px){
-    .side-bar .right-side{margin: 0 -75px 0 34px;display: none;}
+    .side-bar .right-side{margin: 0 -62px 0 34px;padding: 50px 0 0 18px;display: none;}
   }
   @media (max-width: 992px){
     .creation .create-box{top: 13%;left: 30%;width: 400px;}

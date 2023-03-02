@@ -166,18 +166,19 @@
 
                             <div class="add-comment container">
                                 <input type="text" placeholder="Add a comment...">
-                            <div class="post-content">
-                                <div class="title">user</div>
-                                <p>content of post will write here</p>
-                            </div>
+                                <div class="post-content">
+                                    <div class="title">user</div>
+                                    <p>content of post will write here</p>
+                                </div>
     
-                            <div class="add-comment">
-                                <form method="POST" action="{{ route('comments.store', 1) }}">
-                                    @csrf
-                                    <input class="col-10 " type="text" name="comment" placeholder="Add a comment...">
-                                    <input type="submit" value="post" class="btn">
-                                </form>
-                            </div>
+                                <div class="add-comment">
+                                    <form method="POST" action="{{ route('comments.store', 1) }}">
+                                        @csrf
+                                        <input class="col-10 " type="text" name="comment" placeholder="Add a comment...">
+                                        <input type="submit" value="post" class="btn">
+                                    </form>
+                                </div>
+                            </div>    
                             <hr>
 
                         </div> {{--end posts--}}
