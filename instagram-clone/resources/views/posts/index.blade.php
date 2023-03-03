@@ -5,11 +5,8 @@
 
 @section('content')
 
-            <div class="col-lg-5">
-                {{-- <div class="row">
-                    <div class="col-lg-1">ee</div>
-                    <div class="col-lg-4"> --}}
-                        <div class="home">
+            <div class="col-lg-4">
+                <div class="home">
 
                     <div class="inside-home">
                         <div class="stories"> {{--start story--}}
@@ -28,7 +25,7 @@
                         @foreach($posts as $post)
                         <div class="posts"> {{--start posts--}}
 
-                            <div class="post"> {{--start title of posts--}}
+                            <div class="post container"> {{--start title of posts--}}
                                 <div class="story" id="postStory">
                                     <div class="imgBx">
                                         <img src="{{asset('lap.png')}}" alt="">
@@ -108,16 +105,46 @@
                                 </div>
                             </div> {{--end title of posts--}}
 
-                            <div class="imgPost">
-                                {{-- <img src="{{asset('lap.png')}}" alt=""> --}}
-                                @foreach ($allMedia as $media)
-                                @if ($post->id == $media->post_id)
-                                   <img src="{{asset('/instagram-Images/posts/'. $media->content_path)}}" alt="">
-                                @endif
-                                @endforeach
+
+                            <div class="slider" data-post-id={{$post->id}}>
+                                <div class="container">
+                                    <div class="slide-wrapper">
+                                        <div id="slide-role">
+
+                                            @php
+                                            $file = DB::table('posts')->where('id', $post->id)->first();
+                                            $files = explode('|', $file->content_path);
+                                            // @dd($files);
+                                           @endphp
+
+                                            @foreach ($files as $index => $media)
+                                                @if (substr(strrchr($media,'.'),1) == 'mp4')
+                                                    <div class="slide" data-index={{$index}} data-post-id="{{$post->id}}">
+                                                        <video controls autoplay muted playsinline loop style="width:100%;height:100%">
+                                                            <source src="{{URL::to($media)}}" type="video/mp4">
+                                                        </video>
+                                                    </div>    
+                                                @else
+                                                    <div class="slide" data-index={{$index}} data-post-id="{{$post->id}}">
+                                                        <img src="{{URL::to($media)}}" alt="" id="imgPost">
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+
+                                    <div class="bullets">
+                                        @foreach ($files as $index => $media)
+                                         <span>
+                                            <input @if ($index == 0) checked @endif onclick="changeImg({{$index}})" type="radio" name="slider" class="trigger">
+                                        </span>
+                                        @endforeach
+                                    </div>
+
+                                </div>
                             </div>
 
-                            <div class="actions">
+                            <div class="actions container">
                                 <ul class="list-unstyled">
                                     <li class="like"></li>
                                     <li class="comment"></li>
@@ -126,9 +153,9 @@
                                 </ul>
                             </div>
 
-                            <div class="num-likes">11 likes</div>
+                            <div class="num-likes container">11 likes</div>
 
-                            <div class="post-content">
+                            <div class="post-content container">
                                 {{-- <div class="title">name-of-page</div> --}}
                                 @if ($post->post_creator_id == $user->id)
                                     <div class="title">{{$user->nick_name}}</div>
@@ -189,6 +216,25 @@
                 }
                 cancel.onclick = function(){
                     fixedAction.style.display = "none";
+                }
+            </script>
+
+            <script>
+                var slide = document.querySelectorAll('.slide');
+                var sliderParent = document.querySelectorAll('.slider');
+
+                function changeImg(n){
+                    removeActive();
+                    slide.forEach(element => {
+                        if( element.getAttribute('data-index') != n ){element.classList.add('active');}
+                    });
+
+                }
+
+                function removeActive(){
+                    slide.forEach(element => {
+                            element.classList.remove('active');
+                    });
                 }
             </script>
 

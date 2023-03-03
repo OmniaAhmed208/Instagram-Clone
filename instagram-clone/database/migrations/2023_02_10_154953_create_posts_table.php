@@ -19,6 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('post_creator_id')->nullable();
             $table->foreign('post_creator_id')->references('id')->on('users')->onDelete('cascade');
 
+
+            $table->string('content_type',500);
+            $table->string('content_path', 500);
+            $table->text('alt_text')->nullable();
+
             $table->string('post_url', 500);
             $table->text('caption')->nullable();
 
@@ -35,6 +40,7 @@ return new class extends Migration
             $table->double('address_longitude')->nullable();
             $table->boolean('likes_counts_settings')->default(0);
             $table->boolean('comments_settings')->default(0);
+
             $table->timestamps();
         });
     }
