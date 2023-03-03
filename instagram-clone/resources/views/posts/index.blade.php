@@ -120,8 +120,10 @@
                                             @foreach ($files as $index => $media)
                                                 @if (substr(strrchr($media,'.'),1) == 'mp4')
                                                     <div class="slide" data-index={{$index}} data-post-id="{{$post->id}}">
-                                                        <video controls autoplay muted playsinline loop style="width:100%;height:100%">
+                                                        <video controls autoplay muted playsinline loop style="width:100%;height:100%" poster="http://placehold.it/350x350">
                                                             <source src="{{URL::to($media)}}" type="video/mp4">
+                                                            <source src="{{URL::to($media)}}"  type="video/ogg">
+                                                            Your device does not support HTML5 video.
                                                         </video>
                                                     </div>    
                                                 @else
@@ -130,6 +132,7 @@
                                                     </div>
                                                 @endif
                                             @endforeach
+                                            
                                         </div>
                                     </div>
 
@@ -228,6 +231,7 @@
             </script>
 
             <script>
+                // slider ===============
                 var slide = document.querySelectorAll('.slide');
                 var sliderParent = document.querySelectorAll('.slider');
 
@@ -244,6 +248,34 @@
                             element.classList.remove('active');
                     });
                 }
+
+                //  video ==============
+
+                window.addEventListener('load', videoScroll);
+                window.addEventListener('scroll', videoScroll);
+
+                function videoScroll() {
+
+                if ( document.querySelectorAll('video[autoplay]').length > 0) {
+                    var windowHeight = window.innerHeight,
+                        videoEl = document.querySelectorAll('video[autoplay]');
+
+                    for (var i = 0; i < videoEl.length; i++) {
+
+                    var thisVideoEl = videoEl[i],
+                        videoHeight = thisVideoEl.clientHeight,
+                        videoClientRect = thisVideoEl.getBoundingClientRect().top;
+
+                    if ( videoClientRect <= ( (windowHeight) - (videoHeight*.5) ) && videoClientRect >= ( 0 - ( videoHeight*.5 ) ) ) {
+                        thisVideoEl.play();
+                    } else {
+                        thisVideoEl.pause();
+                    }
+
+                    }
+                }
+
+}
             </script>
 
 @endsection

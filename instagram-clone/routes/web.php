@@ -33,3 +33,6 @@ Route::get('/getPosts', [PostsController::class, 'getPosts'])->name('getPosts');
 Route::get('/reels' , [PostController::class, 'reels'])->name('home.reels');
 
 Route::post('/home/{post}/comment', [CommentController::class, 'store'])->name('comments.store');
+
+// Route::get('/stories' , [PostController::class, 'index'])->name('story.index');
+// Route::post('/stories', [PostController::class, 'store']);
