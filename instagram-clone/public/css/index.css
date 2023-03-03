@@ -310,6 +310,10 @@
     border: 1px solid rgba(53, 53, 53, 0.308);
   }
 
+  .active{
+    display: none;
+  }
+
   /* media query */
 
   @media only screen and (max-width: 750px) {
@@ -328,6 +332,4 @@
   }
   /* ================================================ */
 
-  .active{
-    display: none;
-  }
+  
