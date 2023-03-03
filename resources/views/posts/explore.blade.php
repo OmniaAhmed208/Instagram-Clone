@@ -39,7 +39,7 @@
 
 @section('content')
 
-<div class="col-lg-10">
+<div class="col-lg-9">
 	<section class="explore-body min-vh-100 p-5">
 		
 		<div class="container px-5 pt-2">

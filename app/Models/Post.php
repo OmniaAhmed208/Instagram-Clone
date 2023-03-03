@@ -19,6 +19,9 @@ class Post extends Model
         'address_address',
         'likes_counts_settings',
         'comments_settings',
+        'content_type',
+        'content_path',
+        'alt_text',
     ];
 
     public function media()
