@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Media;
+// use DB;
+// use URL; 
+
 use Illuminate\Support\Carbon;
 // use Intervention\Image\ImageManager;
 use Image;
@@ -125,16 +128,89 @@ class PostController extends Controller
 
     public function reels()
     {
-        $reels = Media::all()
-        ->where('content_type', 'video')
-        ->sortByDesc('id');  //I should have use 'created_at' but it's NULL for these records 
-        
-        return view('posts.reels',[
-            'reels' => $reels,
-        ]);
-        // return response()->json([
+    // $reels = Media::all()
+    // ->where('content_type', 'video')
+    // ->sortByDesc('id');  //I should have use 'created_at' but it's NULL for these records
+
+    // return view('posts.reels',[
         //     'reels' => $reels,
-        // ]);
+    // ]);
+    // return response()->json([
+        //     'reels' => $reels,
+    // ]);
+
+    $allPosts = Post::all();
+        // ->where('content_type', 'mp4');
+        // ->sortByDesc('id'); 
+    $allUsers = User::get();
+    $allMedia = Media::get();
+    $media_post_id = Media::get('post_id');
+
+    // dd($allPosts);
+
+    $current = new Carbon(); //time format Carbon
+    $date = $current->toDateString();
+
+    return view('posts.reels', [ // index => show tables
+            'posts' => $allPosts,
+            'date' => $date,
+            'users'=> $allUsers,
+            'allMedia'=> $allMedia,
+            '$media_post_id' => $media_post_id
+    ]);
+
+        // $posts = Post::all()
+        // ->where('content_type', 'mp4')
+        // ->sortByDesc('id'); 
+        // $data = [];
+        // // $mediaArray = [];
+        // foreach ($posts as $post) {
+        //     $postid = $post-> id;
+        //     $user = User::findorfail($post['post_creator_id']);
+        //     $username = $user->nick_name;
+        //     $userPhoto = $user['user-photo_path'];
+        //     $date = $post['created_at'];
+        //     $media = Media::select('content_path') -> where('post_id', $postid)-> get();
+
+        //     // dd($posts);
+        //     // $file = DB::table('posts')->where('id', $post->id)->first();
+        //     // $files = explode('|', $file->content_path);
+		// 	// foreach ($files as $index => $media){
+        //     //     if (substr(strrchr($media,'.'),1) == 'mp4' && $post->post_creator_id == $user->id){
+        //     //         $mediaUrl = URL::to($media);
+        //     //     }
+        //     // }
+        //     $likes = $post['likes_counts_settings'];
+        //     $comments_count = $post['comments_settings'];
+
+        //     $comments = Comment::where('post_id', $postid) -> get();
+        //     $comments_data = [];
+        //     foreach ($comments as $comment) {
+        //         $commentCreator = User::findorfail($comment['comment_writer_id']);
+        //         $commentCreator_name = $commentCreator['nick_name'];
+        //         $commentBody = $comment['comment_content'];
+        //         $commentDate = $comment['created_at'];
+
+        //         $comment_data=[
+        //             'username' => $commentCreator_name,
+        //             'body' => $commentBody,
+        //             'date' => $commentDate,
+        //         ];
+        //         array_push($comments_data, $comment_data);
+        //     };
+        //     return view('posts.reels',  [
+        //         'posts' => $posts,
+        //         'postid' => $postid,
+        //         'users' => $user,
+        //         'user' => $user,
+        //         'date' => $date,
+        //         //media =>
+        //         // 'mediaUrl' => URL::to($media),
+        //         'likes' => $likes,
+        //         'comments_count' => $comments_count,
+        //         //comments =>
+        //     ]);
+        // }
     }
 
     public function create()
