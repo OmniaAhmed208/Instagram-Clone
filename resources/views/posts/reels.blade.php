@@ -160,7 +160,7 @@
 <script>
 	var vidMuted = document.querySelectorAll('.video');
 	muteVid();
-	playPauseVid();
+	// playPauseVid();
 
     function muteVid(){
         vidMuted.muted = true;
