@@ -170,7 +170,7 @@
 .notif-bar .offcanvas-body .notif-week-list strong,
 .notif-bar .offcanvas-body .notif-month-list strong,
 .notif-bar .offcanvas-body .notif-earlier-list strong,
-.notif-bar .offcanvas-body .notif-suggest-list strong{font-size: 18px;}
+.notif-bar .offcanvas-body .notif-suggest-list strong{font-size: 14px; font-weight: 700}
 
 /* =============== search left side offcanvas ========= */
 .search-bar .offcanvas-body .recent-search-list .recent-title a{

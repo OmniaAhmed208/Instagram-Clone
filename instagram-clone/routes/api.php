@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\PostController;
 
-use App\Http\Controllers\PostController;
+// use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/reels' , PostController::class);
-// Route::get('/reels' , [PostController::class, 'reels']);
-// Route::resource('/explore' , PostController::class);
+// Route::get('test1', function(){
+//     return 'from test';
+// });
+
+Route::get('home', [PostController::class, 'home']);
+Route::get('profile/{id}', [PostController::class, 'profile']);
+Route::get('/reels' , [PostController::class, 'reels']);
+Route::get('/explore' , [PostController::class, 'explore']);

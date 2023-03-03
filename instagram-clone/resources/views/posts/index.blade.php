@@ -5,7 +5,7 @@
 
 @section('content')
 
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 {{-- <div class="row">
                     <div class="col-lg-1">ee</div>
                     <div class="col-lg-4"> --}}
@@ -138,7 +138,11 @@
                             </div>
 
                             <div class="add-comment">
-                                <input type="text" placeholder="Add a comment...">
+                                <form method="POST" action="{{ route('comments.store', 1) }}">
+                                    @csrf
+                                    <input class="col-10 " type="text" name="comment" placeholder="Add a comment...">
+                                    <input type="submit" value="post" class="btn">
+                                </form>
                             </div>
                             <hr>
 

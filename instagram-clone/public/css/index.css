@@ -213,4 +213,8 @@
 .fixedActions .actionPoints ul li{margin: -6px auto;cursor: pointer;}
 .fixedActions .actionPoints ul .red{color: red;font-weight: 600;}
 
+/* ============ global style ============ */
 
+.btn {
+    white-space: normal;
+}

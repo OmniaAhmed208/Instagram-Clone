@@ -5,6 +5,7 @@ use App\Http\Controllers\GoogleController;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -30,3 +31,5 @@ Route::get('/explore' , [PostController::class, 'explore'])->name('home.explore'
 Route::get('/getPosts', [PostsController::class, 'getPosts'])->name('getPosts');
 
 Route::get('/reels' , [PostController::class, 'reels'])->name('home.reels');
+
+Route::post('/home/{post}/comment', [CommentController::class, 'store'])->name('comments.store');

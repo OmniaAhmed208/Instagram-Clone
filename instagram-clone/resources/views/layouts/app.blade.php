@@ -35,7 +35,7 @@
 <body @yield('body')>
     <div class="side-bar">
         <div class="row justify-content-between">
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 {{-- left side strat --}}
                 <div class="left-side">
 
@@ -196,7 +196,7 @@
             @yield('content')
 
 
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 {{-- right side strat --}}
                 <div class="right-side d-lg-block d-sm-none">
 

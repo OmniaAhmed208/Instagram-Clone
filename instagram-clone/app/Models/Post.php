@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
@@ -25,6 +26,11 @@ class Post extends Model
         // return $this->hasMany(Media::class);
         return $this->morphMany(Comment::class, 'mediaable');
     }
+
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(User::class, "post_creator_id");
+    }   
 
     public function comments()
     {
@@ -48,11 +54,11 @@ class Post extends Model
         return $this->morphMany(Comment::class, 'hashtaggable');
     }
 
-    public function user()
-    {
-        // return $this->belongsTo(User::class, 'foreign_key');
-        return $this->belongsTo(User::class, 'post_creator_id');
-    }
+    // public function user()
+    // {
+    //     // return $this->belongsTo(User::class, 'foreign_key');
+    //     return $this->belongsTo(User::class, 'post_creator_id');
+    // }
 
     public function path()
     {

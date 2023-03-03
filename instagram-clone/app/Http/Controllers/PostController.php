@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
@@ -12,6 +13,15 @@ use Image;
 
 class PostController extends Controller
 {
+    // public function index(){
+    //     $allPosts = Post ::all();
+    //     $allComments = Comment :: all();
+    //     return view('posts.index',[
+    //         'posts'=> $allPosts,
+    //         'comments' => $allComments
+    //     ]);
+    // }
+    
     public $rowperpage = 6;  //Every explore block has 10 posts.
 
     public function index()
@@ -31,6 +41,7 @@ class PostController extends Controller
             'allMedia'=> $allMedia
         ]);
     }
+    
 
 
 
@@ -79,28 +90,28 @@ class PostController extends Controller
             ->get();
             
         $html = "";
-        foreach($records as $record){
-            $html .= "<div class='col mx-lg-3 flex-fill'>
-                        <a href='{{" .$record->path(). "}}' data-bs-toggle='modal' data-bs-target='#explorePostModal'>
-                            {{-- @if (" .$records->first(). "||" .$records->last(). ")
-                                <div class='row' style='height:690px;'>
-                            @else --}}
-                                <div class='row'>
-                            {{-- @endif --}}
-                                {{-- one explore content start --}}
-                                <span>{{" .$record->caption. "}}</span>
-                                @foreach (".$record->media()." as ".$media.")
-                                    @if (".$media->content_type." == 'video')
-                                        @yield('oneExplore-video-Content')
-                                    @else
-                                        @yield('oneExplore-photo-Content')
-                                    @endif
-                                @endforeach
-                                {{-- one explore content end --}}
-                            </div>
-                        </a>
-                    </div>";
-        }
+        // foreach($records as $record){
+        //     $html .= "<div class='col mx-lg-3 flex-fill'>
+        //                 <a href='{{" .$record->path(). "}}' data-bs-toggle='modal' data-bs-target='#explorePostModal'>
+        //                     {{-- @if (" .$records->first(). "||" .$records->last(). ")
+        //                         <div class='row' style='height:690px;'>
+        //                     @else --}}
+        //                         <div class='row'>
+        //                     {{-- @endif --}}
+        //                         {{-- one explore content start --}}
+        //                         <span>{{" .$record->caption. "}}</span>
+        //                         @foreach (".$record->media()." as ".$media.")
+        //                             @if (".$media->content_type." == 'video')
+        //                                 @yield('oneExplore-video-Content')
+        //                             @else
+        //                                 @yield('oneExplore-photo-Content')
+        //                             @endif
+        //                         @endforeach
+        //                         {{-- one explore content end --}}
+        //                     </div>
+        //                 </a>
+        //             </div>";
+        // }
         $data['html'] = $html;
 
         return response()->json([
@@ -111,16 +122,16 @@ class PostController extends Controller
 
     public function reels()
     {
-        Media::all()
+        $reels = Media::all()
         ->where('content_type', 'video')
         ->sortByDesc('id');  //I should have use 'created_at' but it's NULL for these records 
         
-        // return view('posts.reels',[
-        //     'reels' => $reels,
-        // ]);
-        return response()->json([
+        return view('posts.reels',[
             'reels' => $reels,
         ]);
+        // return response()->json([
+        //     'reels' => $reels,
+        // ]);
     }
 
     public function create(){
@@ -152,7 +163,7 @@ class PostController extends Controller
             $img = explode(';base64', $data['cropped']);
             $img_types = explode('cropped/', $img[0]);
             $file_name = time().'.'.explode('/',explode(':',substr($data['cropped'],0,strpos($data['cropped'], ';')))[1])[1];
-            \Image::make($data['cropped'])->save(public_path('instagram-Images/posts/').$file_name );
+            // \Image::make($data['cropped'])->save(public_path('instagram-Images/posts/').$file_name );
             // dd($file_name);
         }
 
