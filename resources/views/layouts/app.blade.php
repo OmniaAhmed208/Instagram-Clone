@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    {{-- cropper.js to crop image--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.css"/>
-    {{-- <link rel="stylesheet" href="{{asset('/css/cropper.css')}}"> --}}
-    {{-- <script src="{{asset('/js/cropper.js')}}"></script> --}}
+    
     <link rel="stylesheet" href="https://fengyuanchen.github.io/cropperjs/css/cropper.css">
     <script src="https://fengyuanchen.github.io/cropperjs/js/cropper.js"></script>
     {{-- bootstrap --}}
@@ -19,11 +17,14 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> --}}
     {{-- Fonts and icons --}}
     <link rel="stylesheet" href="{{asset('/css/font-awesome.min.css')}}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-    {{-- css --}}
     <link rel="stylesheet" href="{{asset('/css/side-bar.css')}}">
+
     <link rel="stylesheet" href="{{asset('/css/side-bar-media.css')}}">
+
     <link rel="stylesheet" href="{{asset('/css/explore_reels.css')}}">
     <link rel="stylesheet" href= @yield('css')>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
@@ -31,11 +32,6 @@
     type="text/javascript"
     async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"
-  ></script> --}}
-</head>
-<body @yield('body')>
-    <!-- ===========================topheader========================= -->
-
     <div class="top-header">
         <a class="logo" href="#"><img src="{{asset('/img/logo.png')}}" alt="" ></a>
         <div class="right-header container">
@@ -68,16 +64,20 @@
                     <header>
                         <a href="" class="logo"><img src="{{asset('/img/logo.png')}}" alt="" ></a>
                         <a href="" class="logo2"><img src="{{asset('/img/logo2.jpg')}}" alt="" ></a>
-
                         <ul class="list-unstyled">
                             <li><a href="/home"><i class="fas fa-home"></i> <span>Home</span></a></li>
                             <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><i class="fa fa-search"></i><span>Search</span></a></li>
                             <li><a href="/explore"> <i class="fa fa-compass"></i><span>Explore</span></a></li>
                             <li><a href="/reels"><i class="fa-light fa-clapperboard-play"></i><span>Reels</span></a></li>
                             <li><a href=""><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
-                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fa fa-heart-o"></i><span>Notifications</span></a></li>
-                            <li class="create" id="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
-                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href=""><span>Profile</span></a></li>
+                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
+                            <li class="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
+                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href="/profile">
+                                <span>
+                                    @auth
+                                    {{ auth()->user()->first_name }}
+                                  @endauth                                
+                                </span></a></li>
 
                             <li class="more">
                                 <div class="dropdown">
@@ -88,7 +88,7 @@
                                         <li><a class="dropdown-item" href="#">Your Activity</a></li><hr>
                                         <li><a class="dropdown-item" href="#">Report a problem</a></li><hr>
                                         <li><a class="dropdown-item" href="#">Switch accounts</a></li><hr>
-                                        <li><a class="dropdown-item" href="#">Log out</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
                                     </ul>
                                     <i class="fa fa-bars fa-x2" aria-hidden="true"></i>
                                     <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More</a>
@@ -348,16 +348,30 @@
                 </div>
                 {{-- right side end --}}
             </div>
+
+
+            
+                {{-- right side end --}}
+            </div>
         </div>
-    </div>
+    </div> 
 
     @include('posts.search_offcanvas')
 
-    @include('posts.notif_offcanvas')
+    @include('posts.search_offcanvas') 
 
-    <script src="{{asset('/js/app-and-index.js')}}"></script>
-    <script src="{{asset('/js/jquery-3.6.0.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    @include('posts.notif_offcanvas') 
+    
+
+            
+            
+    {{-- <script src="{{asset('/js/app-and-index.js')}}"></script> --}}
+    {{-- <script src="{{asset('/js/jquery-3.6.0.js')}}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"></script>
+    <script src="https://fengyuanchen.github.io/cropperjs/js/cropper.js"></script>
 
 </body>
 </html>
