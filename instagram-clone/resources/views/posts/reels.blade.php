@@ -14,7 +14,7 @@
 			@php
 				$file = DB::table('posts')->where('id', $post->id)->first();
 				$files = explode('|', $file->content_path);
-				// dd($posts);
+				// dd($post->id);
 			@endphp
 			@foreach ($files as $index => $media)
 				@if (substr(strrchr($media,'.'),1) == 'mp4' && $post->post_creator_id == $user->id)
@@ -30,24 +30,24 @@
 						<!-- {{-- reels main body start --}} -->
 						<div class="col-9 rounded-2 d-flex flex-wrap px-0 position-relative">
 							<!-- {{-- reels video start --}} -->
-							<div class="video-wrap z-n2  rounded-2 h-100 w-100 position-absolute" style="cursor: pointer;" onclick="playPauseVid()">  <!--  -->
-								<video src="{{ URL::to($media) }}"
-									class="w-100 h-100 rounded-2 video" poster="{{ asset('Thumbnails/2Bap.gif') }}"
-									autoplay loop > <!-- autoplay -->
+							<div class="video-wrap z-n2  rounded-2 h-100 w-100 position-absolute" style="cursor: pointer;" onclick="playPauseVid('#video{{ $post->id }}', '#videoIcon{{ $post->id }}')">  <!--  -->
+								<video src="{{ URL::to($media) }}" id="video{{ $post->id }}"
+									class="w-100 h-100 rounded-2 video" poster="" 
+									autoplay loop > <!-- autoplay --> <!-- loading... as poster: asset('Thumbnails/2Bap.gif') -->
 									Your browser does not support the video tag.
 								</video>
 							</div>
 							<!-- {{-- reels video end --}} -->
 							<!-- {{-- reels info start --}} -->
 							<div class="row z-1 mb-auto mt-3 ms-auto text-center">
-								<div class="icon-audio" style="cursor: pointer;" onclick="audioVid();">  <!--  -->
-									<img class="audio_mute" src="{{ asset('Icons/mute.png') }}" alt="Audio is muted"
+								<div class="icon-audio" style="cursor: pointer;" onclick="audioVid('#video{{ $post->id }}', '#audio{{ $post->id }}');">  <!--  -->
+									<img class="audio_mute" id="audio{{ $post->id }}" src="{{ asset('Icons/mute.png') }}" alt="Audio is muted"
 									data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Audio is muted"
 									/>
 								</div>
 							</div>
 							<div class="row z-1 mb-auto mt-3 ms-auto text-center">
-								<div class="icon-play" style="display:none;" onclick="playPauseVid();">  <!--  -->
+								<div class="icon-play" style="display:none;" id="videoIcon{{ $post->id }}" onclick="playPauseVid('#video{{ $post->id }}', '#videoIcon{{ $post->id }}');">  <!--  -->
 									<img src="{{ asset('Icons/play.png') }}" alt="Video play icon"/>
 								</div>
 							</div>
@@ -73,10 +73,10 @@
 											</div>
 											<div class="col-12 d-flex">
 												<div class="reels_content text-wrap">
-													<span class="collapse scroll-section" id="collapseWithScrollbar">{{ $post->caption }}</span>
+													<span class="collapse scroll-section" id="collapseWithScrollbar{{ $post->id }}">{{ $post->caption }}</span>
 													<span class="btn m-0 p-0 text-decoration-none fw-bold text-white" type="button" 
-														data-bs-toggle="collapse" data-bs-target="#collapseWithScrollbar" 
-														aria-expanded="false" aria-controls="collapseWithScrollbar"
+														data-bs-toggle="collapse" data-bs-target="#collapseWithScrollbar{{ $post->id }}" 
+														aria-expanded="false" aria-controls="collapseWithScrollbar{{ $post->id }}"
 													>... &#8679;/&#8681;</span>  <!--  -->
 												</div>
 											</div>
@@ -158,63 +158,43 @@
 </div>
 
 <script>
-	var vid = document.querySelector(".video");
-	var audioMute = document.querySelector(".audio_mute");
-	var playIcon = document.querySelector(".icon-play");
-	var vidWrap = document.querySelector(".video-wrap");
-	var iconAudio = document.querySelector(".icon-audio");
-	
-	// playPauseVid();
+	var vidMuted = document.querySelectorAll('.video');
 	muteVid();
-
-	function playPauseVid(){
-      if(vid.paused){
-        vid.play();
-		playIcon.style = "display:none;";
-      }else{
-        vid.pause();
-		playIcon.style = "display:block; cursor: pointer;";
-      }
-    }
+	playPauseVid();
 
     function muteVid(){
-        vid.muted = true;
+        vidMuted.muted = true;
     }
 
-    function audioVid(){
-      if(vid.muted == true){
-        vid.muted = false;
-		audioMute.src = "{{ asset('Icons/audio.png') }}";
-		audioMute.alt = "Audio is playing";
-		// audioMute.data-bs-title = "Audio is playing";
-      }else{
-        vid.muted = true;
-		audioMute.src = "{{ asset('Icons/mute.png') }}";
-		audioMute.alt = "Audio is muted";
-		// audioMute.data-bs-title = "Audio is muted";
-      }
+	function playPauseVid(video, videoIcon){ 
+	  var vid = document.querySelector(video);
+	  var playIcon = document.querySelector(videoIcon);
+
+		if(vid.paused){
+			vid.play();
+			playIcon.style = "display:none;";
+		}else{
+			vid.pause();
+			playIcon.style = "display:block; cursor: pointer;";
+		}
     }
 
-	//enable functions for each post
-	// ()function enableFunctions(){
-		// array.forEach(element => {
-		// 	vidWrap.playPauseVid();
-		// 	iconAudio.audioVid();
-		// 	playIcon.playPauseVid();
-		// });
-	// }
+    function audioVid(video,audio){   
+	  var vid = document.querySelector(video);
+	  var audioMute = document.querySelector(audio);
 
-	// window.onscroll = function(){
-	// 	let el = document.querySelector(".reel-element");
-	// 	el.scrollIntoView({behavior: "auto", block: "start"});
-	// 	el.scrollBy(0, 700);
-	// 	vid.play();
-	// 	console.log(1);
-	// 	window.scrollTo(0, 660);
-	// }
+		if(vid.muted == true){
+			vid.muted = false;
+			audioMute.src = "{{ asset('Icons/audio.png') }}";
+			audioMute.alt = "Audio is playing";
+		}else{
+			vid.muted = true;
+			audioMute.src = "{{ asset('Icons/mute.png') }}";
+			audioMute.alt = "Audio is muted";
+		}
+    }
 
-
-	//Video Scroll Autoplay
+	// === Video Scroll Autoplay === //
 	window.addEventListener('load', videoScroll);
 	window.addEventListener('scroll', videoScroll);
 

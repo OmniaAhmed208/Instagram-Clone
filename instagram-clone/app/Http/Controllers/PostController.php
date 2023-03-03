@@ -156,7 +156,7 @@ class PostController extends Controller
             'date' => $date,
             'users'=> $allUsers,
             'allMedia'=> $allMedia,
-            '$media_post_id' => $media_post_id
+            '$media_post_id' => $media_post_id,
     ]);
 
         // $posts = Post::all()
