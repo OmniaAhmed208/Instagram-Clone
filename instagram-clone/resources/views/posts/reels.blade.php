@@ -9,10 +9,12 @@
 	<section class="reels-body min-vh-100 px-5">
 		<div class="container p-3 min-vh-100">
 			@foreach ($posts as $post)
+			@if ($post->content_path)
 			@foreach ($users as $user)
 			@php
 				$file = DB::table('posts')->where('id', $post->id)->first();
 				$files = explode('|', $file->content_path);
+				// dd($posts);
 			@endphp
 			@foreach ($files as $index => $media)
 				@if (substr(strrchr($media,'.'),1) == 'mp4' && $post->post_creator_id == $user->id)
@@ -75,7 +77,7 @@
 													<span class="btn m-0 p-0 text-decoration-none fw-bold text-white" type="button" 
 														data-bs-toggle="collapse" data-bs-target="#collapseWithScrollbar" 
 														aria-expanded="false" aria-controls="collapseWithScrollbar"
-													>... &#8681;</span>  <!-- &#8679;/ -->
+													>... &#8679;/&#8681;</span>  <!--  -->
 												</div>
 											</div>
 											<div class="col-12 d-flex">
@@ -149,17 +151,18 @@
 				@endif
 			@endforeach
 			@endforeach
+			@endif
 			@endforeach
 		</div>    
 	</section>
 </div>
 
 <script>
-	var vid = document.querySelectorAll(".video");
-	var audioMute = document.querySelectorAll(".audio_mute");
-	var playIcon = document.querySelectorAll(".icon-play");
-	var vidWrap = document.querySelectorAll(".video-wrap");
-	var iconAudio = document.querySelectorAll(".icon-audio");
+	var vid = document.querySelector(".video");
+	var audioMute = document.querySelector(".audio_mute");
+	var playIcon = document.querySelector(".icon-play");
+	var vidWrap = document.querySelector(".video-wrap");
+	var iconAudio = document.querySelector(".icon-audio");
 	
 	// playPauseVid();
 	muteVid();
