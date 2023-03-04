@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Media;
 // use DB;
-// use URL; 
+// use URL;
 
 use Illuminate\Support\Carbon;
 // use Intervention\Image\ImageManager;
@@ -24,16 +24,16 @@ class PostController extends Controller
     //         'comments' => $allComments
     //     ]);
     // }
-    
+
     public $rowperpage = 6;  //Every explore block has 10 posts.
 
     public function index()
-    
+
     {
         $allPosts = Post::get();
         $allUsers = User::get();
         $allMedia = Media::get();
-        $media_post_id = Media::get('post_id');
+        // $media_post_id = Media::get('post_id');
 
         // dd($media_post_id);
 
@@ -45,10 +45,10 @@ class PostController extends Controller
             'date' => $date,
             'users'=> $allUsers,
             'allMedia'=> $allMedia,
-            '$media_post_id' => $media_post_id
+            // '$media_post_id' => $media_post_id
         ]);
     }
-    
+
 
 
     public function search()
@@ -70,7 +70,7 @@ class PostController extends Controller
         $data['totalrecords'] = Post::select('*')->count();
 
         // Fetch 4 records
-        $data['posts'] = Post::select('*') 
+        $data['posts'] = Post::select('*')
                ->skip(0)
                ->take($this->rowperpage)
                ->get();
@@ -78,6 +78,7 @@ class PostController extends Controller
 
         $allPosts = Post::all()
         ->sortByDesc('id'); 
+
         // Load index view
         return view('posts.explore', [
             $data,
@@ -99,13 +100,13 @@ class PostController extends Controller
     public function getPosts(Request $request){
 
         $start = $request->get("start");
-        
+
         // Fetch records
-        $records = Post::select('*') 
+        $records = Post::select('*')
             ->skip($start)
             ->take($this->rowperpage)
             ->get();
-            
+
         $html = "";
         foreach($records as $record){
             $html .= "<div class='col mx-lg-3 flex-fill'>
@@ -152,10 +153,10 @@ class PostController extends Controller
 
     $allPosts = Post::all()
         ->where('content_type', 'mp4');
-        // ->sortByDesc('id'); 
+        // ->sortByDesc('id');
     $allUsers = User::get();
     $allMedia = Media::get();
-    $media_post_id = Media::get('post_id');
+    // $media_post_id = Media::get('post_id');
 
     // dd($allPosts);
 
@@ -167,12 +168,12 @@ class PostController extends Controller
             'date' => $date,
             'users'=> $allUsers,
             'allMedia'=> $allMedia,
-            '$media_post_id' => $media_post_id,
+            // '$media_post_id' => $media_post_id
     ]);
 
         // $posts = Post::all()
         // ->where('content_type', 'mp4')
-        // ->sortByDesc('id'); 
+        // ->sortByDesc('id');
         // $data = [];
         // // $mediaArray = [];
         // foreach ($posts as $post) {
@@ -272,7 +273,7 @@ class PostController extends Controller
                 $extension[]= $ext;
             }
         }
-        
+
         Post::create([
             // 'column-name-in-db'=>'value',
             'post_url' => "kjjkjkj",
