@@ -1,0 +1,32 @@
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.fleet
+/.idea
+/.vscode
+
+=============================================
+
+Installations:
+
+ >> for bootstrap icons: npm i bootstrap-icons
+
+ >> for thumbnails automatically:  php artisan vendor:publish --tag=video-thumbnail
+									composer require pawlox/video-thumbnail
+
+ >> for fake data: npm install @faker-js/faker --save-dev
+
+ >> for JQuery to infinite load more scroll: npm i jquery
+		https://larainfo.com/blogs/how-to-install-jquery-in-laravel-9
