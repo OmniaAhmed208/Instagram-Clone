@@ -39,7 +39,7 @@
                                             @if($user->id == $story->user_id)
                                                 <div class="title">{{$user->first_name}}</div>
                                             @else
-                                                <div class="title">user</div>
+                                                <div class="title">ahmed</div>
                                             @endif
                                         @endforeach
                                     </div>
