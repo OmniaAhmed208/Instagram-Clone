@@ -9,20 +9,19 @@
 	<section class="reels-body min-vh-100 px-5">
 		<div class="container p-3 min-vh-100">
 			@foreach ($posts as $post)
-			@if ($post->content_path)
-			@foreach ($users as $user)
+			@if ($post->content_path && $post->post_creator_id == $post->user->id)
 			@php
 				$file = DB::table('posts')->where('id', $post->id)->first();
 				$files = explode('|', $file->content_path);
-				// dd($post->id);
+				// dd($posts);
 			@endphp
 			@foreach ($files as $index => $media)
-				@if (substr(strrchr($media,'.'),1) == 'mp4' && $post->post_creator_id == $user->id)
+				@if (substr(strrchr($media,'.'),1) == 'mp4')
 				<div class="reel-element mb-3" style="
 					background: linear-gradient(rgba(30, 30, 30, 0.2), transparent, rgba(30, 30, 30, 0.2));
 					background-image:
 					/* radial-gradient(circle, rgba(255, 255, 255, 0.7) 30%, rgba(255, 255, 255, 1) 50%), */
-					/* url('{{ asset('Thumbnails/2Bap.gif') }}'); */
+					/* url('{{ asset('Thumbnails/CUKe.gif') }}'); */
 					background-size: cover;
 					background-repeat: no-repeat;
 					background-position: center center">
@@ -32,8 +31,8 @@
 							<!-- {{-- reels video start --}} -->
 							<div class="video-wrap z-n2  rounded-2 h-100 w-100 position-absolute" style="cursor: pointer;" onclick="playPauseVid('#video{{ $post->id }}', '#videoIcon{{ $post->id }}')">  <!--  -->
 								<video src="{{ URL::to($media) }}" id="video{{ $post->id }}"
-									class="w-100 h-100 rounded-2 video" poster="" 
-									autoplay loop > <!-- autoplay --> <!-- loading... as poster: asset('Thumbnails/2Bap.gif') -->
+									class="video w-100 h-100 rounded-2" poster="" 
+									autoplay loop > <!-- autoplay --> <!-- loading... as poster: asset('Thumbnails/CUKe.gif') -->
 									Your browser does not support the video tag.
 								</video>
 							</div>
@@ -59,13 +58,13 @@
 												{{-- <img src="{{ asset($reel->post->user->user_photo_path) }}" alt="User profile link"> --}}
 												<div class="story">
 													<div class="imgBx">
-														<img src="{{ asset($user->user_photo_path) }}" alt="User photo">
+														<img src="{{ asset($post->user->user_photo_path) }}" alt="User photo">
 													</div>
 												</div>
 											</div>
 											<div class="col-10 ps-3 my-auto">
 												<div id="reels_user" class="fw-bold">
-													{{ $user->nick_name }} &sdot;
+													{{ $post->user->nick_name }} &sdot;
 													<span class=" btn m-0 p-0 text-decoration-none fw-bold text-white">
 														Follow
 													</span>
@@ -83,7 +82,7 @@
 											<div class="col-12 d-flex">
 												<div class="reels_music text-wrap">
 													<img src="{{ asset('Icons/musical-notes.png') }}" />
-													{{ $user->nick_name }} &sdot; Original audio
+													{{ $post->user->nick_name }} &sdot; Original audio
 												</div>
 												<div class="reels_tagged ps-1">
 													<img src="{{ asset('Icons/user-16.png') }}" />
@@ -134,7 +133,7 @@
 									<li class="list-group-item rounded-4"
 										{{-- <img src="{{ asset($reel->post->user->user_photo_path) }}" alt="Aaudio source"> --}}
 											style="
-											background-image: url('{{ asset($user->user_photo_path) }}');
+											background-image: url('{{ asset($post->user->user_photo_path) }}');
 											background-size: cover;
 											background-repeat: no-repeat;
 											background-position: center center;
@@ -149,7 +148,6 @@
 					</div>
 				</div>
 				@endif
-			@endforeach
 			@endforeach
 			@endif
 			@endforeach

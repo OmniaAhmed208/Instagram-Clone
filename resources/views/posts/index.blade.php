@@ -11,13 +11,15 @@
                     <div class="inside-home">
 
                         @foreach($users as $user)
+                        
                         @php
-                        $fileStory = DB::table('media')->where('user_id', $user->id)->first();
-                        $filesStories = explode('|', $fileStory->content_path);
-
+                            if (!empty(DB::table('media')->where('user_id', $user->id)->first())) {
+                                $fileStory = DB::table('media')->where('user_id', $user->id)->first();
+                                $filesStories = explode('|', $fileStory->content_path);
+                            }
                         @endphp
-                        @endforeach
 
+                        @endforeach
                         <div class="allStories">
                             @foreach($allMedia as $index=>$story)
                             <a  href="/stories/{{$story['user_id']}}">
@@ -213,7 +215,7 @@
                             <hr>
 
                         </div> {{--end posts--}}
-
+                        
                         @endforeach
 
                         {{-- when click on 3 points ... --}}

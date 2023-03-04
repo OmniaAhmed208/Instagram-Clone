@@ -43,7 +43,7 @@
                             <li><a href="/home"><i class="fas fa-home"></i> <span>Home</span></a></li>
                             <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"><i class="fas fa-search"></i> <span>Search</span></a></li>
                             <li><a href="/explore"><i class="fas fa-compass"></i> <span>Explore</span></a></li>
-                            <li><a href="/reels"><i class="fas fa-compass"></i> <span>Reels</span></a></li>
+                            <li><a href="/reels"><img src="{{asset('/img/10391363.png')}}" style="width: 27px;margin-right: 17px;" alt=""/><span>Reels</span></a></li>
                             <li><a href=""><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
                             <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
                             <li class="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
@@ -294,15 +294,15 @@
                 
                 <div class="row">
                     <div class="col-4 my-4" style="">
-                        <img class="w-100 h-100 rounded" src="">
+                        <img class="w-100 h-100 rounded" src="{{ asset('Photos/animal-sheep.jpg') }}">
                     </div>
                 
                     <div class="col-4 my-4">
-                        <img class="w-100 h-100 rounded" src="">
+                        <img class="w-100 h-100 rounded" src="{{ asset('Photos/flowers-1.jpg') }}">
                     </div>
                     
                     <div class="col-4 my-4">
-                        <img class="w-100 h-100 rounded" src="">
+                        <img class="w-100 h-100 rounded" src="{{ asset('Photos/portrait-korean-woman-2.jpg') }}">
                     </div>
                 
                     

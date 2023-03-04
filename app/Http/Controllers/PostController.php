@@ -152,8 +152,8 @@ class PostController extends Controller
     // ]);
 
     $allPosts = Post::all()
-        ->where('content_type', 'mp4');
-        // ->sortByDesc('id');
+        ->where('content_type', 'mp4')
+        ->sortByDesc('id');
     $allUsers = User::get();
     $allMedia = Media::get();
     // $media_post_id = Media::get('post_id');
