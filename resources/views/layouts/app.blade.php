@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="{{asset('/css/side-bar-media.css')}}">
     <link rel="stylesheet" href="{{asset('/css/explore_reels.css')}}">
     <link rel="stylesheet" href= @yield('css')>
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <script
     type="text/javascript"
