@@ -27,6 +27,7 @@
 
     <link rel="stylesheet" href="{{asset('/css/explore_reels.css')}}">
     <link rel="stylesheet" href= @yield('css')>
+</head>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     {{-- <script
     type="text/javascript"
@@ -72,7 +73,15 @@
                             <li><a href=""><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
                             <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
                             <li class="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
-                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href="/profile">
+                            <li class="profile"><img
+                                src="@auth
+                                @if (auth()->user()->user_photo_path == 1)
+                                    {{ asset('default.jpg')}}
+                                @else
+                                    {{ asset('/storage/profile_pic/'.auth()->user()->user_photo_path)}}
+                                @endif
+                                    
+                                @endauth" alt=""/><a href="/profile/{{ auth()->user()->id }}">
                                 <span>
                                     @auth
                                     {{ auth()->user()->first_name }}

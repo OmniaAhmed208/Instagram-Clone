@@ -35,7 +35,11 @@ Route::post('/login', [AuthController::class, 'loginAction'])->name('login.actio
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/profile' , [ProfileController::class, 'index'])->name('profile.index')->middleware('auth');
+Route::get('/profile/{user}' , [ProfileController::class, 'show'])->name('profile.index')->middleware('auth');
+
+Route::post('/profile' , [ProfileController::class, 'store'])->name('profile.store')->middleware('auth');
+
+Route::put('/profile/{user}/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
 Route::get('/home' , [PostController::class, 'index'])->name('home.index')->middleware('auth');
 
