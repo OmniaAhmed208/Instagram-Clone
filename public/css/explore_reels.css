@@ -82,6 +82,9 @@
     scroll-snap-type: y mandatory; 
     /* scroll-behavior: smooth; */
 }
+.reels-body::-webkit-scrollbar{
+    width: 0 !important;
+  }
 
 .reels-body img{
     max-width:100%;

@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.10.3",
+        "boxicons": "^2.1.4",
         "cropperjs": "^1.5.13",
         "jquery": "^3.6.3"
     }

@@ -11,7 +11,7 @@
 <div  class=" border">
     
     <div style="width: 70%" class="my-5 mx-auto text-center">
-    <img class="w-75" src="http://instagram-clone.test/img/logo.png" alt="instagram logo">
+    <img class="w-75" src="{{ asset('img/logo.png') }}" alt="instagram logo">  <!-- http://instagram-clone.test/img/logo.png -->
     <p style="font-size: 18px" class="fw-semibold text-secondary text-center">Sign up to see photos and videos from your friends.</p>    
 </div>
 

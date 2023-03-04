@@ -45,26 +45,49 @@
 		<div class="container px-5 pt-2">
 			<div class="row row-cols-4 d-flex">
 				@foreach($posts as $key => $post)
+				@if ($post->content_path)
+
 					<div class="col mx-lg-3 flex-fill">
 						<a href="{{ $post->path() }}" data-bs-toggle="modal" data-bs-target="#explorePostModal">
 							{{-- @if ($posts->first() || $posts->last())
 								<div class="row" style="height:690px;">
 							@else --}}
-								<div class="row">
+								<div class="row" style="
+									background-image: url('{{ $post->content_path }}');
+									background-size: cover;
+									background-repeat: no-repeat;
+									background-position: center center">
+
 							{{-- @endif --}}
 								{{-- one explore content start --}}
-								<span>{{ $post->caption }}</span>
-								@foreach ($post->media() as $media)
-									@if ($media->content_type == 'video')
-										@yield('oneExplore-video-Content')
-									@else
-										@yield('oneExplore-photo-Content')
-									@endif
-								@endforeach
+								{{-- <span>{{ $post->caption }}</span> --}}
+
+								{{-- @php
+									$file = DB::table('posts')->where('id', $post->id)->first();
+									$files = explode('|', $file->content_path);
+                                @endphp --}}
+                                {{-- @foreach ($files as $index => $media) --}}
+                                    {{-- @if (substr(strrchr($media,'.'),1) == 'png' && $index == 0) --}}
+									{{-- <img src='{{ $post->content_path }}' alt="{{ $post->id }}" /> --}}
+									{{-- <img class="bg-info" src="{{ asset('img/logo.png') }}" alt="{{ $post->id }}" /> --}}
+									{{-- @endif --}}
+									{{-- @php
+										dd($post->content_path);
+									@endphp --}}
+                                {{-- @endforeach --}}
+
+								{{-- @foreach ($post->media() as $media) --}}
+								@if ($post->content_path == 'mb4' || $post->content_path == 'ogg')
+									@yield('oneExplore-video-Content')
+								@else
+									@yield('oneExplore-photo-Content')
+								@endif
+								{{-- @endforeach --}}
 								{{-- one explore content end --}}
 							</div>
 						</a>
 					</div>
+				@endif
 				@endforeach
 			</div>
 
@@ -125,8 +148,8 @@
 
 <!-- Script -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
 // <script>
 
 checkWindowSize();

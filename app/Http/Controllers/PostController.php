@@ -75,13 +75,24 @@ class PostController extends Controller
                ->take($this->rowperpage)
                ->get();
                
+
+        $allPosts = Post::all()
+        ->sortByDesc('id'); 
         // Load index view
         return view('posts.explore', [
             $data,
             'rowperpage' => $data['rowperpage'],
             'totalrecords' => $data['totalrecords'],
-            'posts' => $data['posts'],
+            // 'posts' => $data['posts'],
+            'posts' => $allPosts,
         ]);
+
+        // $allPosts = Post::all()
+        // ->sortByDesc('id'); 
+
+        // return view('posts.explore', [
+        //     'posts' => $allPosts,
+        // ]);
     }
 
     // Fetch records for explore page loading posts
@@ -96,28 +107,28 @@ class PostController extends Controller
             ->get();
             
         $html = "";
-        // foreach($records as $record){
-        //     $html .= "<div class='col mx-lg-3 flex-fill'>
-        //                 <a href='{{" .$record->path(). "}}' data-bs-toggle='modal' data-bs-target='#explorePostModal'>
-        //                     {{-- @if (" .$records->first(). "||" .$records->last(). ")
-        //                         <div class='row' style='height:690px;'>
-        //                     @else --}}
-        //                         <div class='row'>
-        //                     {{-- @endif --}}
-        //                         {{-- one explore content start --}}
-        //                         <span>{{" .$record->caption. "}}</span>
-        //                         @foreach (".$record->media()." as ".$media.")
-        //                             @if (".$media->content_type." == 'video')
-        //                                 @yield('oneExplore-video-Content')
-        //                             @else
-        //                                 @yield('oneExplore-photo-Content')
-        //                             @endif
-        //                         @endforeach
-        //                         {{-- one explore content end --}}
-        //                     </div>
-        //                 </a>
-        //             </div>";
-        // }
+        foreach($records as $record){
+            $html .= "<div class='col mx-lg-3 flex-fill'>
+                        <a href='{{" .$record->path(). "}}' data-bs-toggle='modal' data-bs-target='#explorePostModal'>
+                            {{-- @if (" .$records->first(). "||" .$records->last(). ")
+                                <div class='row' style='height:690px;'>
+                            @else --}}
+                                <div class='row'>
+                            {{-- @endif --}}
+                                {{-- one explore content start --}}
+                                <span>{{" .$record->caption. "}}</span>
+                                @foreach (".$record->media()." as ".$media.")
+                                    @if (".$media->content_type." == 'video')
+                                        @yield('oneExplore-video-Content')
+                                    @else
+                                        @yield('oneExplore-photo-Content')
+                                    @endif
+                                @endforeach
+                                {{-- one explore content end --}}
+                            </div>
+                        </a>
+                    </div>";
+        }
         $data['html'] = $html;
 
         return response()->json([
