@@ -3,7 +3,7 @@
 /public/hot
 /public/storage
 /storage/*.key
-/vendor
+#/vendor
 .env
 .env.backup
 .env.production
@@ -19,14 +19,14 @@ yarn-error.log
 
 =============================================
 
-Installations:
+# Installations:
 
- >> for bootstrap icons: npm i bootstrap-icons
+#  >> for bootstrap icons: npm i bootstrap-icons
 
- >> for thumbnails automatically:  php artisan vendor:publish --tag=video-thumbnail
-									composer require pawlox/video-thumbnail
+#  >> for thumbnails automatically:  php artisan vendor:publish --tag=video-thumbnail
+# 									composer require pawlox/video-thumbnail
 
- >> for fake data: npm install @faker-js/faker --save-dev
+#  >> for fake data: npm install @faker-js/faker --save-dev
 
- >> for JQuery to infinite load more scroll: npm i jquery
-		https://larainfo.com/blogs/how-to-install-jquery-in-laravel-9
+#  >> for JQuery to infinite load more scroll: npm i jquery
+# 		https://larainfo.com/blogs/how-to-install-jquery-in-laravel-9
