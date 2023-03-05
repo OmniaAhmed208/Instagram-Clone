@@ -9,8 +9,10 @@
     align-items: center;
   }
   /* ============ story =============== */
-  .home .stories{display: flex;align-items: center;margin-top: 20px;margin-bottom: 60px;}
-  .home .stories .box{
+  .allStories{display: flex;width: 470px;overflow: hidden;}
+
+  .home .allStories .stories{display: flex;align-items: center;margin-top: 20px;margin-bottom: 60px;cursor: pointer;}
+  .home .allStories .stories .box{
     position: relative;
     width: 65px;
     height: 65px;
@@ -60,7 +62,7 @@
   }
 
   .home .stories .story .title{
-    position: absolute;
+    /* position: absolute; */
     top: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -71,7 +73,7 @@
 
   /* =============== posts ==================== */
   .home .posts{width: 470px;}
-  .home .posts .post{display: flex;width: 100%;margin-bottom: 7px;position: relative;}
+  .home .posts .post{display: flex;width: 100%;margin-bottom: 7px;position: relative;flex-direction: row;}
   .home .posts .story{
     position: relative;
     width: 100px;
@@ -195,6 +197,8 @@
     font-weight: 600;
   }
 
+
+
 /* ================= actionPoints ============ */
 .fixedActions{
     display: none;
@@ -221,13 +225,46 @@
 .fixedActions .actionPoints ul li{margin: -6px auto;cursor: pointer;}
 .fixedActions .actionPoints ul .red{color: red;font-weight: 600;}
 
-/* ============ global style ============ */
 
-.btn {white-space: normal;}
+.explore-body .container .row .col .row,
+.reels-body .container .row .col .row{
+    height: 330px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    transition: 0.1s;
+    position: relative;
+    align-items: center;
+}
 
-.visible {visibility: visible !important;}
+.explore-body .container .row .col .row:hover{
+    background-color: hsla(0, 0%, 0%, 0.05);
+}
 
-.invisible {visibility: hidden !important;}
+.explore-body .icon-album,
+.explore-body .icon-video{
+    position: absolute;
+    top:18px;
+    right:-136px;
+}
+.explore-body .icon-video{left:160px;}
+
+.visible {
+  visibility: visible !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+.explore-body .container .row .col .row .following-comments-numbers{
+    position: absolute;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    width: 100%;
+    margin-left: -12px;
+    text-align: center;
+}
+
 
 /* =========== slider-posts================= */
 .slider .bullets{
@@ -332,4 +369,3 @@
   }
   /* ================================================ */
 
-  

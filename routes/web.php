@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoryController;
 
 
 /*
@@ -55,5 +56,7 @@ Route::get('/reels' , [PostController::class, 'reels'])->name('home.reels');
 
 Route::post('/home/{post}/comment', [CommentController::class, 'store'])->name('comments.store');
 
-// Route::get('/stories' , [PostController::class, 'index'])->name('story.index');
-// Route::post('/stories', [PostController::class, 'store']);
+
+// Route::get('/stories' , [StoryController::class, 'index']);
+Route::get('/stories/{story}' , [StoryController::class, 'index'])->name(name:'posts.stories');
+// Route::post('/stories', [StoryController::class, 'store']);
