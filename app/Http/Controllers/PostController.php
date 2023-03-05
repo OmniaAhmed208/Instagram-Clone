@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Media;
 use App\Models\PostInteraction;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Mentiontag;
 // use DB;
 // use URL;
 
@@ -17,14 +19,7 @@ use Image;
 
 class PostController extends Controller
 {
-    // public function index(){
-    //     $allPosts = Post ::all();
-    //     $allComments = Comment :: all();
-    //     return view('posts.index',[
-    //         'posts'=> $allPosts,
-    //         'comments' => $allComments
-    //     ]);
-    // }
+   
 
     public function index()
 
@@ -32,6 +27,7 @@ class PostController extends Controller
         $allPosts = Post::get();
         $allUsers = User::get();
         $allMedia = Media::get();
+        $comments = Comment::get();
         // $media_post_id = Media::get('post_id');
 
         // dd($media_post_id);
@@ -44,6 +40,7 @@ class PostController extends Controller
             'date' => $date,
             'users'=> $allUsers,
             'allMedia'=> $allMedia,
+            'comments' => $comments
             // '$media_post_id' => $media_post_id
         ]);
     }
@@ -62,20 +59,25 @@ class PostController extends Controller
 
     public function explore()
     {
-        $allPosts = Post::all()
-        ->sortByDesc('id'); 
+        $allPosts = Post::all()->sortByDesc('id'); 
+        $allUsers = User::get();
         $allLikes = PostInteraction::all()->where('like', 1);
         $allSavings = PostInteraction::all()->where('saving', 1);
         $likesCount = $allLikes->count();
         $savingsCount = $allSavings->count();
+        $allComments = Comment::all()->sortByDesc('id'); 
+        $commentsCount = $allComments->count();
         // dd($allPosts);
 
         return view('posts.explore', [
             'posts' => $allPosts,
+            'users'=> $allUsers,
             'likes' => $allLikes,
             'savings' => $allSavings,
             'likesCount' => $likesCount,
             'savingsCount' => $savingsCount,
+            'allComments' => $allComments,
+            'commentsCount' => $commentsCount,
         ]);
     }
 
@@ -91,7 +93,8 @@ class PostController extends Controller
     $allSavings = PostInteraction::all()->where('saving', 1);
     $likesCount = $allLikes->count();
     $savingsCount = $allSavings->count();
-    
+    $comments = Comment::get();
+    $commentsCount = $comments->count();
 
     // dd($allPosts);
 
@@ -108,6 +111,8 @@ class PostController extends Controller
             'savings' => $allSavings,
             'likesCount' => $likesCount,
             'savingsCount' => $savingsCount,
+            'commentsCount' => $commentsCount,
+            'comments' => $comments,
     ]);
 
         // $posts = Post::all()
@@ -176,10 +181,11 @@ class PostController extends Controller
     {
         // dd($_POST);
         $data = request()->all();
-        // dd($data);
+        // dd($data['tag']);
 
         $content = $data['content'];
-        $post_creator_id = $data['select_post'];
+        // $post_creator_id = $data['select_post'];
+        $post_creator_id = Auth::id();
 
         // if($data['cropped'] == null){ //if image not cropped take original image
         //     $file_extension = request()-> image -> getClientOriginalExtension();
@@ -223,6 +229,76 @@ class PostController extends Controller
             'alt_text' => "photo",
         ]);
 
+        if ($data['tag']) {
+            $postid= Post::select('id')->max('id');
+            // dd($postid);
+            Mentiontag::create([
+                'post_id' => $postid,
+                'user_from_id' => $post_creator_id,
+                'user_to_id' => $data['tag'],
+                'mention_or_tag' => 'tag'
+            ]);
+        }
+        
+
         return back();
+    }
+
+    public function edit($postid)
+    {
+        $post = Post:: find($postid);
+        $allUsers = User::get();
+      
+        // dd($post);
+        return view('posts.edit',[
+            'post' => $post,
+            'users' => $allUsers
+            
+        ]);
+    }
+    public function update($postid, Request $request)
+    {
+        $post = Post :: find($postid);
+        $newdata= $request-> all();
+        $post->update([
+            'caption'=> $newdata['caption']
+        ]);
+        // dd($newdata);
+        // $request->validate([
+        //                'title' => ['required', 'min:3'],
+        //                'description' => ['required', 'min:5'],
+        //            ]);
+
+        return redirect()->route('home.index');
+    }
+
+    public function like ($postid){
+        $post = Post::find($postid);
+        $likesCount = $post['likes_counts_settings']+1;
+        $post->update(['likes_counts_settings'=> $likesCount]);
+        // dd($likesCount);
+        $userid = Auth::id();
+        PostInteraction::create([
+            'post_id'=>$postid,
+            'watcher_id'=>$userid,
+            'like'=>1
+        ]);
+        return redirect()->route('home.index');
+    }
+
+    public function save ($postid){
+        $userid = Auth::id();
+        PostInteraction::create([
+            'post_id'=>$postid,
+            'watcher_id'=>$userid,
+            'saving'=>1
+        ]);
+        return redirect()->route('home.index');
+    }
+
+    public function explorePost ($postid){
+        $post = Post::find($postid);
+        
+        return redirect()->route('home.index');
     }
 }

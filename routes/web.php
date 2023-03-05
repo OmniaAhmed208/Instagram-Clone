@@ -46,14 +46,21 @@ Route::post('/home', [PostController::class, 'store']);
 Route::post('/crop', [PostController::class, 'crop'])->name('post.crop');
 
 Route::get('/explore' , [PostController::class, 'explore'])->name('home.explore');
-
-Route::get('/getPosts', [PostsController::class, 'getPosts'])->name('getPosts');
+Route::get('/explore/{id}' , [PostController::class, 'explorePost'])->name('posts.explorePost');
+// Route::get('/getPosts', [PostsController::class, 'getPosts'])->name('getPosts');
 
 Route::get('/reels' , [PostController::class, 'reels'])->name('home.reels');
 
 Route::post('/home/{post}/comment', [CommentController::class, 'store'])->name('comments.store');
-
+Route::post('/reels/{post}/comment', [CommentController::class, 'storeForReels'])->name('comments.storeForReels');
 
 // Route::get('/stories' , [StoryController::class, 'index']);
 Route::get('/stories/{story}' , [StoryController::class, 'index'])->name(name:'posts.stories');
 // Route::post('/stories', [StoryController::class, 'store']);
+Route::get('/posts/{post}/edit}', [postController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [postController::class, 'update'])->name('posts.update');
+Route::get('/post/{post}/like', [PostController::class, 'like'])->name('posts.like');
+Route::get('/post/{post}/save', [PostController::class, 'save'])->name('posts.save');
+
+Route::get('/profile/saved', [ProfileController::class, 'saved'])->name('profile.saved');
+Route::get('/profile/tagged', [ProfileController::class, 'tagged'])->name('profile.tagged');

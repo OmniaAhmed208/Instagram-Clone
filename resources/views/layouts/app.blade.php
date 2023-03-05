@@ -34,6 +34,8 @@
     async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=MML_HTMLorMML"
   ></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body @yield('body')>
     <!-- ===========================topheader========================= -->
@@ -236,9 +238,11 @@
                                     <textarea name="content" id="desc" cols="30" rows="9" id="contentText" maxlength="200" placeholder="Write a caption"></textarea>
                                     <p id="counter"></p>
                                     <hr>
-                                    <input type="text" placeholder="Add location">
-                                    <select name="select_post" class="form-control" id="select_post">
-                                        <option value="1">omnia</option>
+                                    <input type="text" placeholder="Add location" style="display:block">
+                                    <label>Tag:</label> <select name="tag" class="form-control" id="select_post">
+                                        @foreach ($users as $user)
+                                        <option value="1">{{ $user->nick_name }}</option>
+                                        @endforeach
                                     </select>
                                     <hr>
                                 </div>

@@ -10,20 +10,20 @@
 
                     <div class="inside-home">
 
-                        @foreach($users as $user)
-                        
+                        {{-- @foreach($users as $user)
                         @php
                             if (!empty(DB::table('media')->where('user_id', $user->id)->first())) {
                                 $fileStory = DB::table('media')->where('user_id', $user->id)->first();
                                 $filesStories = explode('|', $fileStory->content_path);
                             }
                         @endphp
-
-                        @endforeach
+                        @endforeach --}}
+{{-- 
                         <div class="allStories">
                             @foreach($allMedia as $index=>$story)
-                            <a  href="/stories/{{$story['user_id']}}">
-                                <div class="stories"> {{--start story--}}
+                            <a  href="/stories/{{$story['user_id']}}"> --}}
+                                {{--start story--}}
+                                {{-- <div class="stories"> 
                                     <div class="story">
                                         @foreach($users as $user)
                                             <div class="box">
@@ -45,11 +45,11 @@
                                             @endif
                                         @endforeach
                                     </div>
-                                    {{-- @endforeach --}}
+                                    
                                 </div>
                             </a>
                             @endforeach
-                        </div>
+                        </div> --}}
 
                         @foreach ($posts as $post)
                         <div class="posts"> {{--start posts--}}
@@ -61,12 +61,13 @@
                                     </div>
                                 </div>
                                 {{-- <div class="title">name-of-page <span>.1h</span></div> --}}
-                                @foreach($users as $user)
+                                {{-- @foreach($users as $user) --}}
                                 <div class="title">
-                                    @if ($post->post_creator_id == $user->id) {{$user->nick_name}} @endif
+                                    {{$post->user->nick_name}}
+                                    {{-- @if ($post->post_creator_id == $user->id) {{$user->nick_name}} @endif --}}
                                     <span>.1h</span>
                                 </div>
-                                @endforeach
+                                {{-- @endforeach --}}
 
                                 <div class="info" id="points">...</div>
 
@@ -178,40 +179,57 @@
                             </div>
 
                             <div class="actions container">
-                                <ul class="list-unstyled">
-                                    <li class="like"></li>
-                                    <li class="comment"></li>
-                                    <li class="share"></li>
-                                    <li class="save"></li>
-                                </ul>
+                                <div style="display:flex; justify-content: space-between">
+                                    <div class="col-11">
+                                        <a href="{{route('posts.like', $post->id)}}" style="padding: 5px 5px 5px"><img class="red" style="width:8%" src="img\heart.png" alt=""></a>
+                                        <a href="#" style="padding: 5px 5px 5px"><img style="width:8%" src="img\comment.png" alt=""></a>
+                                        <a href="#" style="padding: 5px 5px 5px"><img style="width:8%" src="img\send.png" alt=""></a>
+                                        {{-- eyeicon.classList.replace("bx-hide" , "bx-show");  --}}
+                                    </div>
+                                    <a class="col-1" href="{{route('posts.save', $post->id)}}"><img style="width:90%" src="img\save-instagram.png" alt=""></a>
+
+                                    
+                                </div>
                             </div>
 
-                            <div class="num-likes container">11 likes</div>
+                            <div class="num-likes container"><a href="">{{ $post->likes_counts_settings }} likes</a></div>
 
                             <div class="post-content container">
                                 {{-- <div class="title">name-of-page</div> --}}
-                                @if ($post->post_creator_id == $user->id)
-                                    <div class="title">{{$user->nick_name}}</div>
-                                @endif
+                                {{-- @if ($post->post_creator_id == $user->id) --}}
+                                    <div class="title">{{$post->user->nick_name}}</div>
+                                {{-- @endif --}}
                                 {{-- <p>content of post will write here</p> --}}
                                 <p>{{$post->caption}}</p>
+                                
+                            </div>
+
+                            <div>
+                            
+                                @forEach ($comments as $comment)
+                                
+                                @if ($comment->post_id == $post->id)
+                                    <div class="post-content container">
+                                        <div class="title">{{ $comment->user->first_name }}</div>
+                                        <p>{{ $comment->comment_content }}</p>
+                                    </div>
+                                @endif
+                                @endforeach
+
+                               
                             </div>
 
                             <div class="add-comment container">
-                                <input type="text" placeholder="Add a comment...">
-                                <div class="post-content">
-                                    <div class="title">user</div>
-                                    <p>content of post will write here</p>
-                                </div>
+                                <form method="POST" action="{{ route('comments.store', 1) }}">
+                                    @csrf
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                    <input name="comment" style="width: 80%" type="text" placeholder="Add a comment...">
+                                    <input type="submit" style="width: 15%" value="post" class="btn">
+                                    
 
-                                <div class="add-comment">
-                                    <form method="POST" action="{{ route('comments.store', 1) }}">
-                                        @csrf
-                                        <input class="col-10 " type="text" name="comment" placeholder="Add a comment...">
-                                        <input type="submit" value="post" class="btn">
-                                    </form>
-                                </div>
-                            </div>
+                                </form>
+                                
+                            </div>    
                             <hr>
 
                         </div> {{--end posts--}}
@@ -238,6 +256,8 @@
                                     <hr>
                                     <li>About this account</li>
                                     <hr>
+                                    <li><a href="{{route('posts.edit', $post->id)}}" > Edit</a></li>
+                                    <hr>
                                     <li id="cancel">Cancel</li>
                                 </ul>
                             </div>
@@ -259,7 +279,10 @@
                     fixedAction.style.display = "none";
                 }
             </script>
-
+            <script>
+                var like = document.getElementsByClassName("red");
+                console.log(like)
+            </script>
             <script>
                 // slider ===============
                 var slide = document.querySelectorAll('.slide');

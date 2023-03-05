@@ -7,6 +7,19 @@
 
 @section('content')
 
+{{-- Post by id start --}}
+{{-- @if (Route::is('home.explorePost'))
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-12">
+
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		
+	</div>
+</div>
+@endif --}}
+{{-- Post by id start --}}
+
 <div class="col-lg-9">
 	<section class="explore-body min-vh-100 p-4">
 		
@@ -16,7 +29,9 @@
 				@if ($post->content_path)
 
 					<div class="col mx-lg-3 mx-sm-1 flex-fill">
-						<a href="{{ $post->path() }}" data-bs-toggle="modal" data-bs-target="#explorePostModal">
+						{{-- <a href="{{ url('explore/'.$post->id) }}" data-bs-toggle="modal" data-bs-target="#explorePostModal"> --}}
+						<a href="{{ url('explore/'.$post->id) }}">
+
 							{{-- @if ($posts->first() || $posts->last())
 								<div class="row" style="height:690px;">
 							@else --}}
@@ -44,8 +59,8 @@
 										{{-- one explore video content start --}}
 										<img class="icon-video visible" src="{{asset('Icons/photo-gallery.png')}}"/>
 										<div class="following-comments-numbers">
-											<span class="following-number"><i class="fa fa-heart-o"></i> number</span>
-											<span class="comments-number"><i class="fa-brands fa-facebook-messenger"></i> number</span>
+											<span class="following-number"><i class="fa fa-heart-o"></i> 0</span>
+											<span class="comments-number"><i class="fa-brands fa-facebook-messenger"></i> 0</span>
 										</div>
 										{{-- one explore video content end --}}	
 									@else
@@ -54,8 +69,8 @@
 										{{-- one explore single-photos/albums content start --}}
 										<img class="icon-album visible" src="{{asset('Icons/photo-gallery.png')}}"/>
 										<div class="following-comments-numbers">
-											<span class="following-number"><i class="fa fa-heart-o"></i> number</span>
-											<span class="comments-number"><i class="fa-brands fa-facebook-messenger"></i> number</span>
+											<span class="following-number"><i class="fa fa-heart-o"></i> 0</span>
+											<span class="comments-number"><i class="fa-brands fa-facebook-messenger"></i> 0</span>
 										</div>
 										{{-- one explore single-photos/albums content end --}}
 									@endif
@@ -73,8 +88,11 @@
 	</section>
 </div>
 
+@endsection
+
+
 {{-- one explore content modal start --}}
-<div class="modal fade" id="explorePostModal" tabindex="-1" aria-labelledby="explorePostModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="explorePostModal" tabindex="-1" aria-labelledby="explorePostModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -111,10 +129,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> --}}
 {{-- one explore content modal end --}}
-
-
-
-@endsection
-

@@ -113,16 +113,22 @@
 									<li class="list-group-item">
 										<i><img src="{{ asset('Icons/heart.png') }}" /></i>
 										@if ($likesCount > 999 && $likesCount < 999999)
-										<strong class="cursor-pointer" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">{{ $likesCount/1000 }}K</strong>
+										<strong class="cursor-pointer" data-bs-target="#likeModalToggle" data-bs-toggle="modal">{{ $likesCount/1000 }}K</strong>
 										@elseif ($likesCount > 999999)
-										<strong class="cursor-pointer" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">{{ $likesCount/1000000 }}M</strong>
+										<strong class="cursor-pointer" data-bs-target="#likeModalToggle" data-bs-toggle="modal">{{ $likesCount/1000000 }}M</strong>
 										@else
-											<strong class="cursor-pointer" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">{{ $likesCount }}</strong>
+											<strong class="cursor-pointer" data-bs-target="#likeModalToggle" data-bs-toggle="modal">{{ $likesCount }}</strong>
 										@endif
 									</li>
-									<li class="list-group-item">
+									<li class="list-group-item cursor-pointer" data-bs-target="#commentModalToggle" data-bs-toggle="modal">
 										<i><img src="{{ asset('Icons/comments.png') }}" /></i>
-										<span>531</span>
+										@if ($commentsCount > 999 && $commentsCount < 999999)
+										<strong>{{ $commentsCount/1000 }}K</strong>
+										@elseif ($commentsCount > 999999)
+										<strong>{{ $commentsCount/1000000 }}M</strong>
+										@else
+											<strong>{{ $commentsCount }}</strong>
+										@endif
 									</li>
 									<li class="list-group-item">
 										<i><img src="{{ asset('Icons/send.png') }}" /></i>
@@ -230,7 +236,7 @@
 
 
 <!-- Modal of users who reacted (like) to the post start -->
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"">
+<div class="modal fade" id="likeModalToggle" aria-hidden="true" aria-labelledby="likeModalToggleLabel" tabindex="-1">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header text-center">
@@ -239,40 +245,115 @@
 			</div>
 			<div class="modal-body">
 				{{--user-container row start --}}
-				@if ($users_liked)
-				@foreach ($likes as $like)
-					<div class="user-container">
-						<div class="row">
-							<div class="col-lg-2 align-self-start">
-								<div class=" story">
-									<div class="imgBx">
-										<img src="{{asset('lap.png')}}" alt="img">
+				@foreach ($posts as $post)
+					@foreach ($post->postInteractions as $react)
+						@if ($react->like == 1)
+							<div class="user-container">
+								<div class="row">
+									<div class="col-lg-2 align-self-start">
+										<div class=" story">
+											<div class="imgBx">
+												<img src="{{ asset($post->user->user_photo_path) }}" alt="User photo">
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-7 align-self-start">
+										<div class="title-info">
+											<div class="info">
+												<p class="mb-0">
+													<strong class="h5 text-black">{{ $post->user->nick_name }}</strong>
+													<img src="{{asset('Icons/verified.png')}}" />
+												</p>
+												<p class="text-black-50">{{ $post->user->bio }}</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 align-self-end align-self-center">
+										<button class="btn btn-primary text-white px-4">Follow</button>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-7 align-self-start">
-								<div class="title-info">
-									<div class="info">
-										<p class="mb-0">
-											<strong class="h5 text-black">nickname</strong>
-											<img src="{{asset('Icons/verified.png')}}" />
-										</p>
-										<p class="text-black-50">bio ...</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 align-self-end align-self-center">
-								<button class="btn btn-primary text-white px-4">Follow</button>
-							</div>
-						</div>
-					</div>
+						{{-- @else
+							<strong class="h5 text-black">Be the first to like this post.</strong> --}}
+						@endif
+					@endforeach
 				@endforeach
-				@else
-					<strong class="h5 text-black">Be the first to like this post.</strong>
-				@endif
 				{{--user-container row end --}}
 			</div>
 		</div>
 	</div>
 </div>
 <!-- Modal of users who reacted (like) to the post end -->
+
+<!-- Modal of users who comment on the post start -->
+<div class="modal fade" id="commentModalToggle" aria-hidden="true" aria-labelledby="commentModalToggleLabel" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<h5 class="modal-title w-100">Comments</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{--comments-container row start --}}
+				@foreach ($posts as $post)
+				@forEach ($comments as $comment)
+					@if ($comment->post_id == $post->id)
+						<div class="user-container">
+							<div class="row">
+								<div class="col-lg-2 align-self-start">
+									<div class=" story">
+										<div class="imgBx">
+											<img src="{{ asset($comment->user->user_photo_path) }}" alt="User photo">
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-7 align-self-start">
+									<div class="title-info">
+										<div class="info">
+											<p class="mb-0">
+												<strong class="h5 text-black">{{ $comment->user->nick_name }}</strong>
+												<img src="{{asset('Icons/verified.png')}}" />
+											</p>
+											<p class="text-black-50">{{ $comment->comment_content }}</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-3 align-self-end align-self-center">
+									<button class="btn btn-primary text-white px-4">Follow</button>
+								</div>
+							</div>
+						</div>
+					@endif	
+				@endforeach
+				@endforeach
+				{{--comments-container row end --}}
+			</div>
+			{{-- add comment start --}}
+			<div class="modal-footer">
+				<form method="POST" action="{{ route('comments.storeForReels', 1) }}">
+					@csrf
+					{{-- @foreach ($users as $user) --}}
+						{{-- @if ($user->id == $user_to_write_comment) --}}
+						{{-- @if ($user->id == 2) --}}
+							{{-- <div class="row justify-items-center d-flex">
+								<div class="col-lg-2 align-self-start">
+									<div class=" story">
+										<div class="imgBx">
+											<img src="{{ asset($user->user_photo_path) }}" alt="User photo">
+										</div>
+									</div>
+								</div> --}}
+								<div class="form-control row d-flex justify-content-between">
+									<input name="comment flex-fill" style="width: 80%" type="text" placeholder="Add a comment...">
+									<input type="submit flex-fill" style="width: 20%" value="post" class="btn">
+								</div>
+							</div>
+						{{-- @endif
+					@endforeach --}}
+				</form>
+			</div>
+			{{-- add comment end --}}
+		</div>
+	</div>
+</div>
+<!-- Modal of users who comment on the post end -->

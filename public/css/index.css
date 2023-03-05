@@ -141,7 +141,7 @@
     font-size: 25px;
     font-family: FontAwesome;
   }
-  .home .posts .actions .like::before{content: "\f08a";padding: 0 10px 0  0;}
+  .home .posts .actions .like::before{padding: 0 10px 0  0;}
   .home .posts .actions .comment::before{content: "\f0e5";padding: 0 0 0 50px;}
   .home .posts .actions .share::before{content: "\f1e0";padding: 0 0 0 100px;}
   .home .posts .actions .save::before{content: "\f097";width: 95%;text-align: end;}
