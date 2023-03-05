@@ -81,8 +81,8 @@
                                         </div>
 
                                         <div class="title">
-                                            <a href="">Nikename-of-owner-page</a>
-                                            <p>Name</p>
+                                            <a href="/profile/{{ auth()->user()->id }}">Nikename-of-owner-page</a>
+                                            <p>{{auth()->user()->first_name." ".auth()->user()->last_name}}</p>
                                         </div>
                                     </div>{{--end owner--}}
 

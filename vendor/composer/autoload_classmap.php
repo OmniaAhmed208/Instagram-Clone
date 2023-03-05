@@ -25,6 +25,8 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Requests\\LoginRequest' => $baseDir . '/app/Http/Requests/LoginRequest.php',
+    'App\\Http\\Requests\\RegisterRequest' => $baseDir . '/app/Http/Requests/RegisterRequest.php',
     'App\\Http\\Resources\\CommentResource' => $baseDir . '/app/Http/Resources/CommentResource.php',
     'App\\Http\\Resources\\MediaResource' => $baseDir . '/app/Http/Resources/MediaResource.php',
     'App\\Http\\Resources\\PostResource' => $baseDir . '/app/Http/Resources/PostResource.php',

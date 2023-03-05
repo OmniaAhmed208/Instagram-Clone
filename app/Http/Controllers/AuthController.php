@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-class AuthController extends Controller
+
+final class AuthController
 {
-    //
     function register(){
         return view('auth.register');
     }
@@ -16,59 +17,37 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    function loginAction(Request $request){
-       $validated = $request -> validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-        
-        $user = User::query()->firstWhere('email', $request->email);
-        if ($user != null){
-            Auth::login($user);
-
-            if (Auth::check()){
-                $request->session()->regenerate();
-                return redirect()->route('profile.index');
-            }
-
-        }else{
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
-            // return 'Nullllllllllll';
+    function loginAction(LoginRequest $request){
+        if(auth()->attempt($request->validated())){
+            return redirect()->route('profile.index',[
+               auth()->user()->id
+            ]);
         }
+        else{
 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
     }
         
 
-    function registerSave(Request $request){
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required'
+    function registerSave(RegisterRequest $request){
 
-        ]);
         User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'password' => $request->password
-
+            'password' => bcrypt($request->password)
         ]);
 
         return redirect()->route('login');
     }
 
-    function logout(Request $request){
-    Auth::logout();
- 
-    $request->session()->invalidate();
- 
-    $request->session()->regenerateToken();
- 
-    return redirect('/login');
-
+    function logout(Request $request) {
+        auth()->logout();
+    
+        return redirect('/login');
     }
 }
 

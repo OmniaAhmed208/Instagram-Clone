@@ -79,14 +79,21 @@
                             <li><a href="/explore"> <i class="fa fa-compass"></i><span>Explore</span></a></li>
                             <li><a href="/reels"><img src="{{asset('/img/10391363.png')}}" style="width: 27px;margin-right: 17px;" alt=""/><span>Reels</span></a></li>
                             <li><a href="/chatify"><i class="fa-brands fa-facebook-messenger"></i> <span>Messages</span></a></li>
-                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fa fa-heart-o"></i><span>Notifications</span></a></li>
-                            <li class="create" id="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
-                            <li class="profile"><img src="{{asset('lap.png')}}" alt=""/><a href="/profile">
+                            <li><a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotif" aria-controls="offcanvasNotif"><i class="fas fa-heart"></i> <span>Notifications</span></a></li>
+                            <li class="create"><i class="fas fa-plus-square"></i> <span>Create</span></li>
+                            <li class="profile"><a href="/profile/{{auth()->user()->id}}"><img src="
+                                 @if (auth()->user()->user_photo_path == null)
+                                    {{ asset('default.jpg') }}
+                                @else
+                                    {{ asset('/storage/profile_pic/'.auth()->user()->user_photo_path) }}
+                                @endif
+                                    
+                                " alt=""/>
                                 <span>
-                                    @auth
                                     {{ auth()->user()->first_name }}
-                                  @endauth
-                                </span></a></li>
+                                </span>
+                            </a>
+                            </li>
                             <li class="more">
                                 <div class="dropdown">
                                     <ul class="dropdown-menu">
@@ -96,7 +103,7 @@
                                         <li><a class="dropdown-item" href="#">Your Activity</a></li><hr>
                                         <li><a class="dropdown-item" href="#">Report a problem</a></li><hr>
                                         <li><a class="dropdown-item" href="#">Switch accounts</a></li><hr>
-                                        <li><a class="dropdown-item" href="#">Log out</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
                                     </ul>
                                     <i class="fa fa-bars fa-x2" aria-hidden="true"></i>
                                     <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More</a>
@@ -265,13 +272,19 @@
                     <div class="owner">{{--start owner--}}
                         <div class="story">
                             <div class="imgBx">
-                                <img src="{{asset('lap.png')}}" alt="">
+                                <img src="
+                                @if (auth()->user()->user_photo_path == null)
+                                {{ asset('default.jpg') }}
+                                    
+                                @else
+                                {{ asset('/storage/profile_pic/'.auth()->user()->user_photo_path) }}
+                                    
+                                @endif" alt="">
                             </div>
                         </div>
 
                         <div class="title">
-                            <a href="">Nikename-of-owner-page</a>
-                            <p>Name</p>
+                            <a href="/profile/{{auth()->user()->id}}">{{ auth()->user()->first_name." ".auth()->user()->last_name }}</a>
                         </div>
                         <div class="info">Switch</div>
                     </div>{{--end owner--}}
@@ -300,13 +313,19 @@
                                 <div class="person">{{--start owner--}}
                                     <div class="story">
                                         <div class="imgBx">
-                                            <img src="{{asset('lap.png')}}" alt="">
-                                        </div>
+                                            <img src="
+                                            @if (auth()->user()->user_photo_path == 1)
+                                            {{ asset('default.jpg') }}
+                                            @else
+                                            
+                                            {{ asset('/storage/profile_pic/'.auth()->user()->user_photo_path) }}
+                                            @endif
+
+                                        "></div>
                                     </div>
 
                                     <div class="title">
-                                        <a href="">Nikename-of-owner-page</a>
-                                        <p>Name</p>
+                                        <a href="/profile/{{ auth()->user()->id }}">{{ auth()->user()->first_name}}." ".{{ auth()->user()->last_name }}</a>
                                     </div>
                                 </div>{{--end owner--}}
 

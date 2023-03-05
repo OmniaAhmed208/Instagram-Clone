@@ -81,27 +81,33 @@ class PostController extends Controller
         ]);
     }
 
+    public function explorePost ($postid){
+        $post = Post::find($postid);
+        
+        return redirect()->route('home.index');
+    }
+
     public function reels()
     {
-    $allPosts = Post::all()
-        ->where('content_type', 'mp4')
-        ->sortByDesc('id');
-    $allUsers = User::get();
-    $allMedia = Media::get();
-    // $media_post_id = Media::get('post_id');
-    $allLikes = PostInteraction::all()->where('like', 1);
-    $allSavings = PostInteraction::all()->where('saving', 1);
-    $likesCount = $allLikes->count();
-    $savingsCount = $allSavings->count();
-    $comments = Comment::get();
-    $commentsCount = $comments->count();
+        $allPosts = Post::all()
+            ->where('content_type', 'mp4')
+            ->sortByDesc('id');
+        $allUsers = User::get();
+        $allMedia = Media::get();
+        // $media_post_id = Media::get('post_id');
+        $allLikes = PostInteraction::all()->where('like', 1);
+        $allSavings = PostInteraction::all()->where('saving', 1);
+        $likesCount = $allLikes->count();
+        $savingsCount = $allSavings->count();
+        $comments = Comment::get();
+        $commentsCount = $comments->count();
 
-    // dd($allPosts);
+        // dd($allPosts);
 
-    $current = new Carbon(); //time format Carbon
-    $date = $current->toDateString();
+        $current = new Carbon(); //time format Carbon
+        $date = $current->toDateString();
 
-    return view('posts.reels', [
+        return view('posts.reels', [
             'posts' => $allPosts,
             'date' => $date,
             'users'=> $allUsers,
@@ -113,60 +119,7 @@ class PostController extends Controller
             'savingsCount' => $savingsCount,
             'commentsCount' => $commentsCount,
             'comments' => $comments,
-    ]);
-
-        // $posts = Post::all()
-        // ->where('content_type', 'mp4')
-        // ->sortByDesc('id');
-        // $data = [];
-        // // $mediaArray = [];
-        // foreach ($posts as $post) {
-        //     $postid = $post-> id;
-        //     $user = User::findorfail($post['post_creator_id']);
-        //     $username = $user->nick_name;
-        //     $userPhoto = $user['user-photo_path'];
-        //     $date = $post['created_at'];
-        //     $media = Media::select('content_path') -> where('post_id', $postid)-> get();
-
-        //     // dd($posts);
-        //     // $file = DB::table('posts')->where('id', $post->id)->first();
-        //     // $files = explode('|', $file->content_path);
-		// 	// foreach ($files as $index => $media){
-        //     //     if (substr(strrchr($media,'.'),1) == 'mp4' && $post->post_creator_id == $user->id){
-        //     //         $mediaUrl = URL::to($media);
-        //     //     }
-        //     // }
-        //     $likes = $post['likes_counts_settings'];
-        //     $comments_count = $post['comments_settings'];
-
-        //     $comments = Comment::where('post_id', $postid) -> get();
-        //     $comments_data = [];
-        //     foreach ($comments as $comment) {
-        //         $commentCreator = User::findorfail($comment['comment_writer_id']);
-        //         $commentCreator_name = $commentCreator['nick_name'];
-        //         $commentBody = $comment['comment_content'];
-        //         $commentDate = $comment['created_at'];
-
-        //         $comment_data=[
-        //             'username' => $commentCreator_name,
-        //             'body' => $commentBody,
-        //             'date' => $commentDate,
-        //         ];
-        //         array_push($comments_data, $comment_data);
-        //     };
-        //     return view('posts.reels',  [
-        //         'posts' => $posts,
-        //         'postid' => $postid,
-        //         'users' => $user,
-        //         'user' => $user,
-        //         'date' => $date,
-        //         //media =>
-        //         // 'mediaUrl' => URL::to($media),
-        //         'likes' => $likes,
-        //         'comments_count' => $comments_count,
-        //         //comments =>
-        //     ]);
-        // }
+        ]);
     }
 
     public function create()
@@ -293,12 +246,6 @@ class PostController extends Controller
             'watcher_id'=>$userid,
             'saving'=>1
         ]);
-        return redirect()->route('home.index');
-    }
-
-    public function explorePost ($postid){
-        $post = Post::find($postid);
-        
         return redirect()->route('home.index');
     }
 }

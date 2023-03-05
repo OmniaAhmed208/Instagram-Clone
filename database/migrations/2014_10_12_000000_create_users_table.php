@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('nick_name')->nullable();
             $table->enum('gender', ['male', 'female']);
-            $table->year('birth_year')->nullable();  //indteed of age
-            $table->string('user_photo_path', 500)->default();
+            $table->date('birth_year')->nullable();  //indteed of age
+            $table->string('user_photo_path', 500)->nullable();
             $table->integer('mobile')->nullable();
             $table->text('bio')->nullable();
             $table->rememberToken();
