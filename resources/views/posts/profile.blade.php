@@ -345,11 +345,11 @@
                         </div>
                 
                         <div id="saved" class="col-4 fw-semibold text-secondary" role="button" onclick="display()">
-                            <i id="saved" class="fa fa-bookmark-o" ></i> SAVED
+                            <i id="saved" class="fa fa-bookmark-o" ></i> <a class="text-secondary" style="padding: 5px" href="{{ route('profile.saved') }}">SAVED</a> 
                         </div>
                 
                         <div id="tagged" class="col-4 fw-semibold text-secondary" role="button" onclick="display()">
-                            <i id="tagged" class="fa fa-user-circle" ></i> TAGGED
+                            <i id="tagged" class="fa fa-user-circle" ></i> <a class="text-secondary" style="padding: 5px" href="{{ route('profile.tagged') }}">TAGGED</a>
                         </div>
                 
                     </div>

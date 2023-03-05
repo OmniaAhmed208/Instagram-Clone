@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Media;
+use App\Models\PostInteraction;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Mentiontag;
 // use DB;
 // use URL;
 
@@ -16,14 +19,7 @@ use Image;
 
 class PostController extends Controller
 {
-    // public function index(){
-    //     $allPosts = Post ::all();
-    //     $allComments = Comment :: all();
-    //     return view('posts.index',[
-    //         'posts'=> $allPosts,
-    //         'comments' => $allComments
-    //     ]);
-    // }
+   
 
     public $rowperpage = 6;  //Every explore block has 10 posts.
 
@@ -33,6 +29,7 @@ class PostController extends Controller
         $allPosts = Post::get();
         $allUsers = User::get();
         $allMedia = Media::get();
+        $comments = Comment::get();
         // $media_post_id = Media::get('post_id');
 
         // dd($media_post_id);
@@ -45,6 +42,7 @@ class PostController extends Controller
             'date' => $date,
             'users'=> $allUsers,
             'allMedia'=> $allMedia,
+            'comments' => $comments
             // '$media_post_id' => $media_post_id
         ]);
     }
@@ -225,10 +223,11 @@ class PostController extends Controller
     {
         // dd($_POST);
         $data = request()->all();
-        // dd($data);
+        // dd($data['tag']);
 
         $content = $data['content'];
-        $post_creator_id = $data['select_post'];
+        // $post_creator_id = $data['select_post'];
+        $post_creator_id = Auth::id();
 
         // if($data['cropped'] == null){ //if image not cropped take original image
         //     $file_extension = request()-> image -> getClientOriginalExtension();
@@ -272,6 +271,72 @@ class PostController extends Controller
             'alt_text' => "photo",
         ]);
 
+        if ($data['tag']) {
+            $postid= Post::select('id')->max('id');
+            // dd($postid);
+            Mentiontag::create([
+                'post_id' => $postid,
+                'user_from_id' => $post_creator_id,
+                'user_to_id' => $data['tag'],
+                'mention_or_tag' => 'tag'
+            ]);
+        }
+        
+
         return back();
     }
+
+    public function edit($postid)
+    {
+        $post = Post:: find($postid);
+        $allUsers = User::get();
+      
+        // dd($post);
+        return view('posts.edit',[
+            'post' => $post,
+            'users' => $allUsers
+            
+        ]);
+    }
+    public function update($postid, Request $request)
+    {
+        $post = Post :: find($postid);
+        $newdata= $request-> all();
+        $post->update([
+            'caption'=> $newdata['caption']
+        ]);
+        // dd($newdata);
+        // $request->validate([
+        //                'title' => ['required', 'min:3'],
+        //                'description' => ['required', 'min:5'],
+        //            ]);
+
+        return redirect()->route('home.index');
+    }
+
+    public function like ($postid){
+        $post = Post::find($postid);
+        $likesCount = $post['likes_counts_settings']+1;
+        $post->update(['likes_counts_settings'=> $likesCount]);
+        // dd($likesCount);
+        $userid = Auth::id();
+        PostInteraction::create([
+            'post_id'=>$postid,
+            'watcher_id'=>$userid,
+            'like'=>1
+        ]);
+        return redirect()->route('home.index');
+    }
+
+    public function save ($postid){
+        $userid = Auth::id();
+        PostInteraction::create([
+            'post_id'=>$postid,
+            'watcher_id'=>$userid,
+            'saving'=>1
+        ]);
+        return redirect()->route('home.index');
+    }
+
+    
 }
