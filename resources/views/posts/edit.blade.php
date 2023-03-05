@@ -9,48 +9,9 @@
                 <div class="home">
 
                     <div class="inside-home">
-
-                        {{-- @foreach($users as $user)
-                        @php
-                        $fileStory = DB::table('media')->where('user_id', $user->id)->first();
-                        $filesStories = explode('|', $fileStory->content_path);
-
-                        @endphp
-                        @endforeach --}}
-{{-- 
-                        <div class="allStories">
-                            @foreach($allMedia as $index=>$story)
-                            <a  href="/stories/{{$story['user_id']}}"> --}}
-                                {{--start story--}}
-                                {{-- <div class="stories"> 
-                                    <div class="story">
-                                        @foreach($users as $user)
-                                            <div class="box">
-                                                @if($user->id == $story->user_id)
-                                                    <div class="imgBx">
-                                                        <img  src="{{URL::to( $filesStories[0])}}" alt="">
-                                                    </div>
-                                                @else
-                                                    <div class="imgBx">
-                                                        <img src="{{asset('lap.png')}}" alt="">
-                                                    </div>
-                                                @endif
-                                            </div>
-
-                                            @if($user->id == $story->user_id)
-                                                <div class="title">{{$user->first_name}}</div>
-                                            @else
-                                                <div class="title">ahmed</div>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                    
-                                </div>
-                            </a>
-                            @endforeach
-                        </div> --}}
-
-                        @foreach ($posts as $post)
+                       
+    
+                       
                         <div class="posts"> {{--start posts--}}
 
                             <div class="post container"> {{--start title of posts--}}
@@ -147,22 +108,18 @@
                                            @endphp
 
                                             @foreach ($files as $index => $media)
-                                            {{-- @dd($media) --}}
                                                 @if (substr(strrchr($media,'.'),1) == 'mp4')
                                                     <div class="slide" data-index={{$index}} data-post-id="{{$post->id}}">
-                                                        <video controls autoplay muted playsinline loop style="width:100%;height:100%" poster="http://placehold.it/350x350">
+                                                        <video controls autoplay muted playsinline loop style="width:100%;height:100%">
                                                             <source src="{{URL::to($media)}}" type="video/mp4">
-                                                            <source src="{{URL::to($media)}}"  type="video/ogg">
-                                                            Your device does not support HTML5 video.
                                                         </video>
-                                                    </div>
+                                                    </div>    
                                                 @else
                                                     <div class="slide" data-index={{$index}} data-post-id="{{$post->id}}">
-                                                        <img src="{{URL::to($media)}}" alt="" id="imgPost">
+                                                        <img src="{{$media}}" alt="" id="imgPost">
                                                     </div>
                                                 @endif
                                             @endforeach
-
                                         </div>
                                     </div>
 
@@ -178,94 +135,57 @@
                             </div>
 
                             <div class="actions container">
-                                <div style="display:flex; justify-content: space-between">
-                                    <div class="col-11">
-                                        <a href="{{route('posts.like', $post->id)}}" style="padding: 5px 5px 5px"><img class="red" style="width:8%" src="img\heart.png" alt=""></a>
-                                        <a href="#" style="padding: 5px 5px 5px"><img style="width:8%" src="img\comment.png" alt=""></a>
-                                        <a href="#" style="padding: 5px 5px 5px"><img style="width:8%" src="img\send.png" alt=""></a>
-                                        {{-- eyeicon.classList.replace("bx-hide" , "bx-show");  --}}
-                                    </div>
-                                    <a class="col-1" href="{{route('posts.save', $post->id)}}"><img style="width:90%" src="img\save-instagram.png" alt=""></a>
-
-                                    
-                                </div>
+                                <ul class="list-unstyled">
+                                    <li class="like"></li>
+                                    <li class="comment"></li>
+                                    <li class="share"></li>
+                                    <li class="save"></li>
+                                </ul>
                             </div>
 
-                            <div class="num-likes container"><a href="">{{ $post->likes_counts_settings }} likes</a></div>
-
-                            <div class="post-content container">
-                                {{-- <div class="title">name-of-page</div> --}}
-                                {{-- @if ($post->post_creator_id == $user->id) --}}
-                                    <div class="title">{{$post->user->nick_name}}</div>
-                                {{-- @endif --}}
-                                {{-- <p>content of post will write here</p> --}}
-                                <p>{{$post->caption}}</p>
-                                
-                            </div>
-
-                            <div>
-                            
-                                @forEach ($comments as $comment)
-                                
-                                @if ($comment->post_id == $post->id)
-                                    <div class="post-content container">
-                                        <div class="title">{{ $comment->user->first_name }}</div>
-                                        <p>{{ $comment->comment_content }}</p>
-                                    </div>
-                                @endif
-                                @endforeach
-
-                               
-                            </div>
+                            <div class="num-likes container">11 likes</div>
+                          
 
                             <div class="add-comment container">
-                                <form method="POST" action="{{ route('comments.store', 1) }}">
+                                <form method="POST" action="{{route('posts.update', $post->id)}}">
                                     @csrf
+                                    @method('put')
+                                    {{-- <p>{{ $post->caption }}</p> --}}
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                    <input name="comment" style="width: 80%" type="text" placeholder="Add a comment...">
-                                    <input type="submit" style="width: 15%" value="post" class="btn">
-                                    
+                                    <input name="caption" style="width: 80%; display:block" type="text" value="{{ $post->caption }}">
+                                    <label>Tag:</label> <select name="select_post" class="form-control" id="select_post">
+                                        @foreach ($users as $user)
+                                        <option value="1">{{ $user->nick_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    {{-- <input name="caption" style="width: 80%" type="text" value="{{ $post->caption }}"> --}}
+                                    <input type="submit" style="width: 15%" value="Done" class="btn" >
 
                                 </form>
                                 
-                            </div>    
-                            <hr>
+                            </div> 
+
+                           
+
+                         
+                        
 
                         </div> {{--end posts--}}
+                      
+                       
 
-                        @endforeach
+                     
+                        
 
-                        {{-- when click on 3 points ... --}}
-                        <div class="fixedActions">
-                            <div class="actionPoints">
-                                <ul class="list-unstyled">
-                                    <li class="red">Report</li>
-                                    <hr>
-                                    <li class="red">unfollow</li>
-                                    <hr>
-                                    <li>Add to favorite</li>
-                                    <hr>
-                                    <li>Go to post</li>
-                                    <hr>
-                                    <li>Share to...</li>
-                                    <hr>
-                                    <li>Copy link</li>
-                                    <hr>
-                                    <li>Embed</li>
-                                    <hr>
-                                    <li>About this account</li>
-                                    <hr>
-                                    <li><a href="{{route('posts.edit', $post->id)}}" > Edit</a></li>
-                                    <hr>
-                                    <li id="cancel">Cancel</li>
-                                </ul>
-                            </div>
-                        </div>
+                        
 
                     </div>
-                </div>{{--end home--}}
-            </div>
 
+                    
+                </div>{{--end home--}}
+                
+            </div>
+            
             <script>
                 var fixedAction = document.querySelector('.fixedActions');
                 var points = document.getElementById('points');
@@ -278,12 +198,8 @@
                     fixedAction.style.display = "none";
                 }
             </script>
+
             <script>
-                var like = document.getElementsByClassName("red");
-                console.log(like)
-            </script>
-            <script>
-                // slider ===============
                 var slide = document.querySelectorAll('.slide');
                 var sliderParent = document.querySelectorAll('.slider');
 
@@ -300,34 +216,7 @@
                             element.classList.remove('active');
                     });
                 }
-
-                //  video ==============
-
-                window.addEventListener('load', videoScroll);
-                window.addEventListener('scroll', videoScroll);
-
-                function videoScroll() {
-
-                if ( document.querySelectorAll('video[autoplay]').length > 0) {
-                    var windowHeight = window.innerHeight,
-                        videoEl = document.querySelectorAll('video[autoplay]');
-
-                    for (var i = 0; i < videoEl.length; i++) {
-
-                    var thisVideoEl = videoEl[i],
-                        videoHeight = thisVideoEl.clientHeight,
-                        videoClientRect = thisVideoEl.getBoundingClientRect().top;
-
-                    if ( videoClientRect <= ( (windowHeight) - (videoHeight*.5) ) && videoClientRect >= ( 0 - ( videoHeight*.5 ) ) ) {
-                        thisVideoEl.play();
-                    } else {
-                        thisVideoEl.pause();
-                    }
-
-                    }
-                }
-
-}
             </script>
 
 @endsection
+

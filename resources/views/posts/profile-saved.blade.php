@@ -277,12 +277,12 @@
                 <div class="w-50 mx-auto">
                     <div class="row justify-content-evenly">
                 
-                        <div id="posts" class="col-4 fw-semibold text-dark" role="button" onclick="display()">
-                            <i id="posts" class="fa fa-th"></i> POSTS
+                        <div id="posts" class="col-4 fw-semibold text-secondary" role="button" onclick="display()">
+                            <i id="posts" class="fa fa-th"></i> <a class="text-secondary" style="padding: 5px" href="{{ route('profile.index') }}">POSTS</a>
                         </div>
                 
-                        <div id="saved" class="col-4 fw-semibold text-secondary" role="button" onclick="display()">
-                            <i id="saved" class="fa fa-bookmark-o" ></i> <a class="text-secondary" style="padding: 5px" href="{{ route('profile.saved') }}">SAVED</a> 
+                        <div id="saved" class="col-4 fw-semibold text-dark" role="button" onclick="display()">
+                            <i id="saved" class="fa fa-bookmark-o" ></i> SAVED
                         </div>
                 
                         <div id="tagged" class="col-4 fw-semibold text-secondary" role="button" onclick="display()">
@@ -292,20 +292,22 @@
                     </div>
                 </div>
                 
-                <div class="row">
-                   
+                {{-- <div class="row">
+                    @foreach ($posts as $post)
                     <div class="col-4 my-4" style="">
-                        <img class="w-100 h-100 rounded" src="">
+                        <p>{{ $post->post->content_path }}</p>
+                    </div>
+                    @endforeach --}}
+                    <div class="row">
+
+                        @foreach ($posts as $post)
+                            <div class="col-4 my-4">
+                                <img class="w-100 h-100 rounded" src="{{asset($post->post->content_path)}}">
+                            </div>
+                        @endforeach
+    
                     </div>
                     
-                
-                    <div class="col-4 my-4">
-                        <img class="w-100 h-100 rounded" src="">
-                    </div>
-                    
-                    <div class="col-4 my-4">
-                        <img class="w-100 h-100 rounded" src="">
-                    </div>
                 
                     
                 </div>

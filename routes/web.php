@@ -56,3 +56,10 @@ Route::post('/home/{post}/comment', [CommentController::class, 'store'])->name('
 // Route::get('/stories' , [StoryController::class, 'index']);
 Route::get('/stories/{story}' , [StoryController::class, 'index'])->name(name:'posts.stories');
 // Route::post('/stories', [StoryController::class, 'store']);
+Route::get('/posts/{post}/edit}', [postController::class, 'edit'])->name('posts.edit');
+Route::put('/posts/{post}', [postController::class, 'update'])->name('posts.update');
+Route::get('/post/{post}/like', [PostController::class, 'like'])->name('posts.like');
+Route::get('/post/{post}/save', [PostController::class, 'save'])->name('posts.save');
+
+Route::get('/profile/saved', [ProfileController::class, 'saved'])->name('profile.saved');
+Route::get('/profile/tagged', [ProfileController::class, 'tagged'])->name('profile.tagged');
