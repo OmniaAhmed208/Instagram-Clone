@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Media;
+use App\Models\PostInteraction;
 // use DB;
 // use URL;
 
@@ -24,8 +25,6 @@ class PostController extends Controller
     //         'comments' => $allComments
     //     ]);
     // }
-
-    public $rowperpage = 6;  //Every explore block has 10 posts.
 
     public function index()
 
@@ -63,112 +62,52 @@ class PostController extends Controller
 
     public function explore()
     {
-        // Number of rowsperpage
-        $data['rowperpage'] = $this->rowperpage;
-
-        // Total number of records
-        $data['totalrecords'] = Post::select('*')->count();
-
-        // Fetch 4 records
-        $data['posts'] = Post::select('*')
-               ->skip(0)
-               ->take($this->rowperpage)
-               ->get();
-               
-
         $allPosts = Post::all()
         ->sortByDesc('id'); 
+        $allLikes = PostInteraction::all()->where('like', 1);
+        $allSavings = PostInteraction::all()->where('saving', 1);
+        $likesCount = $allLikes->count();
+        $savingsCount = $allSavings->count();
+        // dd($allPosts);
 
-        // Load index view
         return view('posts.explore', [
-            $data,
-            'rowperpage' => $data['rowperpage'],
-            'totalrecords' => $data['totalrecords'],
-            // 'posts' => $data['posts'],
             'posts' => $allPosts,
-        ]);
-
-        // $allPosts = Post::all()
-        // ->sortByDesc('id'); 
-
-        // return view('posts.explore', [
-        //     'posts' => $allPosts,
-        // ]);
-    }
-
-    // Fetch records for explore page loading posts
-    public function getPosts(Request $request){
-
-        $start = $request->get("start");
-
-        // Fetch records
-        $records = Post::select('*')
-            ->skip($start)
-            ->take($this->rowperpage)
-            ->get();
-
-        $html = "";
-        foreach($records as $record){
-            $html .= "<div class='col mx-lg-3 flex-fill'>
-                        <a href='{{" .$record->path(). "}}' data-bs-toggle='modal' data-bs-target='#explorePostModal'>
-                            {{-- @if (" .$records->first(). "||" .$records->last(). ")
-                                <div class='row' style='height:690px;'>
-                            @else --}}
-                                <div class='row'>
-                            {{-- @endif --}}
-                                {{-- one explore content start --}}
-                                <span>{{" .$record->caption. "}}</span>
-                                @foreach (".$record->media()." as ".$media.")
-                                    @if (".$media->content_type." == 'video')
-                                        @yield('oneExplore-video-Content')
-                                    @else
-                                        @yield('oneExplore-photo-Content')
-                                    @endif
-                                @endforeach
-                                {{-- one explore content end --}}
-                            </div>
-                        </a>
-                    </div>";
-        }
-        $data['html'] = $html;
-
-        return response()->json([
-            $data,
-            'html' => $data['html'],
+            'likes' => $allLikes,
+            'savings' => $allSavings,
+            'likesCount' => $likesCount,
+            'savingsCount' => $savingsCount,
         ]);
     }
 
     public function reels()
     {
-    // $reels = Media::all()
-    // ->where('content_type', 'video')
-    // ->sortByDesc('id');  //I should have use 'created_at' but it's NULL for these records
-
-    // return view('posts.reels',[
-        //     'reels' => $reels,
-    // ]);
-    // return response()->json([
-        //     'reels' => $reels,
-    // ]);
-
     $allPosts = Post::all()
         ->where('content_type', 'mp4')
         ->sortByDesc('id');
     $allUsers = User::get();
     $allMedia = Media::get();
     // $media_post_id = Media::get('post_id');
+    $allLikes = PostInteraction::all()->where('like', 1);
+    $allSavings = PostInteraction::all()->where('saving', 1);
+    $likesCount = $allLikes->count();
+    $savingsCount = $allSavings->count();
+    
 
     // dd($allPosts);
 
     $current = new Carbon(); //time format Carbon
     $date = $current->toDateString();
 
-    return view('posts.reels', [ // index => show tables
+    return view('posts.reels', [
             'posts' => $allPosts,
             'date' => $date,
             'users'=> $allUsers,
             'allMedia'=> $allMedia,
             // '$media_post_id' => $media_post_id
+            'likes' => $allLikes,
+            'savings' => $allSavings,
+            'likesCount' => $likesCount,
+            'savingsCount' => $savingsCount,
     ]);
 
         // $posts = Post::all()

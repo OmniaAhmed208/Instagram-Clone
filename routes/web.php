@@ -22,9 +22,9 @@ use App\Http\Controllers\StoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -38,6 +38,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/profile' , [ProfileController::class, 'index'])->name('profile.index')->middleware('auth');
 
+Route::get('/' , [PostController::class, 'index'])->name('home.index')->middleware('auth');
 Route::get('/home' , [PostController::class, 'index'])->name('home.index')->middleware('auth');
 
 Route::post('/home', [PostController::class, 'store']);

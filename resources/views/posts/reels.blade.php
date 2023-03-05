@@ -30,11 +30,14 @@
 						<div class="col-9 rounded-2 d-flex flex-wrap px-0 position-relative">
 							<!-- {{-- reels video start --}} -->
 							<div class="video-wrap z-n2  rounded-2 h-100 w-100 position-absolute" style="cursor: pointer;" onclick="playPauseVid('#video{{ $post->id }}', '#videoIcon{{ $post->id }}')">  <!--  -->
-								<video src="{{ URL::to($media) }}" id="video{{ $post->id }}"
+								<video src="{{ $post->content_path }}" id="video{{ $post->id }}"
 									class="video w-100 h-100 rounded-2" poster="" 
 									autoplay loop > <!-- autoplay --> <!-- loading... as poster: asset('Thumbnails/CUKe.gif') -->
 									Your browser does not support the video tag.
 								</video>
+								@php
+									// dd($post->content_path);
+								@endphp
 							</div>
 							<!-- {{-- reels video end --}} -->
 							<!-- {{-- reels info start --}} -->
@@ -109,13 +112,13 @@
 								<ul>
 									<li class="list-group-item">
 										<i><img src="{{ asset('Icons/heart.png') }}" /></i>
-										<!-- {{-- @if (> 999 & < 999999)
-											<span>203k</span>
-										@elseif (> 999999)
-											<span>203m</span>
-										@else --}} -->
-											<span>203</span>
-										<!-- {{-- @endif --}} -->
+										@if ($likesCount > 999 && $likesCount < 999999)
+										<strong class="cursor-pointer" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">{{ $likesCount/1000 }}K</strong>
+										@elseif ($likesCount > 999999)
+										<strong class="cursor-pointer" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">{{ $likesCount/1000000 }}M</strong>
+										@else
+											<strong class="cursor-pointer" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">{{ $likesCount }}</strong>
+										@endif
 									</li>
 									<li class="list-group-item">
 										<i><img src="{{ asset('Icons/comments.png') }}" /></i>
@@ -154,6 +157,12 @@
 		</div>    
 	</section>
 </div>
+
+
+
+
+
+
 
 <script>
 	var vidMuted = document.querySelectorAll('.video');
@@ -218,3 +227,52 @@
 </script>
 
 @endsection
+
+
+<!-- Modal of users who reacted (like) to the post start -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<h5 class="modal-title w-100">Likes</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{--user-container row start --}}
+				@if ($users_liked)
+				@foreach ($likes as $like)
+					<div class="user-container">
+						<div class="row">
+							<div class="col-lg-2 align-self-start">
+								<div class=" story">
+									<div class="imgBx">
+										<img src="{{asset('lap.png')}}" alt="img">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-7 align-self-start">
+								<div class="title-info">
+									<div class="info">
+										<p class="mb-0">
+											<strong class="h5 text-black">nickname</strong>
+											<img src="{{asset('Icons/verified.png')}}" />
+										</p>
+										<p class="text-black-50">bio ...</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 align-self-end align-self-center">
+								<button class="btn btn-primary text-white px-4">Follow</button>
+							</div>
+						</div>
+					</div>
+				@endforeach
+				@else
+					<strong class="h5 text-black">Be the first to like this post.</strong>
+				@endif
+				{{--user-container row end --}}
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal of users who reacted (like) to the post end -->
